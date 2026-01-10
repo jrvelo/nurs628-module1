@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628 - Module 2: Treatment Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .module-header {
+            background: linear-gradient(135deg, #276749 0%, #48bb78 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+        }
+        
+        .module-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .module-header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .breadcrumb {
+            background: #f7fafc;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9em;
+            color: #718096;
+        }
+        
+        .breadcrumb a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        
+        .section:first-of-type {
+            border-radius: 0;
+        }
+        
+        .section-header {
+            padding: 20px 25px;
+            color: white;
+        }
+        
+        .section-header h2 {
+            font-size: 1.4em;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .section-content ul, .section-content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* Where We Are Box */
+        .where-we-are-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border: 2px solid #4299e1;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .where-we-are-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .where-we-are-icon {
+            font-size: 1.5em;
+        }
+        
+        .where-we-are-title {
+            font-weight: 700;
+            color: #2c5282;
+            font-size: 1.2em;
+        }
+        
+        .diagnosis-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #276749 0%, #48bb78 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        /* Key Question Box */
+        .key-question-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border: 2px solid #805ad5;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .key-question-box h3 {
+            color: #553c9a;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .key-question-box p {
+            color: #553c9a;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        
+        /* 5 Ps Framework */
+        .five-ps-intro {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .five-ps-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .ps-mini {
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        
+        .ps-mini.presenting { background: #fed7d7; color: #c53030; }
+        .ps-mini.predisposing { background: #e9d8fd; color: #553c9a; }
+        .ps-mini.precipitating { background: #fef3c7; color: #744210; }
+        .ps-mini.perpetuating { background: #feebc8; color: #c05621; }
+        .ps-mini.protective { background: #c6f6d5; color: #276749; }
+        
+        /* Treatment Relevance */
+        .treatment-relevance-box {
+            border: 2px solid #276749;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .relevance-header {
+            background: linear-gradient(135deg, #276749 0%, #48bb78 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 700;
+        }
+        
+        .relevance-content {
+            padding: 20px;
+            background: linear-gradient(180deg, #f0fff4 0%, white 100%);
+        }
+        
+        .relevance-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #c6f6d5;
+        }
+        
+        .relevance-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .relevance-p {
+            font-weight: 700;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+        
+        .relevance-p.presenting { color: #c53030; }
+        .relevance-p.predisposing { color: #553c9a; }
+        .relevance-p.precipitating { color: #744210; }
+        .relevance-p.perpetuating { color: #c05621; }
+        .relevance-p.protective { color: #276749; }
+        
+        .relevance-desc {
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        
+        /* JM's 5 Ps for Treatment */
+        .jm-treatment-box {
+            border: 2px solid #805ad5;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .jm-treatment-header {
+            background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 700;
+        }
+        
+        .jm-treatment-content {
+            padding: 0;
+        }
+        
+        .jm-p-section {
+            padding: 20px;
+            border-bottom: 1px solid #e9d8fd;
+        }
+        
+        .jm-p-section:last-child {
+            border-bottom: none;
+        }
+        
+        .jm-p-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .jm-p-badge {
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+        
+        .jm-p-badge.presenting { background: #fed7d7; color: #c53030; }
+        .jm-p-badge.predisposing { background: #e9d8fd; color: #553c9a; }
+        .jm-p-badge.precipitating { background: #fef3c7; color: #744210; }
+        .jm-p-badge.perpetuating { background: #feebc8; color: #c05621; }
+        .jm-p-badge.protective { background: #c6f6d5; color: #276749; }
+        
+        .jm-p-question {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .jm-p-data {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+        }
+        
+        .jm-p-data ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .jm-p-data li {
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+        
+        .jm-p-implication {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+        
+        .jm-p-section:nth-child(1) .jm-p-implication { background: #fff5f5; }
+        .jm-p-section:nth-child(2) .jm-p-implication { background: #faf5ff; }
+        .jm-p-section:nth-child(3) .jm-p-implication { background: #fffaf0; }
+        .jm-p-section:nth-child(4) .jm-p-implication { background: #fffaf0; }
+        .jm-p-section:nth-child(5) .jm-p-implication { background: #f0fff4; }
+        
+        .implication-arrow {
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        
+        .implication-text {
+            line-height: 1.5;
+        }
+        
+        .implication-text strong {
+            color: #2d3748;
+        }
+        
+        /* Treatment Lenses */
+        .treatment-lenses-intro {
+            background: linear-gradient(135deg, #fffaf0 0%, #fef3c7 100%);
+            border: 2px solid #d69e2e;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .treatment-lenses-intro h4 {
+            color: #744210;
+            margin-bottom: 15px;
+        }
+        
+        .lenses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .lens-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d69e2e;
+            text-align: center;
+        }
+        
+        .lens-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .lens-name {
+            font-weight: 700;
+            color: #744210;
+            margin-bottom: 5px;
+        }
+        
+        .lens-desc {
+            font-size: 0.85em;
+            color: #718096;
+        }
+        
+        /* Insight Callout */
+        .insight-callout {
+            display: flex;
+            gap: 15px;
+            background: linear-gradient(135deg, #fef3c7 0%, #faf089 100%);
+            border: 1px solid #d69e2e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            align-items: flex-start;
+        }
+        
+        .insight-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+        
+        .insight-content {
+            line-height: 1.6;
+            color: #744210;
+        }
+        
+        /* Coming Soon Box */
+        .coming-soon-box {
+            background: linear-gradient(135deg, #e2e8f0 0%, #edf2f7 100%);
+            border: 2px dashed #a0aec0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .coming-soon-box h4 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .coming-soon-list {
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
+        }
+        
+        .coming-soon-list li {
+            color: #718096;
+            margin-bottom: 8px;
+        }
+        
+        /* Submit Row / Continue Button */
+        .submit-row {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .submit-row p {
+            margin-bottom: 15px;
+            color: #718096;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #276749 0%, #48bb78 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .five-ps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .five-ps-grid .ps-mini:nth-child(4),
+            .five-ps-grid .ps-mini:nth-child(5) {
+                grid-column: span 1;
+            }
+            
+            .lenses-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .relevance-item {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .relevance-p {
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .five-ps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .lenses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 5 Ps Definitions */
+        .five-ps-definitions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .ps-def-item {
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid;
+        }
+        
+        .ps-def-item.presenting {
+            background: #fff5f5;
+            border-color: #c53030;
+        }
+        
+        .ps-def-item.predisposing {
+            background: #faf5ff;
+            border-color: #805ad5;
+        }
+        
+        .ps-def-item.precipitating {
+            background: #fffaf0;
+            border-color: #d69e2e;
+        }
+        
+        .ps-def-item.perpetuating {
+            background: #fffaf0;
+            border-color: #dd6b20;
+        }
+        
+        .ps-def-item.protective {
+            background: #f0fff4;
+            border-color: #48bb78;
+        }
+        
+        .ps-def-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .ps-def-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9em;
+        }
+        
+        .ps-def-item.presenting .ps-def-badge { background: #c53030; }
+        .ps-def-item.predisposing .ps-def-badge { background: #805ad5; }
+        .ps-def-item.precipitating .ps-def-badge { background: #d69e2e; }
+        .ps-def-item.perpetuating .ps-def-badge { background: #dd6b20; }
+        .ps-def-item.protective .ps-def-badge { background: #48bb78; }
+        
+        .ps-def-name {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .ps-def-item.presenting .ps-def-name { color: #c53030; }
+        .ps-def-item.predisposing .ps-def-name { color: #553c9a; }
+        .ps-def-item.precipitating .ps-def-name { color: #744210; }
+        .ps-def-item.perpetuating .ps-def-name { color: #c05621; }
+        .ps-def-item.protective .ps-def-name { color: #276749; }
+        
+        .ps-def-question {
+            font-style: italic;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        
+        .ps-def-desc {
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+        
+        /* Sorting Exercise */
+        .sorting-exercise {
+            margin: 25px 0;
+        }
+        
+        .data-pool {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .data-pool h4 {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        
+        .data-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .data-item {
+            background: white;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .data-item:hover {
+            border-color: #4299e1;
+            background: #ebf8ff;
+            transform: translateY(-2px);
+        }
+        
+        .data-item.sorted {
+            display: none;
+        }
+        
+        /* Category Picker Modal */
+        .category-picker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .picker-content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .picker-content p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+        
+        .picker-item {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .picker-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .picker-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+        }
+        
+        .picker-btn.presenting { background: #c53030; }
+        .picker-btn.predisposing { background: #805ad5; }
+        .picker-btn.precipitating { background: #d69e2e; }
+        .picker-btn.perpetuating { background: #dd6b20; }
+        .picker-btn.protective { background: #48bb78; }
+        
+        .picker-btn:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+        
+        .picker-cancel {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 8px;
+            color: #718096;
+            cursor: pointer;
+        }
+        
+        /* 5 Ps Drop Zones */
+        .ps-zones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .ps-zone {
+            border-radius: 10px;
+            overflow: hidden;
+            min-height: 120px;
+        }
+        
+        .ps-zone.presenting { border: 2px solid #c53030; }
+        .ps-zone.predisposing { border: 2px solid #805ad5; }
+        .ps-zone.precipitating { border: 2px solid #d69e2e; }
+        .ps-zone.perpetuating { border: 2px solid #dd6b20; }
+        .ps-zone.protective { border: 2px solid #48bb78; grid-column: span 2; }
+        
+        .zone-header {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+        
+        .ps-zone.presenting .zone-header { background: #c53030; }
+        .ps-zone.predisposing .zone-header { background: #805ad5; }
+        .ps-zone.precipitating .zone-header { background: #d69e2e; }
+        .ps-zone.perpetuating .zone-header { background: #dd6b20; }
+        .ps-zone.protective .zone-header { background: #48bb78; }
+        
+        .zone-badge {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+        
+        .zone-title {
+            font-weight: 600;
+        }
+        
+        .zone-items {
+            padding: 10px;
+            min-height: 60px;
+        }
+        
+        .zone-items .sorted-item {
+            background: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sorted-item .remove-btn {
+            background: none;
+            border: none;
+            color: #a0aec0;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        
+        .sorted-item .remove-btn:hover {
+            color: #e53e3e;
+        }
+        
+        .sorted-item.correct {
+            border-left: 3px solid #48bb78;
+        }
+        
+        .sorted-item.incorrect {
+            border-left: 3px solid #e53e3e;
+        }
+        
+        /* Sorting Progress */
+        .sorting-progress {
+            text-align: center;
+            padding: 15px;
+            color: #718096;
+            font-size: 0.95em;
+        }
+        
+        .check-answers-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        /* Sorting Feedback */
+        .sorting-feedback {
+            border: 2px solid #48bb78;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .feedback-header {
+            background: linear-gradient(135deg, #276749 0%, #48bb78 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feedback-icon {
+            font-size: 1.3em;
+        }
+        
+        .feedback-title {
+            font-weight: 700;
+        }
+        
+        .feedback-content {
+            padding: 20px;
+            background: #f0fff4;
+        }
+        
+        .feedback-content p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 600px) {
+            .ps-zones {
+                grid-template-columns: 1fr;
+            }
+            
+            .ps-zone.protective {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Module Header -->
+        <div class="module-header">
+            <h1>Module 2: Treatment Selection</h1>
+            <div class="subtitle">Using the 5 Ps Framework to Guide Treatment Planning</div>
+        </div>
+        
+        <div class="breadcrumb">
+            <a href="index.html">← Module 1: Diagnostic Validity</a> | Module 2: Treatment Selection
+        </div>
+        
+        <!-- Section 1: Where We Are -->
+        <div class="section" id="section-intro">
+            <div class="section-header" style="background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);">
+                <h2>📍 Where We Are</h2>
+            </div>
+            <div class="section-content">
+                
+                <div class="where-we-are-box">
+                    <div class="where-we-are-header">
+                        <span class="where-we-are-icon">✓</span>
+                        <span class="where-we-are-title">Diagnosis Established</span>
+                    </div>
+                    <p>In Module 1, we used the validity framework to arrive at a diagnosis with confidence:</p>
+                    <div class="diagnosis-badge">Major Depressive Disorder, Recurrent Episode, Moderate (F33.1)</div>
+                    <p style="margin-top: 15px; margin-bottom: 0;">We established <strong>construct validity</strong> through:</p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Discriminant Validity:</strong> High-DV symptoms (worthlessness, guilt) differentiated MDD from other conditions</li>
+                        <li><strong>Convergent Validity:</strong> Multiple data sources confirmed each criterion; symptoms clustered into a recognizable syndrome</li>
+                    </ul>
+                </div>
+                
+                <div class="key-question-box">
+                    <h3>Now What?</h3>
+                    <p>We know <em>what</em> J.M. has. How do we decide <em>what to do about it</em>?</p>
+                </div>
+                
+                <p>The diagnosis tells us where we are—it's our shared starting point. But MDD can be treated many different ways:</p>
+                
+                <ul>
+                    <li>Medications (SSRIs, SNRIs, atypicals...)</li>
+                    <li>Individual therapy (CBT, DBT, IPT, psychodynamic, ACT, IFS...)</li>
+                    <li>Group therapy</li>
+                    <li>Family therapy</li>
+                    <li>Lifestyle interventions (exercise, sleep hygiene, nutrition...)</li>
+                    <li>Neuromodulation (TMS, ECT...)</li>
+                    <li>Combined approaches</li>
+                </ul>
+                
+                <p><strong>How do we choose?</strong> This is where the 5 Ps framework becomes essential.</p>
+                
+                <!-- Continue Button -->
+                <div class="submit-row">
+                    <button class="btn btn-primary" onclick="showSection('section-5ps')">Continue: The 5 Ps for Treatment →</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Section 2: 5 Ps Reminder -->
+        <div class="section" id="section-5ps" style="display: none;">
+            <div class="section-header" style="background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);">
+                <h2>🔄 The 5 Ps Framework</h2>
+            </div>
+            <div class="section-content">
+                
+                <p>Before we apply this to treatment, let's make sure we're clear on what each "P" represents:</p>
+                
+                <div class="five-ps-definitions">
+                    <div class="ps-def-item presenting">
+                        <div class="ps-def-header">
+                            <span class="ps-def-badge">P</span>
+                            <span class="ps-def-name">Presenting Problem</span>
+                        </div>
+                        <div class="ps-def-question">"What brought them here?"</div>
+                        <div class="ps-def-desc">The current symptoms, their severity, and functional impact. What the patient is experiencing right now.</div>
+                    </div>
+                    
+                    <div class="ps-def-item predisposing">
+                        <div class="ps-def-header">
+                            <span class="ps-def-badge">P</span>
+                            <span class="ps-def-name">Predisposing Factors</span>
+                        </div>
+                        <div class="ps-def-question">"What made them vulnerable?"</div>
+                        <div class="ps-def-desc">Historical factors that increased risk: genetics, family history, early experiences, attachment patterns, personality traits, prior episodes.</div>
+                    </div>
+                    
+                    <div class="ps-def-item precipitating">
+                        <div class="ps-def-header">
+                            <span class="ps-def-badge">P</span>
+                            <span class="ps-def-name">Precipitating Factors</span>
+                        </div>
+                        <div class="ps-def-question">"What triggered this? Why now?"</div>
+                        <div class="ps-def-desc">Recent events or stressors that triggered this episode. What changed in the weeks/months before onset.</div>
+                    </div>
+                    
+                    <div class="ps-def-item perpetuating">
+                        <div class="ps-def-header">
+                            <span class="ps-def-badge">P</span>
+                            <span class="ps-def-name">Perpetuating Factors</span>
+                        </div>
+                        <div class="ps-def-question">"What's keeping it going?"</div>
+                        <div class="ps-def-desc">Current factors maintaining the problem: cognitive patterns, behaviors, interpersonal dynamics, environmental factors, physiological cycles.</div>
+                    </div>
+                    
+                    <div class="ps-def-item protective">
+                        <div class="ps-def-header">
+                            <span class="ps-def-badge">P</span>
+                            <span class="ps-def-name">Protective Factors</span>
+                        </div>
+                        <div class="ps-def-question">"What strengths can we build on?"</div>
+                        <div class="ps-def-desc">Resources for recovery: social support, coping skills, insight, motivation, prior treatment response, stable areas of functioning.</div>
+                    </div>
+                </div>
+                
+                <div class="insight-callout">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-content">
+                        <strong>Key insight:</strong> You already organized J.M.'s data for <em>diagnosis</em>. Now you'll organize the same data for <em>treatment planning</em>. Same information, different lens, different purpose.
+                    </div>
+                </div>
+                
+                <!-- Continue Button -->
+                <div class="submit-row">
+                    <button class="btn btn-primary" onclick="showSection('section-sorting')">Continue: Sort J.M.'s Data →</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Section 3: Interactive Sorting Exercise -->
+        <div class="section" id="section-sorting" style="display: none;">
+            <div class="section-header" style="background: linear-gradient(135deg, #744210 0%, #d69e2e 100%);">
+                <h2>📋 Your Turn: Organize J.M.'s Data into the 5 Ps</h2>
+            </div>
+            <div class="section-content">
+                
+                <p>Here's J.M.'s clinical data. Click on each item to assign it to the appropriate "P" category. Some items might fit more than one—use your clinical judgment about where it's <em>most</em> relevant for treatment planning.</p>
+                
+                <!-- Data Items to Sort -->
+                <div class="sorting-exercise">
+                    <div class="data-pool" id="dataPool">
+                        <h4>Clinical Data (click to categorize)</h4>
+                        <div class="data-items">
+                            <div class="data-item" data-correct="presenting" onclick="showCategoryPicker(this)">PHQ-9 score of 19</div>
+                            <div class="data-item" data-correct="presenting" onclick="showCategoryPicker(this)">4-month history of low mood</div>
+                            <div class="data-item" data-correct="presenting" onclick="showCategoryPicker(this)">15-lb weight loss</div>
+                            <div class="data-item" data-correct="presenting" onclick="showCategoryPicker(this)">Difficulty concentrating at work</div>
+                            <div class="data-item" data-correct="predisposing" onclick="showCategoryPicker(this)">Prior depressive episode 15 years ago</div>
+                            <div class="data-item" data-correct="predisposing" onclick="showCategoryPicker(this)">Mother has history of depression</div>
+                            <div class="data-item" data-correct="predisposing" onclick="showCategoryPicker(this)">Maternal uncle completed suicide</div>
+                            <div class="data-item" data-correct="predisposing" onclick="showCategoryPicker(this)">Tendency toward self-critical thinking</div>
+                            <div class="data-item" data-correct="precipitating" onclick="showCategoryPicker(this)">Youngest son moved out 4 months ago</div>
+                            <div class="data-item" data-correct="precipitating" onclick="showCategoryPicker(this)">"Empty nest" transition</div>
+                            <div class="data-item" data-correct="perpetuating" onclick="showCategoryPicker(this)">"I failed as a mother"</div>
+                            <div class="data-item" data-correct="perpetuating" onclick="showCategoryPicker(this)">Avoiding friends and social activities</div>
+                            <div class="data-item" data-correct="perpetuating" onclick="showCategoryPicker(this)">Ruminative thinking patterns</div>
+                            <div class="data-item" data-correct="perpetuating" onclick="showCategoryPicker(this)">Insomnia → fatigue → low energy cycle</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">Close relationships with adult sons</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">Supportive parents and sister</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">Stable employment as accountant</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">No substance use</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">Previously responded well to sertraline + therapy</div>
+                            <div class="data-item" data-correct="protective" onclick="showCategoryPicker(this)">Seeking help (has insight)</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Picker Modal -->
+                    <div class="category-picker" id="categoryPicker" style="display: none;">
+                        <div class="picker-content">
+                            <p>Which category does this belong to?</p>
+                            <div class="picker-item" id="pickerItem"></div>
+                            <div class="picker-buttons">
+                                <button class="picker-btn presenting" onclick="assignCategory('presenting')">Presenting</button>
+                                <button class="picker-btn predisposing" onclick="assignCategory('predisposing')">Predisposing</button>
+                                <button class="picker-btn precipitating" onclick="assignCategory('precipitating')">Precipitating</button>
+                                <button class="picker-btn perpetuating" onclick="assignCategory('perpetuating')">Perpetuating</button>
+                                <button class="picker-btn protective" onclick="assignCategory('protective')">Protective</button>
+                            </div>
+                            <button class="picker-cancel" onclick="hideCategoryPicker()">Cancel</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 5 Ps Drop Zones -->
+                    <div class="ps-zones">
+                        <div class="ps-zone presenting" id="zone-presenting">
+                            <div class="zone-header">
+                                <span class="zone-badge">P</span>
+                                <span class="zone-title">Presenting</span>
+                            </div>
+                            <div class="zone-items"></div>
+                        </div>
+                        
+                        <div class="ps-zone predisposing" id="zone-predisposing">
+                            <div class="zone-header">
+                                <span class="zone-badge">P</span>
+                                <span class="zone-title">Predisposing</span>
+                            </div>
+                            <div class="zone-items"></div>
+                        </div>
+                        
+                        <div class="ps-zone precipitating" id="zone-precipitating">
+                            <div class="zone-header">
+                                <span class="zone-badge">P</span>
+                                <span class="zone-title">Precipitating</span>
+                            </div>
+                            <div class="zone-items"></div>
+                        </div>
+                        
+                        <div class="ps-zone perpetuating" id="zone-perpetuating">
+                            <div class="zone-header">
+                                <span class="zone-badge">P</span>
+                                <span class="zone-title">Perpetuating</span>
+                            </div>
+                            <div class="zone-items"></div>
+                        </div>
+                        
+                        <div class="ps-zone protective" id="zone-protective">
+                            <div class="zone-header">
+                                <span class="zone-badge">P</span>
+                                <span class="zone-title">Protective</span>
+                            </div>
+                            <div class="zone-items"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress and Check -->
+                <div class="sorting-progress">
+                    <span id="sortedCount">0</span> of 20 items sorted
+                </div>
+                
+                <div class="check-answers-box" id="checkBox" style="display: none;">
+                    <button class="btn btn-primary" onclick="checkAnswers()">Check My Answers</button>
+                </div>
+                
+                <!-- Feedback Area -->
+                <div class="sorting-feedback" id="sortingFeedback" style="display: none;">
+                    <div class="feedback-header">
+                        <span class="feedback-icon">✓</span>
+                        <span class="feedback-title">Your Categorization</span>
+                    </div>
+                    <div class="feedback-content">
+                        <p id="feedbackText"></p>
+                    </div>
+                </div>
+                
+                <!-- Continue Button (hidden until checked) -->
+                <div class="submit-row" id="continueRow" style="display: none;">
+                    <button class="btn btn-primary" onclick="showSection('section-treatment')">Continue: Treatment Implications →</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Section 4: Treatment Implications -->
+        <div class="section" id="section-treatment" style="display: none;">
+            <div class="section-header" style="background: linear-gradient(135deg, #744210 0%, #d69e2e 100%);">
+                <h2>👤 J.M.'s 5 Ps → Treatment Implications</h2>
+            </div>
+            <div class="section-content">
+                
+                <p>Now that you've organized J.M.'s data into the 5 Ps, let's see what each category tells us about treatment:</p>
+                
+                <div class="jm-treatment-box">
+                    <div class="jm-treatment-header">How Each "P" Guides Treatment</div>
+                    <div class="jm-treatment-content">
+                        
+                        <!-- Presenting -->
+                        <div class="jm-p-section">
+                            <div class="jm-p-header">
+                                <span class="jm-p-badge presenting">PRESENTING</span>
+                                <span class="jm-p-question">What needs immediate attention?</span>
+                            </div>
+                            <div class="jm-p-data">
+                                <ul>
+                                    <li>PHQ-9: 19 (moderately severe)</li>
+                                    <li>No suicidal ideation — outpatient appropriate</li>
+                                    <li>Functional impairment: social withdrawal, difficulty at work</li>
+                                    <li>15-lb weight loss over 4 months</li>
+                                </ul>
+                            </div>
+                            <div class="jm-p-implication">
+                                <span class="implication-arrow">→</span>
+                                <span class="implication-text"><strong>Treatment implication:</strong> Moderate severity suggests outpatient therapy appropriate. Weight loss warrants monitoring. May benefit from combined treatment (therapy + medication) given severity.</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Predisposing -->
+                        <div class="jm-p-section">
+                            <div class="jm-p-header">
+                                <span class="jm-p-badge predisposing">PREDISPOSING</span>
+                                <span class="jm-p-question">What vulnerabilities inform our approach?</span>
+                            </div>
+                            <div class="jm-p-data">
+                                <ul>
+                                    <li>Prior depressive episode (15 years ago)</li>
+                                    <li>Family history: depression (mother), completed suicide (maternal uncle)</li>
+                                    <li>Tendency toward self-critical thinking patterns</li>
+                                </ul>
+                            </div>
+                            <div class="jm-p-implication">
+                                <span class="implication-arrow">→</span>
+                                <span class="implication-text"><strong>Treatment implication:</strong> Recurrent episode = higher relapse risk; consider maintenance treatment. Strong family history supports biological component — medication may be indicated. Self-critical patterns suggest cognitive therapy approaches.</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Precipitating -->
+                        <div class="jm-p-section">
+                            <div class="jm-p-header">
+                                <span class="jm-p-badge precipitating">PRECIPITATING</span>
+                                <span class="jm-p-question">What triggered this? What does that tell us?</span>
+                            </div>
+                            <div class="jm-p-data">
+                                <ul>
+                                    <li>Youngest son moved out 4 months ago</li>
+                                    <li>"Empty nest" life transition</li>
+                                    <li>Loss of primary role as active parent</li>
+                                </ul>
+                            </div>
+                            <div class="jm-p-implication">
+                                <span class="implication-arrow">→</span>
+                                <span class="implication-text"><strong>Treatment implication:</strong> Role transition is a core trigger — suggests <strong>Interpersonal Therapy (IPT)</strong> may be particularly relevant. Also need to explore identity/meaning beyond parenting role.</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Perpetuating -->
+                        <div class="jm-p-section">
+                            <div class="jm-p-header">
+                                <span class="jm-p-badge perpetuating">PERPETUATING</span>
+                                <span class="jm-p-question">What's keeping it going? (Primary therapy target)</span>
+                            </div>
+                            <div class="jm-p-data">
+                                <ul>
+                                    <li>Self-critical cognitions: "I failed as a mother"</li>
+                                    <li>Social withdrawal — avoiding friends and activities</li>
+                                    <li>Ruminative thinking patterns</li>
+                                    <li>Sleep/appetite disruption creating fatigue cycle</li>
+                                </ul>
+                            </div>
+                            <div class="jm-p-implication">
+                                <span class="implication-arrow">→</span>
+                                <span class="implication-text"><strong>Treatment implication:</strong> These are your therapy targets. Self-critical cognitions → <strong>CBT</strong> (cognitive restructuring). Social withdrawal → <strong>Behavioral Activation</strong>. Rumination → mindfulness-based approaches. Sleep/appetite → behavioral interventions + possibly medication.</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Protective -->
+                        <div class="jm-p-section">
+                            <div class="jm-p-header">
+                                <span class="jm-p-badge protective">PROTECTIVE</span>
+                                <span class="jm-p-question">What can we build on?</span>
+                            </div>
+                            <div class="jm-p-data">
+                                <ul>
+                                    <li>Close relationships with adult sons</li>
+                                    <li>Supportive parents and sister</li>
+                                    <li>Stable employment as accountant</li>
+                                    <li>No substance use</li>
+                                    <li>Prior positive response to sertraline + therapy</li>
+                                    <li>Seeking help — insight present</li>
+                                </ul>
+                            </div>
+                            <div class="jm-p-implication">
+                                <span class="implication-arrow">→</span>
+                                <span class="implication-text"><strong>Treatment implication:</strong> Strong social support = good prognosis. Can involve family in treatment if appropriate. Prior treatment response suggests similar approach may work again. Insight supports therapy engagement.</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Continue Button -->
+                <div class="submit-row">
+                    <button class="btn btn-primary" onclick="showSection('section-synthesis')">Continue: Putting It Together →</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Section 4: Treatment Synthesis -->
+        <div class="section" id="section-synthesis" style="display: none;">
+            <div class="section-header" style="background: linear-gradient(135deg, #276749 0%, #48bb78 100%);">
+                <h2>🎯 Synthesizing: What Treatment for J.M.?</h2>
+            </div>
+            <div class="section-content">
+                
+                <p>Based on J.M.'s 5 Ps, we can now make informed treatment recommendations:</p>
+                
+                <div class="treatment-lenses-intro">
+                    <h4>Treatment Approaches Suggested by J.M.'s 5 Ps</h4>
+                    <div class="lenses-grid">
+                        <div class="lens-card">
+                            <div class="lens-icon">💊</div>
+                            <div class="lens-name">Medication</div>
+                            <div class="lens-desc">Prior response to sertraline + family history + moderate severity</div>
+                        </div>
+                        <div class="lens-card">
+                            <div class="lens-icon">🧠</div>
+                            <div class="lens-name">CBT</div>
+                            <div class="lens-desc">Self-critical cognitions, "I failed as a mother"</div>
+                        </div>
+                        <div class="lens-card">
+                            <div class="lens-icon">👥</div>
+                            <div class="lens-name">IPT</div>
+                            <div class="lens-desc">Role transition trigger (empty nest)</div>
+                        </div>
+                        <div class="lens-card">
+                            <div class="lens-icon">🚶</div>
+                            <div class="lens-name">Behavioral Activation</div>
+                            <div class="lens-desc">Social withdrawal, avoidance patterns</div>
+                        </div>
+                        <div class="lens-card">
+                            <div class="lens-icon">🧘</div>
+                            <div class="lens-name">Mindfulness</div>
+                            <div class="lens-desc">Ruminative thinking patterns</div>
+                        </div>
+                        <div class="lens-card">
+                            <div class="lens-icon">👨‍👩‍👧</div>
+                            <div class="lens-name">Family Involvement</div>
+                            <div class="lens-desc">Strong family support available</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-callout">
+                    <div class="insight-icon">💡</div>
+                    <div class="insight-content">
+                        <strong>Notice:</strong> The 5 Ps don't give you one "right answer." They give you a <em>rationale</em> for your treatment choices. You can defend why you chose CBT (perpetuating cognitions), why you might add medication (severity + history), why IPT could be valuable (precipitating role transition). The framework makes your clinical reasoning explicit and defensible.
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 25px; color: #276749;">A Possible Treatment Plan for J.M.</h4>
+                
+                <div class="where-we-are-box" style="background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%); border-color: #48bb78;">
+                    <p><strong>Initial Phase:</strong></p>
+                    <ul>
+                        <li>Restart sertraline (prior positive response) — coordinate with prescriber</li>
+                        <li>Weekly individual therapy using CBT framework</li>
+                        <li>Early focus: Behavioral activation to address withdrawal</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Middle Phase:</strong></p>
+                    <ul>
+                        <li>Cognitive restructuring targeting self-critical thoughts</li>
+                        <li>Explore role transition and identity beyond motherhood (IPT elements)</li>
+                        <li>Introduce mindfulness techniques for rumination</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Later Phase:</strong></p>
+                    <ul>
+                        <li>Relapse prevention planning (given recurrent history)</li>
+                        <li>Consider involving family for support</li>
+                        <li>Transition to maintenance</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 20px;">This treatment plan isn't the only right answer—but it's a <strong>defensible</strong> one, grounded in J.M.'s specific 5 Ps rather than generic "depression treatment."</p>
+                
+                <!-- Coming Soon -->
+                <div class="coming-soon-box">
+                    <h4>Coming Next...</h4>
+                    <p>In the following modules, we'll dive deeper into specific treatment modalities:</p>
+                    <ul class="coming-soon-list">
+                        <li>Module 3: CBT — Targeting Perpetuating Cognitions</li>
+                        <li>Module 4: DBT — When Emotion Dysregulation is Central</li>
+                        <li>Module 5: IFS — Working with Parts</li>
+                        <li>Module 6: Group Therapy — Format Selection</li>
+                        <li>Module 7: Family Therapy — Systemic Approaches</li>
+                    </ul>
+                </div>
+                
+                <!-- Continue Button -->
+                <div class="submit-row">
+                    <p>You've completed Module 2: Treatment Selection</p>
+                    <button class="btn btn-secondary" onclick="window.location.href='index.html'">← Back to Module 1</button>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Show section
+        function showSection(sectionId) {
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Sorting Exercise Variables
+        let currentItem = null;
+        let sortedCount = 0;
+        const totalItems = 20;
+        
+        // Show category picker
+        function showCategoryPicker(element) {
+            currentItem = element;
+            document.getElementById('pickerItem').textContent = element.textContent;
+            document.getElementById('categoryPicker').style.display = 'flex';
+        }
+        
+        // Hide category picker
+        function hideCategoryPicker() {
+            document.getElementById('categoryPicker').style.display = 'none';
+            currentItem = null;
+        }
+        
+        // Assign item to category
+        function assignCategory(category) {
+            if (!currentItem) return;
+            
+            const itemText = currentItem.textContent;
+            const correctCategory = currentItem.dataset.correct;
+            
+            // Create sorted item
+            const sortedItem = document.createElement('div');
+            sortedItem.className = 'sorted-item';
+            sortedItem.dataset.correct = correctCategory;
+            sortedItem.dataset.assigned = category;
+            sortedItem.innerHTML = `
+                <span>${itemText}</span>
+                <button class="remove-btn" onclick="removeItem(this, '${itemText}', '${correctCategory}')">×</button>
+            `;
+            
+            // Add to zone
+            const zone = document.getElementById('zone-' + category);
+            zone.querySelector('.zone-items').appendChild(sortedItem);
+            
+            // Hide original item
+            currentItem.classList.add('sorted');
+            
+            // Update count
+            sortedCount++;
+            document.getElementById('sortedCount').textContent = sortedCount;
+            
+            // Show check button when all sorted
+            if (sortedCount === totalItems) {
+                document.getElementById('checkBox').style.display = 'block';
+            }
+            
+            // Close picker
+            hideCategoryPicker();
+        }
+        
+        // Remove item from zone
+        function removeItem(button, itemText, correctCategory) {
+            // Remove from zone
+            button.parentElement.remove();
+            
+            // Show original item again
+            const items = document.querySelectorAll('.data-item');
+            items.forEach(item => {
+                if (item.textContent === itemText) {
+                    item.classList.remove('sorted');
+                }
+            });
+            
+            // Update count
+            sortedCount--;
+            document.getElementById('sortedCount').textContent = sortedCount;
+            document.getElementById('checkBox').style.display = 'none';
+        }
+        
+        // Check answers
+        function checkAnswers() {
+            const sortedItems = document.querySelectorAll('.sorted-item');
+            let correct = 0;
+            
+            sortedItems.forEach(item => {
+                const assigned = item.dataset.assigned;
+                const correctCat = item.dataset.correct;
+                
+                if (assigned === correctCat) {
+                    item.classList.add('correct');
+                    correct++;
+                } else {
+                    item.classList.add('incorrect');
+                }
+            });
+            
+            // Show feedback
+            const feedback = document.getElementById('sortingFeedback');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            if (correct === totalItems) {
+                feedbackText.innerHTML = `<strong>Excellent!</strong> You correctly categorized all ${totalItems} items. You have a solid understanding of how to organize clinical data using the 5 Ps framework.`;
+            } else if (correct >= totalItems * 0.8) {
+                feedbackText.innerHTML = `<strong>Great work!</strong> You got ${correct} out of ${totalItems} correct. Some items can reasonably fit multiple categories—the important thing is your clinical reasoning about where they belong.`;
+            } else {
+                feedbackText.innerHTML = `You got ${correct} out of ${totalItems} in the expected categories. Remember: some items can fit multiple categories. The key is thinking about what's most clinically relevant. Items with red borders were placed in different categories than expected—but your reasoning might still be valid.`;
+            }
+            
+            feedback.style.display = 'block';
+            document.getElementById('continueRow').style.display = 'block';
+            document.getElementById('checkBox').style.display = 'none';
+            
+            // Disable remove buttons
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.style.display = 'none';
+            });
+        }
+    </script>
+    
+</body>
+</html>

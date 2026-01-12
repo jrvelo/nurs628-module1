@@ -1026,6 +1026,316 @@
             }
         }
         
+        /* Method Analysis Cards */
+        .methods-analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .method-analysis-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .method-card-header {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .method-analysis-card.interview .method-card-header { background: linear-gradient(135deg, #5a4fcf 0%, #7c3aed 100%); }
+        .method-analysis-card.scales .method-card-header { background: linear-gradient(135deg, #b7791f 0%, #d69e2e 100%); }
+        .method-analysis-card.mse .method-card-header { background: linear-gradient(135deg, #0d7d74 0%, #14b8a6 100%); }
+        .method-analysis-card.labs .method-card-header { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); }
+        
+        .method-icon {
+            font-size: 1.3rem;
+        }
+        
+        .method-card-body {
+            padding: 15px;
+            background: white;
+        }
+        
+        .method-strengths, .method-limitations {
+            margin-bottom: 12px;
+        }
+        
+        .method-strengths:last-child, .method-limitations:last-child {
+            margin-bottom: 0;
+        }
+        
+        .strength-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #047857;
+            margin-bottom: 6px;
+        }
+        
+        .limitation-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #dc2626;
+            margin-bottom: 6px;
+        }
+        
+        .method-card-body ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        
+        .method-card-body li {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #4a5568;
+            margin-bottom: 4px;
+        }
+        
+        .method-card-body li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Problem Statement Box */
+        .problem-statement-box {
+            display: flex;
+            gap: 20px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #d97706;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .problem-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+        
+        .problem-content h5 {
+            margin: 0 0 10px 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+        
+        .problem-content p {
+            margin: 0 0 12px 0;
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        .problem-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .problem-question {
+            font-size: 1.05rem;
+            color: #92400e !important;
+        }
+        
+        /* Transition Teaser Box */
+        .transition-teaser-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .teaser-content p {
+            margin: 0 0 12px 0;
+            color: #0c4a6e;
+            line-height: 1.6;
+        }
+        
+        .teaser-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Weight of Evidence Boxes */
+        .weight-concept-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .weight-concept {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .weight-concept .weight-header {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .weight-concept .weight-header h5 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .weight-icon {
+            font-size: 1.5rem;
+        }
+        
+        .weight-concept.direct .weight-header {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+            color: white;
+        }
+        
+        .weight-concept.indirect .weight-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: white;
+        }
+        
+        .weight-body {
+            padding: 20px;
+            background: white;
+        }
+        
+        .weight-definition {
+            font-size: 1.05rem;
+            margin: 0 0 15px 0;
+            color: #1f2937;
+        }
+        
+        .weight-examples-list {
+            margin: 15px 0;
+        }
+        
+        .weight-example {
+            display: grid;
+            grid-template-columns: auto auto 1fr;
+            gap: 10px;
+            align-items: start;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .weight-example:last-child {
+            border-bottom: none;
+        }
+        
+        .example-measure {
+            font-weight: 600;
+            color: #374151;
+            font-family: 'Courier New', monospace;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .example-arrow {
+            color: #9ca3af;
+            font-weight: bold;
+        }
+        
+        .example-meaning {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        .weight-conclusion {
+            margin: 15px 0 0 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .weight-concept.direct .weight-conclusion {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .weight-concept.indirect .weight-conclusion {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+        
+        /* Key Insight Box */
+        .key-insight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .key-insight-box .insight-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+        
+        .key-insight-box .insight-icon {
+            font-size: 1.3rem;
+        }
+        
+        .key-insight-box .insight-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .key-insight-box .insight-body {
+            padding: 20px;
+        }
+        
+        .key-insight-box .insight-body p {
+            margin: 0 0 12px 0;
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        .key-insight-box .insight-body p:last-child {
+            margin-bottom: 0;
+            font-size: 1.05rem;
+            color: #92400e;
+        }
+        
+        @media (max-width: 768px) {
+            .weight-concept-box {
+                grid-template-columns: 1fr;
+            }
+            
+            .weight-example {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+            
+            .example-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .methods-analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem-statement-box {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
         /* Field Weight Comparison */
         .field-weight-comparison {
             display: flex;
@@ -10566,7 +10876,7 @@
             <a class="nav-item" onclick="jumpTo('section-case')">1. Case Presentation</a>
             <a class="nav-item" onclick="jumpTo('section-formulation')">2. The Formulation</a>
             <a class="nav-item" onclick="jumpTo('section-fundamental')">3. The Fundamental Challenge</a>
-            <a class="nav-item" onclick="jumpTo('section-data-types')">4. Types of Clinical Data</a>
+            <a class="nav-item" onclick="jumpTo('section-data-types')">4. Clinical Methods</a>
             <a class="nav-item" onclick="jumpTo('section-validity-framework')">5. The Validity Framework</a>
             <a class="nav-item" onclick="jumpTo('section-dv')">6. Discriminant Validity</a>
             <a class="nav-item" onclick="jumpTo('section-cv')">7. Convergent Validity</a>
@@ -11055,20 +11365,20 @@
                     <div class="implication-item">
                         <span class="impl-number">3</span>
                         <div class="impl-text">
-                            <strong>Validity becomes critical.</strong>
-                            <p>We must be deliberate about what our data tells us—and what it doesn't. Convergent evidence from multiple sources builds the confidence we can't get from a single definitive test.</p>
+                            <strong>Multiple methods must converge.</strong>
+                            <p>Without a single definitive test, we build diagnostic confidence by gathering evidence from different methods—patient interview, validated scales, clinical observations, labs—and looking for convergence.</p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="transition-box">
-                <p>This is why understanding <strong>clinical data types</strong>—what kind of evidence we're gathering, where it comes from, and what it can tell us—is foundational to psychiatric practice.</p>
+                <p>This is why understanding your <strong>clinical methods</strong>—what kind of evidence each one provides, where it comes from, and what it can tell us—is foundational to psychiatric practice.</p>
             </div>
             
             <!-- Continue Button -->
             <div class="submit-row">
-                <button class="btn btn-primary" onclick="showDataSection()">Continue: Types of Clinical Data →</button>
+                <button class="btn btn-primary" onclick="showDataSection()">Continue: Clinical Methods →</button>
             </div>
             
         </div>
@@ -11079,28 +11389,28 @@
          ============================================ -->
     <div class="section" id="section-data-types" style="display: none;">
         <div class="section-header" style="background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);">
-            <h2>📊 Types of Clinical Data</h2>
+            <h2>📊 Clinical Methods: Four Ways to Gather Evidence</h2>
         </div>
         <div class="section-content">
             
-            <p>Before we apply this to J.M.'s case, let's understand the types of clinical data we work with and how they relate to each other.</p>
+            <p>Before we apply this to J.M.'s case, let's understand the types of clinical data we work with. In psychometrics, the different ways we gather data are called <strong>methods</strong>—and understanding methods is crucial for evaluating the quality of our clinical reasoning.</p>
             
             <!-- THE KEY RELATIONSHIP -->
-            <h4 style="margin-top: 25px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Two Dimensions of Clinical Data</h4>
+            <h4 style="margin-top: 25px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Two Dimensions That Define Our Methods</h4>
             
-            <p>Clinical data can be classified along two independent dimensions:</p>
+            <p>Clinical methods can be classified along two independent dimensions:</p>
             
             <div class="data-dimensions-grid">
                 <div class="dimension-box source">
                     <div class="dim-header">Dimension 1: Source</div>
                     <div class="dim-content">
                         <div class="dim-option">
-                            <strong>Subjective</strong>
-                            <p>Patient tells you — their report of their experience</p>
+                            <strong>Patient-Reported</strong>
+                            <p>The patient is the source — their report of their experience</p>
                         </div>
                         <div class="dim-option">
-                            <strong>Objective</strong>
-                            <p>You observe or measure it directly</p>
+                            <strong>Clinician-Observed</strong>
+                            <p>You are the source — what you observe, examine, or test</p>
                         </div>
                     </div>
                 </div>
@@ -11109,29 +11419,29 @@
                     <div class="dim-content">
                         <div class="dim-option">
                             <strong>Qualitative</strong>
-                            <p>Described in words — categories, qualities, narratives</p>
+                            <p>Descriptive — narratives, impressions, unstructured</p>
                         </div>
                         <div class="dim-option">
                             <strong>Quantitative</strong>
-                            <p>Measured in numbers — counts, scores, values</p>
+                            <p>Standardized — validated instruments, scores, lab values</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <p>These dimensions are independent—<strong>all four combinations are valid:</strong></p>
+            <p>Crossing these dimensions gives us <strong>four methods</strong> for gathering clinical data:</p>
             
             <!-- 2x2 GRID -->
             <div class="four-types-grid">
                 <div class="grid-header-row">
                     <div class="grid-corner"></div>
-                    <div class="grid-col-header">Qualitative</div>
-                    <div class="grid-col-header">Quantitative</div>
+                    <div class="grid-col-header">Qualitative<br><span class="header-sub">(descriptive)</span></div>
+                    <div class="grid-col-header">Quantitative<br><span class="header-sub">(standardized)</span></div>
                 </div>
                 <div class="grid-data-row">
-                    <div class="grid-row-header">Subjective<br><span class="header-sub">(patient reports)</span></div>
+                    <div class="grid-row-header">Patient-Reported<br><span class="header-sub">(patient is source)</span></div>
                     <div class="grid-cell subj-qual">
-                        <div class="cell-label">Subjective Qualitative</div>
+                        <div class="cell-label">Patient Interview</div>
                         <div class="cell-examples">
                             <p><em>"I feel empty inside"</em></p>
                             <p>Symptom descriptions</p>
@@ -11139,29 +11449,29 @@
                         </div>
                     </div>
                     <div class="grid-cell subj-quant">
-                        <div class="cell-label">Subjective Quantitative</div>
+                        <div class="cell-label">Validated Scales</div>
                         <div class="cell-examples">
                             <p><em>PHQ-9 = 19</em></p>
-                            <p>Self-report scales</p>
-                            <p>Pain rating (0-10)</p>
+                            <p>Standardized instruments</p>
+                            <p>Objective measurement</p>
                         </div>
                     </div>
                 </div>
                 <div class="grid-data-row">
-                    <div class="grid-row-header">Objective<br><span class="header-sub">(clinician observes)</span></div>
+                    <div class="grid-row-header">Clinician-Observed<br><span class="header-sub">(clinician is source)</span></div>
                     <div class="grid-cell obj-qual">
-                        <div class="cell-label">Objective Qualitative</div>
+                        <div class="cell-label">MSE Observations</div>
                         <div class="cell-examples">
                             <p><em>"Flat affect noted"</em></p>
-                            <p>MSE observations</p>
-                            <p>Behavioral descriptions</p>
+                            <p>Behavioral observations</p>
+                            <p>Clinical impressions</p>
                         </div>
                     </div>
                     <div class="grid-cell obj-quant">
-                        <div class="cell-label">Objective Quantitative</div>
+                        <div class="cell-label">Labs & Vitals</div>
                         <div class="cell-examples">
                             <p><em>TSH = 2.1 mIU/L</em></p>
-                            <p>Lab values</p>
+                            <p>Laboratory values</p>
                             <p>Vital signs</p>
                         </div>
                     </div>
@@ -11169,51 +11479,242 @@
             </div>
             
             <div class="insight-callout purple">
-                <h5>💡 Notice: The PHQ-9 is Subjective</h5>
-                <p>The PHQ-9 asks patients to report their own experiences. The <strong>source</strong> is the patient (subjective), even though the <strong>measurement</strong> produces a number (quantitative).</p>
-                <p>This is different from a lab value like TSH, where the clinician directly measures something in the patient's body (objective + quantitative).</p>
+                <h5>💡 Key Distinction: Source vs. Measurement</h5>
+                <p><strong>Source</strong> = Where does the data come from? (Patient's experience vs. clinician observation vs. lab test)</p>
+                <p><strong>Measurement</strong> = How do we capture it? (Qualitative description vs. standardized quantitative instrument)</p>
+                <p>The PHQ-9 captures patient-reported data, but it's an <strong>objective measurement</strong>—validated, standardized, and reliable. Two clinicians administering the PHQ-9 to the same patient will get the same score. That's what makes validated instruments valuable: they provide <strong>objective measurement of subjective experiences</strong>.</p>
             </div>
             
             <!-- FOUR DATA TYPES -->
-            <h4 style="margin-top: 35px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Four Types of Clinical Data</h4>
+            <h4 style="margin-top: 35px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Four Methods of Clinical Assessment</h4>
             
-            <p>This gives us four types of clinical data that can converge (or diverge) in psychiatric assessment:</p>
+            <p>These four methods are your toolkit for gathering clinical evidence:</p>
             
             <div class="four-types-visual">
                 <div class="type-circle subjective-qual">
-                    <div class="type-label">Subjective<br>Qualitative</div>
-                    <div class="type-examples">Patient narrative<br>"I feel hopeless"</div>
+                    <div class="type-label">Patient<br>Interview</div>
+                    <div class="type-examples">Patient-Reported<br>Qualitative</div>
                 </div>
                 <div class="type-circle subjective-quant">
-                    <div class="type-label">Subjective<br>Quantitative</div>
-                    <div class="type-examples">Self-report scales<br>PHQ-9 = 19</div>
+                    <div class="type-label">Validated<br>Scales</div>
+                    <div class="type-examples">Patient-Reported<br>Quantitative</div>
                 </div>
                 <div class="type-circle objective-qual">
-                    <div class="type-label">Objective<br>Qualitative</div>
-                    <div class="type-examples">MSE observations<br>"Flat affect"</div>
+                    <div class="type-label">MSE<br>Observations</div>
+                    <div class="type-examples">Clinician-Observed<br>Qualitative</div>
                 </div>
                 <div class="type-circle objective-quant">
-                    <div class="type-label">Objective<br>Quantitative</div>
-                    <div class="type-examples">Labs, vitals<br>TSH = 2.1</div>
+                    <div class="type-label">Labs &<br>Vitals</div>
+                    <div class="type-examples">Clinician-Observed<br>Quantitative</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 25px;">Each method captures something different—and each has inherent limitations:</p>
+            
+            <!-- METHOD STRENGTHS AND LIMITATIONS -->
+            <div class="methods-analysis-grid">
+                <div class="method-analysis-card interview">
+                    <div class="method-card-header">
+                        <span class="method-icon">🗣️</span>
+                        <span class="method-name">Patient Interview</span>
+                    </div>
+                    <div class="method-card-body">
+                        <div class="method-strengths">
+                            <div class="strength-label">Strengths</div>
+                            <ul>
+                                <li>Direct access to subjective experience</li>
+                                <li>Rich, nuanced information</li>
+                                <li>Can explore context and meaning</li>
+                            </ul>
+                        </div>
+                        <div class="method-limitations">
+                            <div class="limitation-label">Limitations</div>
+                            <ul>
+                                <li>Subject to recall bias</li>
+                                <li>May minimize or exaggerate</li>
+                                <li>Influenced by insight and motivation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-analysis-card scales">
+                    <div class="method-card-header">
+                        <span class="method-icon">📋</span>
+                        <span class="method-name">Validated Scales</span>
+                    </div>
+                    <div class="method-card-body">
+                        <div class="method-strengths">
+                            <div class="strength-label">Strengths</div>
+                            <ul>
+                                <li>Objective measurement (standardized)</li>
+                                <li>Quantifiable severity</li>
+                                <li>Validated psychometric properties</li>
+                            </ul>
+                        </div>
+                        <div class="method-limitations">
+                            <div class="limitation-label">Limitations</div>
+                            <ul>
+                                <li>Patient is still the source</li>
+                                <li>Can be "gamed" if motivated</li>
+                                <li>Loses nuance of experience</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-analysis-card mse">
+                    <div class="method-card-header">
+                        <span class="method-icon">👁️</span>
+                        <span class="method-name">MSE Observations</span>
+                    </div>
+                    <div class="method-card-body">
+                        <div class="method-strengths">
+                            <div class="strength-label">Strengths</div>
+                            <ul>
+                                <li>Independent of patient report</li>
+                                <li>Real-time behavioral data</li>
+                                <li>Captures what patient may not notice</li>
+                            </ul>
+                        </div>
+                        <div class="method-limitations">
+                            <div class="limitation-label">Limitations</div>
+                            <ul>
+                                <li>Clinician interpretation required</li>
+                                <li>Snapshot in time</li>
+                                <li>Inter-rater variability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-analysis-card labs">
+                    <div class="method-card-header">
+                        <span class="method-icon">🔬</span>
+                        <span class="method-name">Labs & Vitals</span>
+                    </div>
+                    <div class="method-card-body">
+                        <div class="method-strengths">
+                            <div class="strength-label">Strengths</div>
+                            <ul>
+                                <li>Objective, measurable</li>
+                                <li>Not influenced by patient report</li>
+                                <li>Rules out medical causes</li>
+                            </ul>
+                        </div>
+                        <div class="method-limitations">
+                            <div class="limitation-label">Limitations</div>
+                            <ul>
+                                <li>Don't measure psychological constructs</li>
+                                <li>No biomarker for depression, anxiety, etc.</li>
+                                <li>Can only rule out, not rule in</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="problem-statement-box">
+                <div class="problem-icon">⚠️</div>
+                <div class="problem-content">
+                    <h5>The Problem</h5>
+                    <p><strong>No single method is sufficient.</strong></p>
+                    <p>The patient interview gives you their experience—but they might minimize, exaggerate, or lack insight. Screening scales quantify severity—but they're still self-report. Your MSE observations are independent—but you're interpreting a snapshot. Labs are objective—but they can't detect depression or anxiety.</p>
+                    <p class="problem-question"><strong>So how do you build diagnostic confidence when every method has limitations?</strong></p>
+                </div>
+            </div>
+            
+            <!-- WEIGHT OF EVIDENCE -->
+            <h4 style="margin-top: 35px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">The Weight of Evidence: Direct vs. Indirect Measurement</h4>
+            
+            <p>Not all clinical data carries the same diagnostic weight. The key question is: <strong>How directly does this measurement capture the construct we care about?</strong></p>
+            
+            <div class="weight-concept-box">
+                <div class="weight-concept direct">
+                    <div class="weight-header">
+                        <span class="weight-icon">🎯</span>
+                        <h5>Direct Measurement</h5>
+                    </div>
+                    <div class="weight-body">
+                        <p class="weight-definition">The measurement <strong>IS</strong> the construct.</p>
+                        <div class="weight-examples-list">
+                            <div class="weight-example">
+                                <span class="example-measure">TSH = 4.5 mIU/L</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">This IS thyroid function. The number directly tells you the state of the construct.</span>
+                            </div>
+                            <div class="weight-example">
+                                <span class="example-measure">BP = 160/95</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">This IS blood pressure. No inference needed.</span>
+                            </div>
+                            <div class="weight-example">
+                                <span class="example-measure">Troponin = 0.08</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">This IS cardiac enzyme level—direct evidence of myocardial damage.</span>
+                            </div>
+                        </div>
+                        <p class="weight-conclusion"><strong>Weight is inherent.</strong> A single measurement can carry definitive diagnostic weight because it directly captures the construct.</p>
+                    </div>
+                </div>
+                
+                <div class="weight-concept indirect">
+                    <div class="weight-header">
+                        <span class="weight-icon">🔍</span>
+                        <h5>Indirect Measurement</h5>
+                    </div>
+                    <div class="weight-body">
+                        <p class="weight-definition">The measurement <strong>INDICATES</strong> the construct.</p>
+                        <div class="weight-examples-list">
+                            <div class="weight-example">
+                                <span class="example-measure">"I feel hopeless"</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">This suggests depression, but doesn't directly measure it. The patient might lack insight, exaggerate, or use words differently.</span>
+                            </div>
+                            <div class="weight-example">
+                                <span class="example-measure">PHQ-9 = 19</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">This quantifies reported symptoms, but depression itself isn't being measured—we're measuring a proxy.</span>
+                            </div>
+                            <div class="weight-example">
+                                <span class="example-measure">Flat affect observed</span>
+                                <span class="example-arrow">→</span>
+                                <span class="example-meaning">Consistent with depression, but could also be medication effect, cultural, or baseline personality.</span>
+                            </div>
+                        </div>
+                        <p class="weight-conclusion"><strong>Weight must be established.</strong> No single indirect measurement is definitive. We need a way to build confidence.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-insight-box">
+                <div class="insight-header">
+                    <span class="insight-icon">💡</span>
+                    <span class="insight-title">The Core Challenge</span>
+                </div>
+                <div class="insight-body">
+                    <p><strong>In physical medicine</strong>, you often have direct measurements. Troponin > 0.04 carries inherent diagnostic weight—you act on it.</p>
+                    <p><strong>In psychiatry</strong>, almost everything is indirect measurement. "Depression" isn't a substance we can measure. We can only observe indicators, descriptions, and proxies.</p>
+                    <p><strong>So how do we establish diagnostic weight for indirect measurements?</strong></p>
                 </div>
             </div>
             
             <!-- PSYCHIATRY VS PHYSICAL MEDICINE -->
-            <h4 style="margin-top: 35px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Same Four Types, Different Weights</h4>
+            <h4 style="margin-top: 35px; color: #553c9a; border-bottom: 2px solid #805ad5; padding-bottom: 8px;">Same Four Methods, Different Diagnostic Logic</h4>
             
-            <p>Both psychiatry and physical medicine use all four data types—but the reliance on each differs dramatically:</p>
+            <p>This difference in measurement type changes the entire diagnostic logic:</p>
             
             <div class="field-weight-comparison">
                 <div class="field-weight physical-med">
                     <h5>Physical Medicine</h5>
                     <p class="field-subtitle">e.g., Cardiology, Endocrinology</p>
                     <div class="weight-examples">
-                        <div class="weight-ex dominant"><span class="ex-dot obj-quant"></span><strong>Troponin > 0.04</strong> → MI protocol <span class="data-tag">Obj Quant</span></div>
-                        <div class="weight-ex dominant"><span class="ex-dot obj-quant"></span><strong>HbA1c > 6.5%</strong> → Diabetes diagnosis <span class="data-tag">Obj Quant</span></div>
-                        <div class="weight-ex secondary"><span class="ex-dot obj-qual"></span>S3 gallop on auscultation <span class="data-tag">Obj Qual</span></div>
-                        <div class="weight-ex secondary"><span class="ex-dot subj-qual"></span>"Chest pain radiating to left arm" <span class="data-tag">Subj Qual</span></div>
+                        <div class="weight-ex dominant"><span class="ex-dot obj-quant"></span><strong>Troponin > 0.04</strong> → MI protocol <span class="data-tag">Labs</span></div>
+                        <div class="weight-ex dominant"><span class="ex-dot obj-quant"></span><strong>HbA1c > 6.5%</strong> → Diabetes diagnosis <span class="data-tag">Labs</span></div>
+                        <div class="weight-ex secondary"><span class="ex-dot obj-qual"></span>S3 gallop on auscultation <span class="data-tag">Exam</span></div>
+                        <div class="weight-ex secondary"><span class="ex-dot subj-qual"></span>"Chest pain radiating to left arm" <span class="data-tag">Interview</span></div>
                     </div>
-                    <p class="field-summary">Objective quantitative data often <strong>defines</strong> diagnosis and <strong>drives</strong> treatment.</p>
+                    <p class="field-summary"><strong>Direct measurement → inherent weight.</strong> A single lab value can define diagnosis.</p>
                 </div>
                 
                 <div class="field-vs">vs</div>
@@ -11222,12 +11723,20 @@
                     <h5>Psychiatry</h5>
                     <p class="field-subtitle">Psychiatric-Mental Health</p>
                     <div class="weight-examples">
-                        <div class="weight-ex dominant"><span class="ex-dot subj-qual"></span><strong>"I feel empty, hopeless"</strong> <span class="data-tag">Subj Qual</span></div>
-                        <div class="weight-ex dominant"><span class="ex-dot obj-qual"></span><strong>Flat affect, psychomotor slowing</strong> <span class="data-tag">Obj Qual</span></div>
-                        <div class="weight-ex secondary"><span class="ex-dot subj-quant"></span>PHQ-9 = 22 (supports clinical picture) <span class="data-tag">Subj Quant</span></div>
-                        <div class="weight-ex secondary"><span class="ex-dot obj-quant"></span>TSH normal (rules out medical cause) <span class="data-tag">Obj Quant</span></div>
+                        <div class="weight-ex dominant"><span class="ex-dot subj-qual"></span><strong>"I feel empty, hopeless"</strong> <span class="data-tag">Interview</span></div>
+                        <div class="weight-ex dominant"><span class="ex-dot obj-qual"></span><strong>Flat affect, psychomotor slowing</strong> <span class="data-tag">MSE</span></div>
+                        <div class="weight-ex secondary"><span class="ex-dot subj-quant"></span>PHQ-9 = 22 (supports clinical picture) <span class="data-tag">Scales</span></div>
+                        <div class="weight-ex secondary"><span class="ex-dot obj-quant"></span>TSH normal (rules out medical cause) <span class="data-tag">Labs</span></div>
                     </div>
-                    <p class="field-summary">Qualitative data (both subjective and objective) <strong>defines</strong> diagnosis; quantitative data <strong>supports</strong> and <strong>rules out</strong>.</p>
+                    <p class="field-summary"><strong>Indirect measurement → weight must be built.</strong> No single finding is definitive.</p>
+                </div>
+            </div>
+            
+            <div class="transition-teaser-box">
+                <div class="teaser-content">
+                    <p>In cardiology, an elevated troponin directly measures cardiac damage—its weight is inherent. In psychiatry, a patient saying "I feel depressed" is an indirect indicator—its weight must be established.</p>
+                    <p><strong>The question becomes: How do we build diagnostic weight from indirect measurements? When do we have "enough" evidence?</strong></p>
+                    <p>The answer is <strong>construct validity</strong>—and there's a formal framework for establishing it. But first, let's make sure we understand what makes any measurement trustworthy.</p>
                 </div>
             </div>
             
@@ -11497,19 +12006,19 @@
             
             <div class="multi-source-example">
                 <div class="source-item subjective-qual">
-                    <div class="source-type">Patient Interview (Subj. Qual.)</div>
+                    <div class="source-type">Patient Interview (Patient-Report Qual.)</div>
                     <div class="source-finding">"I'm exhausted all the time, I have to drag myself out of bed"</div>
                 </div>
                 <div class="source-item subjective-quant">
-                    <div class="source-type">PHQ-9 (Subj. Quant.)</div>
+                    <div class="source-type">PHQ-9 (Patient-Report Quant.)</div>
                     <div class="source-finding">Item 4 (fatigue) = 3 "nearly every day"</div>
                 </div>
                 <div class="source-item objective-qual">
-                    <div class="source-type">MSE (Obj. Qual.)</div>
+                    <div class="source-type">MSE (Clinician-Obs. Qual.)</div>
                     <div class="source-finding">Psychomotor slowing observed</div>
                 </div>
                 <div class="source-item objective-quant">
-                    <div class="source-type">Labs (Obj. Quant.)</div>
+                    <div class="source-type">Labs (Clinician-Obs. Quant.)</div>
                     <div class="source-finding">TSH = 2.1 (normal) — rules out thyroid cause</div>
                 </div>
             </div>
@@ -11557,7 +12066,7 @@
                 <div class="translation-item">
                     <div class="translation-label">METHODS =</div>
                     <div class="translation-value">Your Data Types</div>
-                    <div class="translation-examples">Patient interview, screening scales, MSE, labs</div>
+                    <div class="translation-examples">Patient interview, validated scales, MSE, labs</div>
                 </div>
                 <div class="translation-item">
                     <div class="translation-label">CELLS =</div>
@@ -11586,7 +12095,7 @@
                             <tr>
                                 <td class="method-name">
                                     Patient Interview
-                                    <span class="method-type-label">(Subj. Qual.)</span>
+                                    <span class="method-type-label">(Patient-Report Qual.)</span>
                                 </td>
                                 <td class="cell-findings">
                                     <div class="finding high-lr">"I feel worthless, like a failure" <span class="lr-badge high">LR+ 50</span></div>
@@ -11603,8 +12112,8 @@
                             </tr>
                             <tr>
                                 <td class="method-name">
-                                    Screening Scales
-                                    <span class="method-type-label">(Subj. Quant.)</span>
+                                    Validated Scales
+                                    <span class="method-type-label">(Patient-Report Quant.)</span>
                                 </td>
                                 <td class="cell-findings">
                                     <div class="finding high-lr">PHQ-9 Item 6: Worthlessness <span class="lr-badge high">LR+ 50</span></div>
@@ -11620,7 +12129,7 @@
                             <tr>
                                 <td class="method-name">
                                     MSE
-                                    <span class="method-type-label">(Obj. Qual.)</span>
+                                    <span class="method-type-label">(Clinician-Obs. Qual.)</span>
                                 </td>
                                 <td class="cell-findings">
                                     <div class="finding high-lr">Flat affect, tearfulness</div>
@@ -11636,7 +12145,7 @@
                             <tr>
                                 <td class="method-name">
                                     Labs / Vitals
-                                    <span class="method-type-label">(Obj. Quant.)</span>
+                                    <span class="method-type-label">(Clinician-Obs. Quant.)</span>
                                 </td>
                                 <td class="cell-findings">
                                     <div class="finding">TSH wnl — rules out thyroid</div>
@@ -11747,7 +12256,7 @@
             <div class="insight-callout purple">
                 <h5>🎯 This IS the MTMM — With Real Data</h5>
                 <p><strong>Traits</strong> = Diagnoses (MDD, GAD, Panic, Bipolar...)</p>
-                <p><strong>Methods</strong> = Your 4 data types (Interview, Scales, MSE, Labs)</p>
+                <p><strong>Methods</strong> = Your 4 clinical methods (Interview, Scales, MSE, Labs)</p>
                 <p><strong>Convergent validity</strong> = same diagnosis, different methods (read down columns)</p>
                 <p><strong>Discriminant validity</strong> = different diagnoses, same method (read across rows)</p>
                 <p><strong>LR+ from DSM data</strong> = tells you which symptoms within each cell actually do the discriminating</p>

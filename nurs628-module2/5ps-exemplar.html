@@ -206,6 +206,8 @@
             body { max-width: 100%; padding: 0; background: white; font-size: 11px; }
             .exemplar-banner { background: #276749 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .nav-bar, .btn-pdf { display: none; }
+            .part2-wrapper { background: #f0f4f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .step-narrative { background: #1a365d !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .output-matrix { page-break-inside: avoid; }
             .output-synth-block { page-break-inside: avoid; }
             .output-matrix thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -214,6 +216,42 @@
         @media (max-width: 900px) {
             body { padding: 12px; font-size: 14px; }
             .output-matrix { font-size: 11px; }
+        }
+
+        /* === TRANSITION ARROW === */
+        .step-transition {
+            text-align: center;
+            padding: 20px 0 8px 0;
+        }
+        .step-arrow {
+            font-size: 28px;
+            color: var(--navy);
+            line-height: 1;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .step-narrative {
+            display: inline-block;
+            max-width: 700px;
+            background: var(--navy);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* === PART 2 WRAPPER === */
+        .part2-wrapper {
+            background: #f0f4f8;
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 16px 18px 18px 18px;
+            margin-bottom: 20px;
+        }
+        .part2-wrapper .section-divider {
+            margin-top: 0;
         }
     </style>
 </head>
@@ -348,9 +386,16 @@
     </tbody>
 </table>
 
+<!-- TRANSITION -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now we take the sorted clinical data above and synthesize it &mdash; using critical thinking, clinical judgment, and what we know from current evidence &mdash; to build a working formulation that identifies the priority information for each P.</span>
+</div>
+
 <!-- ===================== -->
 <!-- WORKING FORMULATION -->
 <!-- ===================== -->
+<div class="part2-wrapper">
 <div class="section-divider">Part 2: Working Formulation &mdash; What Do We Think Is Going On?</div>
 
 <table class="output-matrix">
@@ -387,6 +432,7 @@
         </tr>
     </tbody>
 </table>
+</div><!-- end part2-wrapper -->
 
 <!-- ===================== -->
 <!-- TREATMENT CONSIDERATIONS -->

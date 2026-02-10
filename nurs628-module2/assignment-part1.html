@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Diagnostic Validity Matrix — D.R.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --purple-mid: #9f7aea;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .doc-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--blue-mid) 100%);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 24px;
+        }
+        .doc-header::after {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--amber), var(--blue-mid), var(--green-mid));
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            border-radius: 0 0 10px 10px;
+        }
+        .doc-header .course-tag {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+        .doc-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .doc-header .subtitle {
+            font-size: 1.05em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* === STEP NAVIGATION === */
+        .step-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        .step-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: none;
+            background: var(--white);
+            color: var(--gray-500);
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-right: 1px solid var(--gray-200);
+            text-align: center;
+            position: relative;
+        }
+        .step-btn:last-child { border-right: none; }
+        .step-btn:hover { background: var(--gray-50); color: var(--gray-700); }
+        .step-btn.active {
+            background: var(--navy);
+            color: white;
+        }
+        .step-btn.completed {
+            background: var(--gray-100);
+            color: var(--navy);
+        }
+        .step-btn.completed::after {
+            content: ' ✓';
+            color: var(--green-mid);
+            font-weight: 700;
+        }
+        .step-num {
+            display: block;
+            font-size: 11px;
+            opacity: 0.7;
+            margin-bottom: 2px;
+        }
+
+        /* === STEP CONTENT === */
+        .step-content {
+            display: none;
+        }
+        .step-content.active {
+            display: block;
+        }
+
+        /* === INSTRUCTION BOX === */
+        .instruction-box {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--navy);
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .instruction-box h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.2em;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+        .instruction-box p {
+            margin-bottom: 8px;
+            color: var(--gray-600);
+        }
+        .instruction-box p:last-child { margin-bottom: 0; }
+
+        .instruction-box.green { border-left-color: var(--green); }
+        .instruction-box.green h2 { color: var(--green); }
+        .instruction-box.amber { border-left-color: var(--amber); }
+        .instruction-box.amber h2 { color: var(--amber-dark); }
+        .instruction-box.purple { border-left-color: var(--purple); }
+        .instruction-box.purple h2 { color: var(--purple); }
+        .instruction-box.coral { border-left-color: var(--coral); }
+        .instruction-box.coral h2 { color: var(--coral); }
+
+        /* === MATRIX TABLE === */
+        .matrix-wrap {
+            overflow-x: auto;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 900px;
+        }
+        .matrix th {
+            padding: 12px 14px;
+            text-align: left;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            vertical-align: bottom;
+        }
+        .matrix td {
+            padding: 12px 14px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--gray-200);
+            line-height: 1.5;
+        }
+        .matrix tr:last-child td { border-bottom: none; }
+
+        /* Column header colors */
+        .matrix .col-source { 
+            background: var(--gray-800); color: var(--white); 
+            width: 15%;
+        }
+        .matrix .col-primary {
+            background: var(--navy); color: var(--white);
+            width: 25%;
+        }
+        .matrix .col-diff1 {
+            background: var(--amber-dark); color: var(--white);
+            width: 22%;
+        }
+        .matrix .col-diff2 {
+            background: var(--purple); color: var(--white);
+            width: 18%;
+        }
+        .matrix .col-discrim {
+            background: var(--coral); color: var(--white);
+            width: 20%;
+        }
+
+        /* Row label cells */
+        .matrix .row-label {
+            background: var(--gray-100);
+            font-weight: 700;
+            color: var(--gray-700);
+            font-size: 13px;
+            border-right: 2px solid var(--gray-300);
+        }
+
+        /* Data cells */
+        .matrix .cell-primary { background: var(--blue-light); }
+        .matrix .cell-diff1 { background: var(--amber-light); }
+        .matrix .cell-diff2 { background: var(--purple-light); }
+        .matrix .cell-discrim { background: var(--coral-light); }
+
+        .matrix .empty-cell {
+            background: var(--gray-50);
+            color: var(--gray-300);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Step 1: raw data column */
+        .matrix .col-raw {
+            background: var(--green); color: var(--white);
+        }
+        .matrix .cell-raw { background: var(--green-light); }
+
+        .data-tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-right: 3px;
+            font-weight: 600;
+        }
+        .tag-hpi { background: #dbeafe; color: #1e40af; }
+        .tag-ros { background: #fef3c7; color: #92400e; }
+        .tag-hx { background: #e0e7ff; color: #3730a3; }
+        .tag-mse { background: #d1fae5; color: #065f46; }
+        .tag-screen { background: #ede9fe; color: #5b21b6; }
+        .tag-med { background: #fce7f3; color: #9d174d; }
+
+        .evidence-item {
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+        .evidence-item:last-child { margin-bottom: 0; }
+
+        .pos { color: var(--coral); font-weight: 600; }
+        .neg { color: var(--gray-500); }
+        .key-neg { color: var(--green); font-weight: 600; }
+
+        /* === CONVERGENCE CARDS (Step 4) === */
+        .convergence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .conv-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        .conv-card-header {
+            padding: 10px 16px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .conv-card-header.mdd { background: var(--navy); color: white; }
+        .conv-card-header.gad { background: var(--amber); color: white; }
+        .conv-card-header.bp2 { background: var(--purple); color: white; }
+        .conv-card-body { padding: 14px 16px; font-size: 14px; }
+        .tally-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--gray-100);
+            gap: 8px;
+        }
+        .tally-row:last-of-type { border-bottom: none; }
+        .tally-source {
+            font-weight: 500;
+            color: var(--gray-600);
+            flex: 1;
+            min-width: 0;
+        }
+        .tally-result {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: right;
+            flex-shrink: 0;
+            max-width: 55%;
+        }
+        .tally-strong { color: var(--green); }
+        .tally-partial { color: var(--amber-dark); }
+        .tally-weak { color: var(--coral); }
+        .conv-summary {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .conv-summary.strong { background: var(--green-light); color: var(--green); border: 1px solid #c6f6d5; }
+        .conv-summary.partial { background: var(--amber-light); color: var(--amber-dark); border: 1px solid #fefcbf; }
+        .conv-summary.weak { background: var(--coral-light); color: var(--coral); border: 1px solid #fed7d7; }
+
+        /* === SYNTHESIS SECTION === */
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .synth-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        .synth-card-header {
+            padding: 10px 16px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .synth-card-header.convergent {
+            background: var(--navy); color: white;
+        }
+        .synth-card-header.discriminant {
+            background: var(--coral); color: white;
+        }
+        .synth-card-body {
+            padding: 14px 16px;
+            font-size: 14px;
+        }
+        .synth-card-body p { margin-bottom: 8px; }
+        .synth-card-body p:last-child { margin-bottom: 0; }
+        .synth-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        /* === DSM MAPPING === */
+        .dsm-section {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+        .dsm-header {
+            background: var(--navy-dark);
+            color: white;
+            padding: 14px 20px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .dsm-body { padding: 20px; }
+
+        .criterion-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .criterion-table th {
+            background: var(--gray-100);
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-600);
+            border-bottom: 2px solid var(--gray-300);
+        }
+        .criterion-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .criterion-table tr:last-child td { border-bottom: none; }
+        .criterion-met {
+            color: var(--green);
+            font-weight: 700;
+        }
+        .criterion-not-met {
+            color: var(--gray-400);
+        }
+        .criterion-label {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        .source-ref {
+            font-size: 12px;
+            color: var(--gray-500);
+            font-style: italic;
+        }
+
+        /* === DIAGNOSIS BOX === */
+        .dx-box {
+            background: var(--white);
+            border: 2px solid var(--navy);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .dx-box h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--navy);
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .dx-primary {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--navy-dark);
+            margin-bottom: 4px;
+        }
+        .dx-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+        .dx-rationale {
+            font-size: 14px;
+            color: var(--gray-600);
+            padding-left: 12px;
+            border-left: 3px solid var(--gray-200);
+        }
+
+        /* === NAVIGATION === */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
+        }
+
+        /* === NEXT STEP BUTTON === */
+        .next-step-bar {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .next-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .next-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(39, 103, 73, 0.3);
+        }
+
+        /* === PRINT & RESPONSIVE === */
+        @media print {
+            body { background: white; padding: 0; }
+            .step-nav, .next-step-bar, .nav-bar { display: none; }
+            .step-content { display: block !important; page-break-inside: avoid; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .step-nav { flex-wrap: wrap; }
+            .step-btn { flex-basis: 33%; }
+            .synthesis-grid { grid-template-columns: 1fr; }
+            .convergence-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+    <div class="course-tag">NURS 628 &bull; Case Study: D.R.</div>
+    <h1>Diagnostic Validity Matrix</h1>
+    <div class="subtitle">Organizing Clinical Evidence for Diagnostic Reasoning</div>
+</div>
+
+<!-- STEP NAVIGATION -->
+<div class="step-nav">
+    <button class="step-btn active" onclick="goToStep(1)">
+        <span class="step-num">Step 1</span>Organize Raw Data
+    </button>
+    <button class="step-btn" onclick="goToStep(2)">
+        <span class="step-num">Step 2</span>Primary Diagnosis
+    </button>
+    <button class="step-btn" onclick="goToStep(3)">
+        <span class="step-num">Step 3</span>Test Differentials
+    </button>
+    <button class="step-btn" onclick="goToStep(4)">
+        <span class="step-num">Step 4</span>Convergent Validity
+    </button>
+    <button class="step-btn" onclick="goToStep(5)">
+        <span class="step-num">Step 5</span>Discriminant Validity
+    </button>
+    <button class="step-btn" onclick="goToStep(6)">
+        <span class="step-num">Step 6</span>Validity Synthesis
+    </button>
+    <button class="step-btn" onclick="goToStep(7)">
+        <span class="step-num">Step 7</span>DSM-5 Criteria Mapping
+    </button>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 1: ORGANIZE RAW DATA -->
+<!-- ============================================ -->
+<div class="step-content active" id="step-1">
+
+    <div class="instruction-box">
+        <h2>Step 1: Organize the Raw Data by Source</h2>
+        <p>Before asking any diagnostic questions, we first organize the clinical data from D.R.&rsquo;s psychiatric evaluation by <strong>data source</strong>. This is the &ldquo;methods&rdquo; dimension of the matrix &mdash; separating what the patient reports from what we observe and what instruments measure.</p>
+        <p>The question at this stage is simply: <strong>What do we have?</strong></p>
+    </div>
+
+    <div class="matrix-wrap">
+        <table class="matrix">
+            <thead>
+                <tr>
+                    <th class="col-source">Data Source<br>(Method)</th>
+                    <th class="col-raw">Clinical Data from D.R.&rsquo;s Evaluation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Subjective:<br>HPI</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item">Depressed mood &times; 6 months, worsening &times; 8&ndash;10 weeks</div>
+                        <div class="evidence-item">Initial insomnia (&ldquo;going over everything&rdquo;) and terminal insomnia (3&ndash;4 AM waking)</div>
+                        <div class="evidence-item">Difficulty concentrating &mdash; tasks taking significantly longer</div>
+                        <div class="evidence-item">Low energy, heaviness, especially mornings</div>
+                        <div class="evidence-item">Declining social invitations; &ldquo;I don&rsquo;t really feel like doing anything after work&rdquo;</div>
+                        <div class="evidence-item">Reduced pleasure in running, cooking</div>
+                        <div class="evidence-item">Excessive work-checking, rewrites emails 4&ndash;5 times</div>
+                        <div class="evidence-item">Declined promotion: &ldquo;I&rsquo;d probably just end up proving that I can&rsquo;t handle it&rdquo;</div>
+                        <div class="evidence-item">Increased irritability with girlfriend</div>
+                        <div class="evidence-item">&ldquo;Everyone else seems to manage fine. I don&rsquo;t know what&rsquo;s wrong with me&rdquo;</div>
+                        <div class="evidence-item">Symptom severity: 7/10</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective:<br>Psych ROS</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><span class="pos">Depression (+):</span> depressed mood most days, insomnia (initial + terminal), fatigue, difficulty concentrating, feelings of worthlessness, decreased interest, psychomotor slowing in mornings</div>
+                        <div class="evidence-item"><span class="pos">Anxiety (+):</span> worry about performance described as difficult to control, restlessness, muscle tension (shoulders/neck), irritability, sleep disturbance, difficulty concentrating &mdash; <em>onset tracks with depressive symptoms over past 8&ndash;10 weeks; worry focused on own performance rather than broad domains; denies longstanding pattern prior to this episode</em></div>
+                        <div class="evidence-item"><span class="neg">Psychosis (−):</span> no hallucinations, paranoia, ideas of reference, grandiosity</div>
+                        <div class="evidence-item"><span class="neg">Bipolar (−):</span> no elevated/expansive mood, no decreased need for sleep with increased energy, no pressured speech, no impulsive behavior, no grandiosity, no mood swings lasting weeks</div>
+                        <div class="evidence-item"><span class="neg">OCD (−):</span> no ritualistic behaviors, no compulsions; checking is voluntary and quality-related, not driven by irresistible urge</div>
+                        <div class="evidence-item"><span class="neg">Trauma (−):</span> no abuse history, no flashbacks, nightmares, hypervigilance, or avoidance</div>
+                        <div class="evidence-item"><span class="neg">Neurocognitive (−):</span> no memory loss, confusion, personality change</div>
+                        <div class="evidence-item"><span class="neg">Safety (−):</span> no SI, no plan/intent, no HI, no self-harm, no firearms access</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective:<br>History</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><strong>Past Psych Hx:</strong> No prior diagnoses, treatment, or hospitalizations</div>
+                        <div class="evidence-item"><strong>Family Hx:</strong> Mother &ldquo;always been a worrier,&rdquo; never treated; maternal grandmother hospitalized once &ldquo;for her nerves&rdquo;; no family hx of bipolar, psychosis, or completed suicide</div>
+                        <div class="evidence-item"><strong>Substance:</strong> Social ETOH (2&ndash;3 → 3&ndash;4 drinks/weekend, recent increase); caffeine 3&ndash;4 cups/day (increased); no illicit substances</div>
+                        <div class="evidence-item"><strong>Social:</strong> College-educated, employed &times; 4 yrs, in relationship &times; 2 yrs, no legal issues. Parents married, high expectations, frequent comparisons to older brother (surgeon). Described academic pressure since childhood &mdash; gifted programs, valedictorian, &ldquo;that was kind of the expectation&rdquo;</div>
+                        <div class="evidence-item"><strong>Developmental:</strong> Full-term, milestones met, no learning disabilities. &ldquo;Always kind of stressed about school&rdquo;</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective:<br>Medical ROS</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><span class="pos">(+):</span> fatigue, tension headaches 2&ndash;3x/week, intermittent heart racing before presentations, stomach pain and nausea on weekday mornings, loose stools during stress, chronic shoulder/neck tightness, decreased libido</div>
+                        <div class="evidence-item"><span class="neg">(−):</span> no weight change, no fever, no vision/hearing changes, no SOB, no chest pain, no numbness/tingling, no endocrine symptoms</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Objective:<br>MSE</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><strong>Appearance/Behavior:</strong> Appears stated age, well-groomed, good hygiene. Cooperative. Good eye contact. Mild psychomotor restlessness &mdash; shifting, rubbing hands</div>
+                        <div class="evidence-item"><strong>Speech:</strong> Spontaneous, normal rate/rhythm. Volume soft when discussing work performance and family expectations</div>
+                        <div class="evidence-item"><strong>Mood:</strong> &ldquo;Stressed out, I guess. Tired.&rdquo;</div>
+                        <div class="evidence-item"><strong>Affect:</strong> Anxious, mildly constricted. Congruent. Brightened when discussing girlfriend/running. More tense and quieter when discussing parents and work</div>
+                        <div class="evidence-item"><strong>Thought process:</strong> Logical, linear, goal-directed. Occasionally circumstantial when discussing work</div>
+                        <div class="evidence-item"><strong>Thought content:</strong> No delusions, hallucinations, SI, HI. No response to internal stimuli</div>
+                        <div class="evidence-item"><strong>Cognition:</strong> A&amp;O &times;4. Concentration grossly intact. Memory intact. Abstraction intact</div>
+                        <div class="evidence-item"><strong>Insight:</strong> Fair &mdash; acknowledges impairment but minimizes: &ldquo;I should be able to figure this out on my own&rdquo;</div>
+                        <div class="evidence-item"><strong>Judgment:</strong> Fair &mdash; seeking treatment, maintaining employment, but avoidance of promotion and social withdrawal suggest impact</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Objective:<br>Physical Exam</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item">BP 132/84, HR 76, BMI 24.8. Normocephalic, no thyromegaly, no lymphadenopathy. Lungs CTA bilaterally. CN II&ndash;XII intact, gait steady, no tremor, no involuntary movements. No scars, no evidence of self-harm, no track marks.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Objective:<br>Screening Tools</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><em>To be administered &mdash; recommended: PHQ-9, GAD-7</em></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Objective:<br>Labs</td>
+                    <td class="cell-raw">
+                        <div class="evidence-item"><em>Recommended: CBC, CMP, TSH, Vitamin D, B12 &mdash; to rule out medical contributors to fatigue, concentration, mood symptoms. No labs available at time of initial evaluation.</em></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(2)">Next: Evaluate the Primary Diagnosis &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 2: PRIMARY DIAGNOSIS -->
+<!-- ============================================ -->
+<div class="step-content" id="step-2">
+
+    <div class="instruction-box">
+        <h2>Step 2: Does the Evidence Support the Primary Diagnosis?</h2>
+        <p>Now we ask the first diagnostic question: <strong>What diagnosis does this evidence best support?</strong> We take the raw data from Step 1 and evaluate what converges on Major Depressive Disorder, single episode, moderate.</p>
+        <p>Look at how data from multiple sources &mdash; patient report, ROS, history, MSE &mdash; all point toward the same construct. That pattern of convergence across different methods is what builds diagnostic confidence.</p>
+    </div>
+
+    <div class="matrix-wrap">
+        <table class="matrix">
+            <thead>
+                <tr>
+                    <th class="col-source">Data Source</th>
+                    <th class="col-primary">MDD, Single Episode, Moderate<br><span style="font-weight:400; font-size:11px;">F32.1</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Criterion A<br>(Core Symptoms)</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="pos">✓</span> Depressed mood, most of the day, nearly every day &times; 6 months</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Markedly diminished interest/pleasure (running, cooking, socializing)</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Insomnia (initial and terminal)</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Fatigue/loss of energy (heaviness, especially mornings)</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Diminished concentration (tasks taking longer)</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Feelings of worthlessness (&ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;I can&rsquo;t handle it&rdquo;)</div>
+                        <div class="evidence-item"><span class="pos">✓</span> Psychomotor changes (slowing in mornings per self-report)</div>
+                        <div class="evidence-item"><strong>7 of 9 Criterion A symptoms present; ≥ 5 required</strong></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective Data<br>(HPI, ROS, Hx)</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="data-tag tag-hpi">HPI</span> 6-month progressive course with clear functional decline</div>
+                        <div class="evidence-item"><span class="data-tag tag-hpi">HPI</span> Social withdrawal &mdash; declining invitations, constricted routine</div>
+                        <div class="evidence-item"><span class="data-tag tag-hpi">HPI</span> Occupational impact &mdash; declined promotion, work-checking, extended hours</div>
+                        <div class="evidence-item"><span class="data-tag tag-ros">ROS</span> Endorses 7 depressive symptoms (mood, sleep, energy, interest, concentration, worthlessness, psychomotor)</div>
+                        <div class="evidence-item"><span class="data-tag tag-ros">ROS</span> Decreased libido</div>
+                        <div class="evidence-item"><span class="data-tag tag-hx">Hx</span> Family loading &mdash; mother with likely untreated anxiety; maternal grandmother psychiatric hospitalization</div>
+                        <div class="evidence-item"><span class="data-tag tag-hx">Hx</span> No prior psychiatric treatment (first episode)</div>
+                        <div class="evidence-item"><span class="data-tag tag-hx">Hx</span> Mild increase in alcohol use as coping (3&ndash;4 drinks/weekend vs. baseline 2&ndash;3)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">MSE Findings</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Mood: &ldquo;Stressed out. Tired.&rdquo;</div>
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Affect: anxious, mildly constricted range &mdash; congruent with stated mood</div>
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Speech: volume drops when discussing performance/family</div>
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Psychomotor restlessness (shifting, hand-rubbing)</div>
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Insight: fair with minimization (&ldquo;I should be able to figure this out on my own&rdquo;)</div>
+                        <div class="evidence-item"><span class="data-tag tag-mse">MSE</span> Judgment: fair &mdash; avoidance pattern (promotion decline, social withdrawal)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Screening Tools</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="data-tag tag-screen">Recommended</span> PHQ-9 &mdash; anticipated moderate-to-moderately severe range based on symptom count and severity</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Medical Exclusion</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="data-tag tag-med">PE</span> BP mildly elevated (132/84) &mdash; may warrant monitoring; otherwise unremarkable</div>
+                        <div class="evidence-item"><span class="data-tag tag-med">Labs</span> TSH, CBC, CMP, B12, Vitamin D recommended to rule out hypothyroidism, anemia, metabolic causes</div>
+                        <div class="evidence-item"><span class="data-tag tag-med">ROS</span> Somatic symptoms (headaches, GI distress, muscle tension) are temporally linked to psychiatric symptom onset &mdash; pattern consistent with stress-related somatic presentation rather than primary medical etiology</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(3)">Next: Test the Differentials &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 3: TEST DIFFERENTIALS -->
+<!-- ============================================ -->
+<div class="step-content" id="step-3">
+
+    <div class="instruction-box amber">
+        <h2>Step 3: Could the Evidence Support Alternative Diagnoses?</h2>
+        <p>Now we stress-test the primary diagnosis by asking: <strong>Could this data also support something else?</strong> This is where we look for overlap and divergence. Notice that some evidence supports multiple diagnoses (shared symptoms), while some of D.R.&rsquo;s data clearly does <em>not</em> fit certain diagnoses.</p>
+    </div>
+
+    <div class="matrix-wrap">
+        <table class="matrix">
+            <thead>
+                <tr>
+                    <th class="col-source">Data Source</th>
+                    <th class="col-primary">MDD, Single Episode<br><span style="font-weight:400; font-size:11px;">F32.1</span></th>
+                    <th class="col-diff1">Generalized Anxiety Disorder<br><span style="font-weight:400; font-size:11px;">F41.1</span></th>
+                    <th class="col-diff2">Bipolar II Disorder<br><span style="font-weight:400; font-size:11px;">F31.81</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Criterion A</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="pos">7 of 9</span> symptoms present</div>
+                        <div class="evidence-item">≥ 5 required &mdash; <strong>met</strong></div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item">Excessive worry: <span class="pos">present</span></div>
+                        <div class="evidence-item">Restlessness: <span class="pos">present</span></div>
+                        <div class="evidence-item">Muscle tension: <span class="pos">present</span></div>
+                        <div class="evidence-item">Irritability: <span class="pos">present</span></div>
+                        <div class="evidence-item">Sleep disturbance: <span class="pos">present</span></div>
+                        <div class="evidence-item">Difficulty concentrating: <span class="pos">present</span></div>
+                        <div class="evidence-item">Fatigue: <span class="pos">present</span></div>
+                        <div class="evidence-item"><em>Symptom count appears met &mdash; but duration and scope require examination</em></div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item">Current depressive episode: <span class="pos">yes</span></div>
+                        <div class="evidence-item">History of hypomanic episode: <span class="key-neg">no evidence</span></div>
+                        <div class="evidence-item"><strong>Cannot be diagnosed without documented hypomanic episode</strong></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective Data</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">Progressive depressed mood, anhedonia, fatigue, insomnia, worthlessness, concentration impairment, social withdrawal, occupational decline &times; 6 months</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item">Reports worry &ldquo;difficult to control&rdquo;</div>
+                        <div class="evidence-item"><em>However:</em> worry content focused on own performance/adequacy, not multiple life domains</div>
+                        <div class="evidence-item"><em>Timeline:</em> anxiety symptoms worsened over past 8&ndash;10 weeks, concurrent with depressive worsening. Denies longstanding pattern of excessive worry prior to this episode</div>
+                        <div class="evidence-item">GAD requires ≥ 6 months of worry on more days than not</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item">Denies any periods of elevated, expansive, or unusually irritable mood</div>
+                        <div class="evidence-item">Denies decreased need for sleep with increased energy</div>
+                        <div class="evidence-item">Denies impulsive spending, sexual behavior, or risk-taking</div>
+                        <div class="evidence-item">Denies grandiosity or inflated self-esteem</div>
+                        <div class="evidence-item">Denies mood swings lasting days to weeks</div>
+                        <div class="evidence-item">No family hx of bipolar disorder</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">MSE Findings</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">Constricted affect, congruent depressed/anxious mood, speech softens on emotionally laden topics, psychomotor restlessness, fair insight with minimization, avoidance pattern</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item">Psychomotor restlessness observed (shifting, hand-rubbing) &mdash; shared feature</div>
+                        <div class="evidence-item">Anxious affect noted</div>
+                        <div class="evidence-item"><em>However:</em> no pressured speech, no flight of ideas, no hypervigilance to environmental stimuli</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item">No pressured speech</div>
+                        <div class="evidence-item">No elevated, euphoric, or expansive affect</div>
+                        <div class="evidence-item">No psychomotor agitation beyond mild restlessness</div>
+                        <div class="evidence-item">No grandiosity, flight of ideas, or distractibility beyond depressive concentration impairment</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Screening Tools</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">PHQ-9 recommended</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item">GAD-7 recommended &mdash; anticipated elevation, though likely reflecting depressive anxiety rather than independent GAD</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item">MDQ (Mood Disorder Questionnaire) recommended to screen for prior hypomanic episodes &mdash; anticipated negative</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Medical Exclusion</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">Labs pending. Somatic symptoms temporally linked to psychiatric onset.</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item">TSH warranted &mdash; hyperthyroidism can mimic anxiety. Caffeine intake (3&ndash;4 cups/day, increased) may contribute to restlessness and sleep difficulty.</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item">No medical findings suggesting secondary mania. No substance use pattern associated with mood elevation.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(4)">Next: Assess Convergent Validity &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ============================================ -->
+<!-- STEP 4: CONVERGENT VALIDITY (DOWN COLUMNS) -->
+<!-- ============================================ -->
+<div class="step-content" id="step-4">
+
+    <div class="instruction-box green">
+        <h2>Step 4: Convergent Validity &mdash; How Much Evidence Comes Together?</h2>
+        <p>Now we read <strong>down each column</strong> independently. For each potential diagnosis, we ask: how much of the evidence that <em>should</em> be present <em>is</em> actually present? We&rsquo;re assessing each diagnosis on its own terms, using the same methods (our data sources) to evaluate each one.</p>
+        <p>This is convergent validity applied to diagnosis: <em>measures of constructs that theoretically should be related to each other are, in fact, observed to be related to each other.</em> The diagnosis with the strongest convergence &mdash; the most findings that should be related actually being related &mdash; has the best evidentiary support.</p>
+    </div>
+
+    <div class="matrix-wrap">
+        <table class="matrix">
+            <thead>
+                <tr>
+                    <th class="col-source">Data Source</th>
+                    <th class="col-primary">MDD, Single Episode<br><span style="font-weight:400; font-size:11px;">F32.1</span></th>
+                    <th class="col-diff1">Generalized Anxiety Disorder<br><span style="font-weight:400; font-size:11px;">F41.1</span></th>
+                    <th class="col-diff2">Bipolar II Disorder<br><span style="font-weight:400; font-size:11px;">F31.81</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Criterion A /<br>Core Features</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> 7 of 9 symptoms present. Both required gateway symptoms (depressed mood, anhedonia) are present.</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item"><span class="tally-partial">~ Partial:</span> Symptom count appears met (worry, restlessness, muscle tension, irritability, sleep disturbance, concentration, fatigue)</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Duration &mdash; anxiety symptoms track with depressive episode (8&ndash;10 wks), not independent ≥ 6-month course</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Scope &mdash; worry narrowly focused on own performance/adequacy, not &ldquo;a number of events or activities&rdquo;</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Primacy &mdash; denies longstanding pattern of excessive worry prior to this episode</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Current depressive episode is present (required feature)</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No lifetime hypomanic episode &mdash; required for diagnosis, no evidence from any source</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective Data<br><span style="font-weight:400; font-size:11px;">(HPI, ROS, Hx)</span></td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> HPI details progressive depressed mood, anhedonia, fatigue, insomnia, worthlessness, concentration impairment, social withdrawal, occupational decline</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Psych ROS endorses 7 depressive items</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Content of distress is consistently self-directed across sources</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Pertinent negatives consistent (denies SI, appetite change)</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item"><span class="tally-partial">~ Partial:</span> Psych ROS endorses anxiety symptoms (worry, restlessness, muscle tension, irritability, sleep, concentration)</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Denies panic features (expected for GAD)</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Worry content self-focused, not generalized across domains</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No pre-existing worry pattern reported</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Denies elevated, expansive, or unusually irritable mood</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Denies decreased need for sleep with increased energy</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Denies impulsivity, grandiosity, risk-taking</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Denies mood episodes with distinct onset/offset</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No family history of bipolar disorder</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">MSE Findings</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Constricted affect congruent with depressed/anxious mood</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Speech changes on emotional content</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Psychomotor restlessness, avoidance pattern</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item"><span class="tally-partial">~ Partial:</span> Psychomotor restlessness and anxious affect observed (shared feature)</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No autonomic hyperarousal beyond mild restlessness</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No pressured speech, no elevated/euphoric/expansive affect</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No flight of ideas, no grandiosity</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> Behavioral pattern is avoidance/withdrawal &mdash; opposite of expansive</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">History<br><span style="font-weight:400; font-size:11px;">(Psych, Family, Social)</span></td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> First episode, no prior psychiatric treatment</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Family psychiatric loading (mother &mdash; depression/anxiety)</div>
+                        <div class="evidence-item"><span class="tally-strong">✓ Converges:</span> Functional decline across social, occupational, relational domains</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item"><span class="tally-partial">~ Partial:</span> Family hx of anxiety (mother) could support</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No personal history of chronic worry or anxiety disorder</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No family history of bipolar disorder</div>
+                        <div class="evidence-item"><span class="tally-weak">✗ Missing:</span> No prior mood episodes</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Screening / Labs</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item"><span class="tally-partial">~ Pending:</span> PHQ-9 anticipated moderate-severe</div>
+                        <div class="evidence-item"><span class="tally-partial">~ Pending:</span> Labs pending; PE unremarkable</div>
+                    </td>
+                    <td class="cell-diff1">
+                        <div class="evidence-item"><span class="tally-partial">~ Pending:</span> GAD-7 anticipated elevated, but would need to establish independent trajectory</div>
+                    </td>
+                    <td class="cell-diff2">
+                        <div class="evidence-item"><span class="tally-partial">~ Pending:</span> MDQ anticipated negative</div>
+                    </td>
+                </tr>
+                <!-- CONVERGENCE SUMMARY ROW -->
+                <tr>
+                    <td class="row-label" style="font-weight:700;">Convergence<br>Summary</td>
+                    <td class="cell-primary" style="border-top: 3px solid var(--navy);">
+                        <div class="conv-summary strong">
+                            <strong>Strong convergence.</strong> Evidence from every data source consistently supports this diagnosis. What should be present is present. What should be absent is absent.
+                        </div>
+                    </td>
+                    <td class="cell-diff1" style="border-top: 3px solid var(--amber);">
+                        <div class="conv-summary partial">
+                            <strong>Partial convergence.</strong> Anxiety symptoms are present, but three things that should be there for independent GAD are missing &mdash; independent duration, broad scope, and a pre-existing worry pattern. Evidence converges on anxiety <em>symptoms within a depressive episode</em>, not on GAD as a separate diagnosis.
+                        </div>
+                    </td>
+                    <td class="cell-diff2" style="border-top: 3px solid var(--purple);">
+                        <div class="conv-summary weak">
+                            <strong>Weak convergence.</strong> Only one element (current depressive episode) supports this diagnosis. Everything else that should be present for Bipolar II is absent. The required second feature &mdash; a lifetime hypomanic episode &mdash; has no supporting evidence from any source.
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(5)">Next: Assess Discriminant Validity &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 5: DISCRIMINANT VALIDITY -->
+<!-- ============================================ -->
+<div class="step-content" id="step-5">
+
+    <div class="instruction-box coral">
+        <h2>Step 5: Discriminant Validity &mdash; What Separates the Diagnoses?</h2>
+        <p>Now we read <strong>across the rows</strong>. Discriminant validity asks: at each data source level, can we <em>distinguish</em> between diagnoses? Evidence that supports MDD but <em>not</em> GAD or Bipolar II is <strong>discriminant evidence</strong> &mdash; it tells us what this <em>is</em> by showing us what it <em>isn&rsquo;t</em>.</p>
+        <p>This is the other half of construct validity: <em>measures of constructs that theoretically should not be related to each other are, in fact, observed to not be related.</em> Notice that some data points do double duty: they converge on MDD <em>and</em> discriminate against the differentials simultaneously.</p>
+    </div>
+
+    <div class="matrix-wrap">
+        <table class="matrix">
+            <thead>
+                <tr>
+                    <th class="col-source">Data Source</th>
+                    <th class="col-primary">MDD Evidence</th>
+                    <th class="col-discrim">What Discriminates Against GAD?</th>
+                    <th class="col-discrim">What Discriminates Against Bipolar II?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="row-label">Criterion A /<br>Core Features</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">7 of 9 MDD criteria met</div>
+                        <div class="evidence-item">Depressed mood and anhedonia both present (at least 1 required)</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item"><strong>Duration:</strong> Anxiety symptoms track with depressive episode (8&ndash;10 weeks of worsening), not independent ≥ 6-month course</div>
+                        <div class="evidence-item"><strong>Scope:</strong> Worry focused on own performance/adequacy, not &ldquo;a number of events or activities&rdquo; across life domains</div>
+                        <div class="evidence-item"><strong>Primacy:</strong> Denies longstanding pattern of excessive worry prior to this episode</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item"><strong>No hypomanic episode:</strong> Bipolar II requires at least one lifetime hypomanic episode. Patient denies any history of elevated/expansive mood, decreased need for sleep with increased energy, grandiosity, or uncharacteristic impulsive behavior</div>
+                        <div class="evidence-item"><strong>No family loading:</strong> No first-degree relatives with bipolar disorder</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Subjective<br>Data</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">Progressive functional decline across social, occupational, and relational domains</div>
+                        <div class="evidence-item">Content of distress is self-directed: inadequacy, failure, worthlessness</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item"><strong>Content direction:</strong> Patient&rsquo;s worry is self-focused (&ldquo;I&rsquo;m not good enough,&rdquo; &ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;I can&rsquo;t handle it&rdquo;) rather than threat-focused (&ldquo;something bad will happen&rdquo;) or broadly generalized</div>
+                        <div class="evidence-item"><strong>Denies</strong> panic attacks, agoraphobic avoidance</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item"><strong>Denies</strong> periods of elevated mood, pressured speech, impulsive behavior, grandiosity, decreased need for sleep, risk-taking</div>
+                        <div class="evidence-item"><strong>Denies</strong> mood episodes lasting days to weeks with distinct onset/offset</div>
+                        <div class="evidence-item">Sleep pattern is insomnia (too little), not decreased need for sleep (high energy on less sleep)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">MSE</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">Constricted affect, congruent anxious/depressed mood, speech changes on emotional content</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item">No autonomic hyperarousal observed beyond mild restlessness</div>
+                        <div class="evidence-item">Thought process logical and linear &mdash; no racing thoughts</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item">No pressured speech, no elevated/euphoric/expansive affect</div>
+                        <div class="evidence-item">No flight of ideas, no distractibility beyond depressive impairment</div>
+                        <div class="evidence-item">No psychomotor agitation or grandiosity</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-label">Screening /<br>Labs</td>
+                    <td class="cell-primary">
+                        <div class="evidence-item">PHQ-9 anticipated moderate-severe</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item">GAD-7 may be elevated but would need to establish independent symptom trajectory to confirm GAD as comorbid vs. depressive anxiety</div>
+                    </td>
+                    <td class="cell-discrim">
+                        <div class="evidence-item">MDQ anticipated negative</div>
+                        <div class="evidence-item">Labs to rule out thyroid, metabolic &mdash; relevant to both differentials</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(6)">Next: Validity Synthesis &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 6: VALIDITY SYNTHESIS -->
+<!-- ============================================ -->
+<div class="step-content" id="step-6">
+
+    <div class="instruction-box purple">
+        <h2>Step 6: Validity Synthesis</h2>
+        <p>We now bring both analyses together. <strong>Convergent validity</strong> (Step 4) showed which diagnosis the evidence best supports &mdash; MDD had the most findings that should be present actually present. <strong>Discriminant validity</strong> (Step 5) showed what separates MDD from the alternatives &mdash; findings that should not be shared between diagnoses were, in fact, not shared.</p>
+        <p>Both are required. Convergence without discrimination means you can&rsquo;t tell diagnoses apart. Discrimination without convergence means you&rsquo;ve ruled things out but haven&rsquo;t built a positive case. Together, they give you construct validity &mdash; a defensible diagnostic conclusion.</p>
+    </div>
+
+    <div class="synthesis-grid">
+        <div class="synth-card">
+            <div class="synth-card-header convergent">Convergent Evidence for MDD</div>
+            <div class="synth-card-body">
+                <span class="synth-label">Subjective Data:</span>
+                <p>Patient self-report (HPI), psychiatric ROS, and collateral history all converge on depressive syndrome: depressed mood, anhedonia, insomnia, fatigue, concentration impairment, worthlessness, psychomotor changes, social withdrawal, and occupational decline. The content of distress is consistently self-directed across all data sources.</p>
+
+                <span class="synth-label">Objective Data:</span>
+                <p>MSE findings corroborate subjective report: constricted affect congruent with depressed mood, speech changes on emotionally laden topics, mild psychomotor restlessness, and avoidance behavior pattern (declined promotion, social withdrawal). Physical exam negative for medical contributors. Somatic ROS findings (GI symptoms, headaches, muscle tension, tachycardia) are temporally linked to psychiatric onset.</p>
+
+                <span class="synth-label">Pattern:</span>
+                <p>Four independent data sources (patient report, ROS endorsement, behavioral history, clinician observation) converge on the same diagnostic construct. This is the hallmark of strong convergent validity &mdash; different methods of measurement yielding consistent results.</p>
+            </div>
+        </div>
+        <div class="synth-card">
+            <div class="synth-card-header discriminant">Discriminant Evidence Against Differentials</div>
+            <div class="synth-card-body">
+                <span class="synth-label">Against GAD:</span>
+                <p>Three data points discriminate: (1) anxiety symptoms lack independent ≥ 6-month duration &mdash; they track with the depressive episode; (2) worry content is narrowly self-focused rather than generalized across multiple life domains; (3) patient denies longstanding worry pattern prior to current episode. GAD remains a reasonable differential because of significant symptom overlap, but the timeline and scope do not independently satisfy criteria.</p>
+
+                <span class="synth-label">Against Bipolar II:</span>
+                <p>Discriminant evidence is strong and clean: patient denies any lifetime history of elevated, expansive, or uncharacteristically irritable mood; no decreased need for sleep with increased energy; no impulsivity, grandiosity, or pressured speech &mdash; by history or on MSE. There is no family history of bipolar disorder. The Psych ROS pertinent negatives for bipolar are entirely negative. Without a documented hypomanic episode, Bipolar II cannot be diagnosed regardless of the current depressive presentation.</p>
+
+                <span class="synth-label">Key Distinction:</span>
+                <p>These two differentials illustrate different patterns of discrimination. GAD is ruled out on <em>degree</em> &mdash; symptoms overlap significantly but fail to meet independent diagnostic thresholds. Bipolar II is ruled out on <em>kind</em> &mdash; an entire required feature (hypomania) is absent from the clinical picture.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="next-step-bar">
+        <button class="next-btn" onclick="goToStep(7)">Next: DSM-5 Criteria Mapping &rarr;</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 7: DSM-5 CRITERIA MAPPING -->
+<!-- ============================================ -->
+<div class="step-content" id="step-7">
+
+    <div class="instruction-box green">
+        <h2>Step 7: Mapping Evidence to DSM-5 Criteria</h2>
+        <p>The matrix evidence maps directly onto DSM-5 diagnostic criteria. Each cell in the matrix corresponds to specific criterion items. This final step shows how organized clinical data translates into a defensible diagnostic conclusion.</p>
+    </div>
+
+    <div class="dsm-section">
+        <div class="dsm-header">Major Depressive Disorder, Single Episode, Moderate &mdash; DSM-5 Criteria</div>
+        <div class="dsm-body">
+            <table class="criterion-table">
+                <thead>
+                    <tr>
+                        <th style="width:8%;">Status</th>
+                        <th style="width:32%;">DSM-5 Criterion</th>
+                        <th style="width:60%;">Evidence from D.R.&rsquo;s Evaluation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A1. Depressed mood, most of the day, nearly every day</td>
+                        <td><span class="source-ref">HPI:</span> depressed mood &times; 6 months. <span class="source-ref">ROS:</span> endorses depressed mood most days. <span class="source-ref">MSE:</span> mood &ldquo;stressed out, tired,&rdquo; affect congruent, constricted.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A2. Markedly diminished interest or pleasure</td>
+                        <td><span class="source-ref">HPI:</span> reduced enjoyment in running and cooking, declining social invitations. <span class="source-ref">ROS:</span> endorses decreased interest.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-not-met">&mdash;</span></td>
+                        <td class="criterion-label">A3. Significant weight change or appetite change</td>
+                        <td><span class="source-ref">ROS:</span> denies appetite changes, weight stable. <span class="source-ref">PE:</span> BMI 24.8 (normal range).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A4. Insomnia or hypersomnia</td>
+                        <td><span class="source-ref">HPI:</span> initial insomnia (ruminating at bedtime) and terminal insomnia (3&ndash;4 AM waking). <span class="source-ref">ROS:</span> endorses sleep disturbance. Hydroxyzine helps onset, not maintenance.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A5. Psychomotor agitation or retardation</td>
+                        <td><span class="source-ref">HPI:</span> reports heaviness and slowing in mornings. <span class="source-ref">MSE:</span> mild psychomotor restlessness observed (shifting, hand-rubbing).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A6. Fatigue or loss of energy</td>
+                        <td><span class="source-ref">HPI:</span> low energy, heaviness, especially mornings. <span class="source-ref">ROS:</span> endorses fatigue. <span class="source-ref">Med ROS:</span> endorses fatigue, low energy.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A7. Feelings of worthlessness or excessive guilt</td>
+                        <td><span class="source-ref">HPI:</span> &ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;I can&rsquo;t handle it,&rdquo; guilt about irritability with girlfriend. <span class="source-ref">ROS:</span> endorses feelings of worthlessness. <span class="source-ref">MSE:</span> &ldquo;I should be able to figure this out on my own.&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">A8. Diminished concentration or indecisiveness</td>
+                        <td><span class="source-ref">HPI:</span> tasks taking significantly longer, excessive email revision. <span class="source-ref">ROS:</span> endorses difficulty concentrating. <span class="source-ref">MSE:</span> self-reports impairment; grossly intact on exam (discrepancy noted).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-not-met">&mdash;</span></td>
+                        <td class="criterion-label">A9. Recurrent thoughts of death, suicidal ideation</td>
+                        <td><span class="source-ref">ROS:</span> denies SI, plan, intent. <span class="source-ref">Safety assessment:</span> negative. <span class="source-ref">MSE:</span> no SI or HI elicited.</td>
+                    </tr>
+                    <tr style="background: var(--blue-light);">
+                        <td colspan="3"><strong>Criterion A Summary:</strong> 7 of 9 symptoms present (depressed mood, anhedonia, insomnia, psychomotor changes, fatigue, worthlessness, concentration impairment). Minimum 5 required, including at least one of A1 or A2. <strong>Both A1 and A2 are present. Criterion A is met.</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">B. Significant distress or functional impairment</td>
+                        <td><span class="source-ref">HPI:</span> declined promotion, social withdrawal, relationship strain, work quality decline. Severity 7/10. &ldquo;Barely holding it together.&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">C. Not attributable to substances or medical condition</td>
+                        <td><span class="source-ref">Substance Hx:</span> mild social ETOH (CAGE 0/4); caffeine use increased but not causative. <span class="source-ref">PE:</span> unremarkable. <span class="source-ref">Labs:</span> pending (TSH, CBC, CMP recommended to confirm).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">D. Not better explained by psychotic or schizoaffective disorder</td>
+                        <td><span class="source-ref">ROS:</span> denies hallucinations, delusions, paranoia. <span class="source-ref">MSE:</span> no response to internal stimuli, thought process logical and linear.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="criterion-met">✓ MET</span></td>
+                        <td class="criterion-label">E. No history of manic or hypomanic episode</td>
+                        <td><span class="source-ref">ROS:</span> all bipolar screening items negative. <span class="source-ref">Hx:</span> no prior episodes of elevated mood. <span class="source-ref">MSE:</span> no features of mania or hypomania. <span class="source-ref">Family Hx:</span> no bipolar disorder in first-degree relatives.</td>
+                    </tr>
+                    <tr style="background: var(--blue-light);">
+                        <td colspan="3"><strong>Criteria B through E met.</strong> Episode is single (no prior episodes). Severity is moderate (symptom count, functional impairment, and distress rating support moderate rather than mild or severe specifier).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- DIAGNOSTIC CONCLUSION -->
+    <div class="dx-box">
+        <h3>Diagnostic Conclusion</h3>
+        <div class="dx-primary">Primary Diagnosis: Major Depressive Disorder, Single Episode, Moderate</div>
+        <div class="dx-code">ICD-10: F32.1 &nbsp;&bull;&nbsp; CPT: 90792 (Psychiatric Diagnostic Evaluation)</div>
+        <div class="dx-rationale">
+            <p style="margin-bottom:10px;"><strong>Convergent evidence:</strong> Four independent data sources (patient self-report, psychiatric ROS endorsement pattern, psychosocial history, and mental status examination) converge on a depressive syndrome meeting 7 of 9 DSM-5 Criterion A symptoms, with significant functional impairment across occupational, social, and relational domains.</p>
+            <p style="margin-bottom:10px;"><strong>Discriminant evidence:</strong> GAD is differentiated by timeline (anxiety symptoms lack independent ≥ 6-month course), scope (worry narrowly self-focused rather than generalized), and primacy (no pre-episode worry pattern). Bipolar II is ruled out by the complete absence of any lifetime hypomanic features by history, ROS, or MSE observation.</p>
+            <p><strong>Differential diagnoses to monitor:</strong> (1) GAD &mdash; if anxiety symptoms persist after depressive episode resolves, reassess for independent GAD diagnosis. (2) Bipolar II &mdash; maintain screening at follow-up visits, particularly if patient develops elevated mood, decreased need for sleep, or impulsive behavior, especially in response to antidepressant treatment.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================ -->
+<!-- NAVIGATION -->
+<!-- ============================================ -->
+<div class="nav-bar">
+    <a href="case-study.html" class="nav-link">&larr; Return to Case Study</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="5ps-matrix.html" class="nav-link">Proceed to 5 P&rsquo;s Formulation &rarr;</a>
+</div>
+
+<script>
+    function goToStep(stepNum) {
+        // Hide all steps
+        document.querySelectorAll('.step-content').forEach(el => {
+            el.classList.remove('active');
+        });
+        // Show target step
+        document.getElementById('step-' + stepNum).classList.add('active');
+
+        // Update nav buttons
+        document.querySelectorAll('.step-btn').forEach((btn, i) => {
+            btn.classList.remove('active', 'completed');
+            if (i + 1 === stepNum) {
+                btn.classList.add('active');
+            } else if (i + 1 < stepNum) {
+                btn.classList.add('completed');
+            }
+        });
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

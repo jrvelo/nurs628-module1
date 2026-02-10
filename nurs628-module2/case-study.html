@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Case Study — D.R.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .doc-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--blue-mid) 100%);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+        .doc-header::after {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--amber), var(--blue-mid), var(--green-mid));
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+        }
+        .doc-header .course-tag {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+        .doc-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.65em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .doc-header .subtitle {
+            font-size: 1.05em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* === DOCUMENT BODY === */
+        .doc-body {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+
+        /* === DEMOGRAPHICS BAR === */
+        .demographics {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 14px 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 24px;
+        }
+        .demo-item {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        .demo-item strong {
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        /* === SECTION DIVIDERS === */
+        .section-divider {
+            padding: 12px 28px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .section-divider.subjective {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+        }
+        .section-divider.objective {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+        }
+
+        /* === SUBSECTIONS === */
+        .subsection {
+            padding: 18px 28px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .subsection:last-child {
+            border-bottom: none;
+        }
+        .subsection-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--navy);
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--gray-200);
+            display: inline-block;
+        }
+        .subsection-label.obj-label {
+            color: var(--green);
+        }
+        .subsection p {
+            margin-bottom: 10px;
+        }
+        .subsection p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* === CLINICAL TEXT STYLES === */
+        .patient-quote {
+            color: var(--gray-700);
+            font-style: italic;
+        }
+        .clinical-note {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        /* === ROS GRID === */
+        .ros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .ros-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .ros-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .ros-item:nth-last-child(1),
+        .ros-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .ros-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+        .ros-pos {
+            color: var(--coral);
+        }
+        .ros-neg {
+            color: var(--gray-500);
+        }
+
+        /* === MSE TABLE === */
+        .mse-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .mse-table th {
+            background: var(--green);
+            color: var(--white);
+            text-align: left;
+            padding: 8px 14px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .mse-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .mse-table tr:last-child td {
+            border-bottom: none;
+        }
+        .mse-table tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+        .mse-domain {
+            font-weight: 600;
+            color: var(--green);
+            white-space: nowrap;
+            width: 140px;
+        }
+
+        /* === PHYSICAL EXAM === */
+        .pe-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0;
+            margin-top: 10px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+        .pe-label {
+            padding: 10px 14px;
+            font-weight: 600;
+            color: var(--green);
+            background: var(--green-light);
+            border-bottom: 1px solid var(--gray-200);
+            border-right: 1px solid var(--gray-200);
+        }
+        .pe-value {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .pe-grid .pe-label:nth-last-child(2),
+        .pe-grid .pe-value:last-child {
+            border-bottom: none;
+        }
+
+        /* === MED ROS === */
+        .med-ros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .med-ros-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .med-ros-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .med-ros-item:nth-last-child(1),
+        .med-ros-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .med-ros-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        /* === NAVIGATION === */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
+        }
+        .nav-link.disabled {
+            background: var(--gray-300);
+            pointer-events: none;
+        }
+
+        /* === CONSENT BANNER === */
+        .consent-banner {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            padding: 10px 28px;
+            font-size: 13px;
+            color: var(--amber-dark);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        /* === SUBSTANCE TABLE === */
+        .substance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .substance-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .substance-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .substance-item:nth-last-child(1),
+        .substance-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .substance-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 13px;
+        }
+
+        /* === PRINT === */
+        @media print {
+            body { background: white; padding: 0; font-size: 12px; }
+            .doc-header { break-after: avoid; }
+            .nav-bar { display: none; }
+            .subsection { break-inside: avoid; }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 700px) {
+            body { padding: 12px; }
+            .doc-header { padding: 20px; }
+            .subsection { padding: 14px 18px; }
+            .demographics { padding: 12px 18px; }
+            .ros-grid, .med-ros-grid, .substance-grid { grid-template-columns: 1fr; }
+            .ros-item, .med-ros-item, .substance-item { border-right: none !important; }
+            .ros-item:nth-last-child(1) { border-bottom: none; }
+            .pe-grid { grid-template-columns: 100px 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+    <div class="course-tag">NURS 628 &bull; Introduction to Behavioral Health Therapy Across the Lifespan</div>
+    <h1>Psychiatric Evaluation: D.R.</h1>
+    <div class="subtitle">Initial Evaluation &mdash; New Patient</div>
+</div>
+
+<div class="doc-body">
+
+    <!-- CONSENT -->
+    <div class="consent-banner">
+        <strong>Consent obtained.</strong> Patient provided informed consent for evaluation and treatment. Limits of confidentiality reviewed.
+    </div>
+
+    <!-- DEMOGRAPHICS -->
+    <div class="demographics">
+        <div class="demo-item"><strong>Patient:</strong> D.R.</div>
+        <div class="demo-item"><strong>Age:</strong> 31</div>
+        <div class="demo-item"><strong>DOB:</strong> 06/14/1994</div>
+        <div class="demo-item"><strong>Sex:</strong> Male</div>
+        <div class="demo-item"><strong>Pronouns:</strong> He/Him</div>
+        <div class="demo-item"><strong>Race/Ethnicity:</strong> White, non-Hispanic</div>
+        <div class="demo-item"><strong>Marital Status:</strong> Single, in relationship</div>
+        <div class="demo-item"><strong>Date of Eval:</strong> 02/10/2026</div>
+        <div class="demo-item"><strong>Setting:</strong> Outpatient psychiatric clinic</div>
+        <div class="demo-item"><strong>Informant:</strong> Patient (self)</div>
+        <div class="demo-item"><strong>Reliability:</strong> Appears reliable</div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SUBJECTIVE -->
+    <!-- ============================================ -->
+    <div class="section-divider subjective">Subjective</div>
+
+    <!-- CHIEF COMPLAINT -->
+    <div class="subsection">
+        <div class="subsection-label">Chief Complaint</div>
+        <p><span class="patient-quote">&ldquo;I just feel like I&rsquo;m falling behind and I can&rsquo;t catch up, no matter how hard I try.&rdquo;</span></p>
+    </div>
+
+    <!-- HPI -->
+    <div class="subsection">
+        <div class="subsection-label">History of Present Illness</div>
+        <p>D.R. is a 31-year-old male presenting to the outpatient psychiatric clinic for an initial evaluation, referred by his primary care provider after reporting persistent difficulty with sleep, concentration, and &ldquo;feeling overwhelmed&rdquo; at work. This is his first contact with psychiatric services.</p>
+
+        <p>Patient reports symptoms began approximately 6 months ago, coinciding with taking on a larger project portfolio at work, and have progressively worsened over the past 8&ndash;10 weeks. He identifies no single triggering event. He describes difficulty falling asleep, stating he lies in bed <span class="patient-quote">&ldquo;going over everything I did that day, everything I need to do tomorrow,&rdquo;</span> and reports waking at 3&ndash;4 AM and being unable to return to sleep. He describes persistent difficulty concentrating at work, noting that tasks that previously took him an hour now take most of the morning. He reports low energy and a general sense of heaviness, particularly in the mornings. He states he has been declining social invitations from friends, adding, <span class="patient-quote">&ldquo;I don&rsquo;t really feel like doing anything after work. I just want to sit there.&rdquo;</span> He reports reduced enjoyment in activities he previously found pleasurable, including running and cooking, though he still engages in them occasionally.</p>
+
+        <p>Patient describes a pattern of spending excessive time reviewing and revising his work before submitting it. He states he will rewrite emails <span class="patient-quote">&ldquo;four or five times&rdquo;</span> before sending them and reports staying late to check completed projects for errors, stating, <span class="patient-quote">&ldquo;I know it&rsquo;s probably fine but I keep thinking I missed something.&rdquo;</span> He was offered a team lead position approximately 3 months ago and declined it, stating, <span class="patient-quote">&ldquo;I didn&rsquo;t think I was ready. I&rsquo;d probably just end up proving that I can&rsquo;t handle it.&rdquo;</span></p>
+
+        <p>He reports increased irritability, particularly with his girlfriend, which he attributes to <span class="patient-quote">&ldquo;being on edge all the time,&rdquo;</span> and notes feeling guilty about this afterward. He describes a persistent sense that his performance is inadequate, stating, <span class="patient-quote">&ldquo;Everyone else seems to manage fine. I don&rsquo;t know what&rsquo;s wrong with me.&rdquo;</span></p>
+
+        <p>Symptoms are aggravated by work deadlines, presentations to senior leadership, and performance review periods. Patient also identifies phone calls from his parents as stressful, stating they frequently ask about his career progress and whether he has <span class="patient-quote">&ldquo;thought about going back to school for something more.&rdquo;</span> He reports some relief on weekends with limited work demands, during time with his girlfriend, and on occasional runs when he can motivate himself to go. He notes that completing a task well provides brief relief, but <span class="patient-quote">&ldquo;it doesn&rsquo;t last&mdash;I just move on to worrying about the next thing.&rdquo;</span></p>
+
+        <p>Patient has not previously engaged in therapy or taken psychiatric medication. He reports trying melatonin for sleep with minimal benefit. His PCP prescribed hydroxyzine 25 mg PO QHS PRN approximately 3 weeks ago; patient reports it helps him fall asleep initially but does not prevent early morning waking. He rates his overall distress at 7/10. He is maintaining employment and self-care but reports his work quality and interpersonal relationships are suffering, stating, <span class="patient-quote">&ldquo;I&rsquo;m still showing up but I feel like I&rsquo;m barely holding it together.&rdquo;</span></p>
+    </div>
+
+    <!-- PAST PSYCHIATRIC HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Past Psychiatric History</div>
+        <p><strong>Past psychiatric diagnoses:</strong> None.</p>
+        <p><strong>Past psychiatric treatment or hospitalizations:</strong> No prior therapy, no psychiatric hospitalizations. Denies prior suicidal ideation, suicide attempts, homicidal ideation, or self-harm behaviors. Denies prior trauma-focused treatment.</p>
+        <p><strong>Medication history:</strong> No psychiatric medications prior to current hydroxyzine trial. Currently taking hydroxyzine 25 mg PO QHS PRN (prescribed by PCP 3 weeks ago). Reports partial benefit for sleep onset but not sleep maintenance.</p>
+    </div>
+
+    <!-- PSYCHIATRIC ROS -->
+    <div class="subsection">
+        <div class="subsection-label">Psychiatric Review of Systems</div>
+        <div class="ros-grid">
+            <div class="ros-item">
+                <span class="ros-category">Depression</span>
+                <span class="ros-pos">Endorses: depressed mood most days, initial and middle insomnia, fatigue/low energy, difficulty concentrating, feelings of worthlessness, decreased interest in usual activities, psychomotor slowing in mornings.</span><br>
+                <span class="ros-neg">Denies: appetite changes (weight stable), crying spells.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Anxiety</span>
+                <span class="ros-pos">Endorses: worry about work performance and adequacy that he describes as difficult to control, restlessness, muscle tension (shoulders and neck), irritability, sleep disturbance, difficulty concentrating. Reports these symptoms have progressively worsened over the past 8&ndash;10 weeks, consistent with the overall timeline of symptom escalation. States worry is primarily focused on his own performance and whether he is &ldquo;good enough,&rdquo; rather than a broad range of life domains.</span><br>
+                <span class="ros-neg">Denies: panic attacks, palpitations at rest, shortness of breath, choking sensation, fear of dying, derealization, agoraphobic avoidance. Denies longstanding pattern of excessive worry prior to current episode.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Psychosis</span>
+                <span class="ros-neg">Denies: auditory or visual hallucinations, paranoia, ideas of reference, grandiosity, feeling monitored or controlled, messages from electronics.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Bipolar &amp; Related</span>
+                <span class="ros-neg">Denies: periods of elevated or expansive mood, decreased need for sleep with increased energy, racing thoughts, pressured speech, impulsive spending or sexual behavior, grandiosity, mood swings lasting weeks.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">OCD</span>
+                <span class="ros-neg">Denies: ritualistic behaviors, compulsions that must be completed before proceeding, intrusive images or urges experienced as ego-dystonic. Patient does describe repetitive checking of work but reports this as voluntary and related to concern about quality, not driven by an irresistible urge or fear of catastrophic consequence if not performed.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Trauma &amp; Stressor-Related</span>
+                <span class="ros-neg">Denies: history of physical, sexual, or emotional abuse. Denies flashbacks, nightmares related to traumatic events, hypervigilance, exaggerated startle response, avoidance of trauma-related stimuli.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Neurocognitive</span>
+                <span class="ros-neg">Denies: memory loss, word-finding difficulties, confusion, getting lost in familiar places, personality change, decline from previous functioning in cognitive domains.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Safety Assessment</span>
+                <span class="ros-neg">Denies: current suicidal ideation, suicidal plan or intent, prior suicide attempts, homicidal ideation, access to firearms. Denies self-harm behaviors.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBSTANCE USE -->
+    <div class="subsection">
+        <div class="subsection-label">Substance Use History</div>
+        <div class="substance-grid">
+            <div class="substance-item">
+                <span class="substance-category">Alcohol</span>
+                Reports social drinking, typically 2&ndash;3 beers on weekends. Notes this has increased slightly over the past 2 months to 3&ndash;4 drinks on weekend evenings, stating <span class="patient-quote">&ldquo;it helps me unwind.&rdquo;</span> Denies morning or solo drinking. Denies withdrawal symptoms, blackouts, or DUI. No prior treatment. CAGE: 0/4.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Caffeine</span>
+                Reports 3&ndash;4 cups of coffee daily, first cup upon waking. Has increased from 2 cups over the past several months. Last caffeine intake typically by 2 PM.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Nicotine</span>
+                Denies current or past tobacco or nicotine use.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Cannabis</span>
+                Reports occasional use in college, &ldquo;a few times.&rdquo; Denies use in past 5+ years.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Stimulants / Hallucinogens</span>
+                Denies any history of amphetamine, cocaine, hallucinogen, or inhalant use.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Opiates / Other</span>
+                Denies any history of opiate, benzodiazepine, or steroid use outside of prescribed medications. Denies any non-prescriptive substance use.
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVELOPMENTAL HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Developmental History</div>
+        <p><strong>Birth:</strong> Full-term vaginal delivery, no complications reported per patient.</p>
+        <p><strong>Milestones:</strong> Patient reports meeting all developmental milestones on time per parental report. Walked at 12 months, spoke in sentences by age 2.</p>
+        <p><strong>Learning:</strong> No history of learning disabilities, IEP, or 504 plan. Patient reports being placed in gifted and talented programs beginning in 3rd grade. He states, <span class="patient-quote">&ldquo;I was always in the advanced classes. That was kind of the expectation.&rdquo;</span></p>
+        <p><strong>Immunizations:</strong> Up to date per patient report.</p>
+        <p><strong>Social interactions:</strong> Patient reports having friends throughout childhood and adolescence. Participated in soccer and academic decathlon. Describes himself as having been &ldquo;pretty social but always kind of stressed about school.&rdquo;</p>
+    </div>
+
+    <!-- SOCIAL HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Social History</div>
+        <p><strong>Education:</strong> Bachelor of Science in Business Administration from a state university, graduated with honors (GPA 3.8). Patient was valedictorian of his high school class. He states, <span class="patient-quote">&ldquo;I worked really hard for that. My parents expected it, honestly.&rdquo;</span></p>
+        <p><strong>Employment:</strong> Works as a project manager at a mid-size technology company for the past 4 years. Promoted from associate PM to PM 2 years ago. Reports generally positive performance reviews but states he worries about them &ldquo;for weeks beforehand.&rdquo; Was offered a team lead promotion 3 months ago and declined.</p>
+        <p><strong>Relationships:</strong> In a relationship with his girlfriend (age 29) for 2 years. They share an apartment. Patient describes the relationship as &ldquo;good&mdash;she&rsquo;s really patient with me&rdquo; but notes increased friction due to his irritability and withdrawal. She encouraged him to seek this evaluation.</p>
+        <p><strong>Legal:</strong> No legal history. No arrests, no pending charges.</p>
+        <p><strong>Safety:</strong> Denies intimate partner violence. Reports feeling safe at home. No firearms in the residence.</p>
+    </div>
+
+    <!-- FAMILY PSYCHIATRIC HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Family Psychiatric History</div>
+        <p><strong>Mother (age 59):</strong> Patient reports his mother has &ldquo;always been a worrier&rdquo; and describes her as &ldquo;high-strung.&rdquo; She has never been formally diagnosed or treated for a psychiatric condition. Patient states, <span class="patient-quote">&ldquo;She&rsquo;s just like that. She won&rsquo;t go talk to anyone about it.&rdquo;</span></p>
+        <p><strong>Father (age 62):</strong> No known psychiatric history. Patient describes his father as &ldquo;very driven&rdquo; and &ldquo;not really the emotional type.&rdquo; Works as a regional sales director. Denies substance abuse.</p>
+        <p><strong>Sibling &mdash; Brother (age 35):</strong> No known psychiatric history. Completed medical school and surgical residency. Patient reports, <span class="patient-quote">&ldquo;He&rsquo;s a surgeon now. My parents are really proud of him. They bring him up a lot.&rdquo;</span></p>
+        <p><strong>Maternal grandmother:</strong> Patient reports she was &ldquo;hospitalized once for her nerves&rdquo; in her 40s. Limited details available; patient states his mother does not discuss it.</p>
+        <p><strong>Suicide/violence:</strong> Denies family history of completed suicide, suicide attempts, or homicide.</p>
+        <p><strong>Family medication response:</strong> Unknown &mdash; no immediate family members have been treated with psychiatric medications to patient&rsquo;s knowledge.</p>
+    </div>
+
+    <!-- SUPPORT SYSTEM -->
+    <div class="subsection">
+        <div class="subsection-label">Support System / Strengths / Hobbies / Daily Activities</div>
+        <p><strong>Support system:</strong> Girlfriend (lives with him, described as supportive and encouraging). Two close friends from college whom he sees &ldquo;less than I used to&mdash;maybe once a month now.&rdquo; Relationship with parents is intact but described as stressful.</p>
+        <p><strong>Hobbies:</strong> Running (completed a half-marathon 2 years ago, currently running &ldquo;maybe once a week if I can get myself out the door&rdquo;). Enjoys cooking, particularly trying new recipes, though reports doing this less frequently. Reads nonfiction, primarily business and history.</p>
+        <p><strong>Daily activities:</strong> Maintains regular work schedule (8 AM&ndash;6 PM, frequently later). Performs all ADLs independently. Reports routine has become more constricted&mdash;work, home, sleep.</p>
+        <p><strong>Go-to person:</strong> Girlfriend. States, <span class="patient-quote">&ldquo;She&rsquo;s the one who got me to come here.&rdquo;</span></p>
+        <p><strong>Strengths:</strong> Employed, educated, consistent work ethic, no substance dependence, intact relationship, motivated to seek treatment (even if ambivalent), physically active baseline.</p>
+    </div>
+
+    <!-- MEDICAL ROS -->
+    <div class="subsection">
+        <div class="subsection-label">Medical Review of Systems</div>
+        <div class="med-ros-grid">
+            <div class="med-ros-item">
+                <span class="med-ros-category">Constitutional</span>
+                Endorses: fatigue, low energy. Denies: fever, unexplained weight change, night sweats.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">HEENT</span>
+                Endorses: tension headaches 2&ndash;3 times per week, typically bilateral, in the afternoon. Denies: vision changes, hearing changes, sore throat, sinus pressure.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Integumentary</span>
+                Denies: rashes, new lesions, skin changes, hair loss, bruising.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Respiratory</span>
+                Denies: shortness of breath, cough, wheezing, dyspnea on exertion.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Cardiovascular</span>
+                Endorses: occasional sensation of heart racing, typically before presentations at work. Denies: chest pain, edema, syncope, palpitations at rest.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Gastrointestinal</span>
+                Endorses: intermittent stomach pain and nausea, most prominent on weekday mornings before work. Reports episodes of loose stools during high-stress periods. Denies: vomiting, blood in stool, constipation.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Musculoskeletal</span>
+                Endorses: chronic tightness and pain in shoulders and neck. Denies: joint swelling, decreased range of motion, back pain.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Neurological</span>
+                Endorses: difficulty concentrating (discussed in HPI). Denies: numbness, tingling, tremor, seizures, syncope, gait disturbance.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Endocrine</span>
+                Denies: heat/cold intolerance, polydipsia, polyuria, changes in skin or hair texture.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Genitourinary</span>
+                Endorses: mild decrease in libido over past 2&ndash;3 months. Denies: urinary complaints, erectile dysfunction.
+            </div>
+        </div>
+    </div>
+
+    <!-- ALLERGIES -->
+    <div class="subsection">
+        <div class="subsection-label">Allergies</div>
+        <p><strong>Medication allergies:</strong> NKDA.</p>
+        <p><strong>Food allergies:</strong> None reported.</p>
+        <p><strong>Other allergies:</strong> Seasonal allergies (pollen) &mdash; managed with OTC loratadine PRN.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- OBJECTIVE -->
+    <!-- ============================================ -->
+    <div class="section-divider objective">Objective</div>
+
+    <!-- PHYSICAL EXAM -->
+    <div class="subsection">
+        <div class="subsection-label obj-label">Physical Exam</div>
+        <div class="pe-grid">
+            <div class="pe-label">Vitals</div>
+            <div class="pe-value">BP 132/84 mmHg &bull; HR 76 bpm &bull; RR 16 &bull; Temp 98.4&deg;F &bull; SpO2 99% RA &bull; BMI 24.8</div>
+            <div class="pe-label">Head &amp; Neck</div>
+            <div class="pe-value">Normocephalic, atraumatic. Neck supple, no thyromegaly palpated. No cervical lymphadenopathy. No facial asymmetry or involuntary movements noted.</div>
+            <div class="pe-label">Respiratory</div>
+            <div class="pe-value">No labored breathing. No acute respiratory distress. Lungs clear to auscultation bilaterally.</div>
+            <div class="pe-label">Neurological</div>
+            <div class="pe-value">Cranial nerves II&ndash;XII grossly intact. Gait steady, symmetric. Coordination intact on finger-to-nose testing. No tremor. No involuntary movements. No tics.</div>
+            <div class="pe-label">Skin</div>
+            <div class="pe-value">No scars or lesions observed on exposed skin. No evidence of self-harm (bilateral forearms, wrists inspected). No track marks. No jaundice or cyanosis.</div>
+        </div>
+    </div>
+
+    <!-- MENTAL STATUS EXAM -->
+    <div class="subsection">
+        <div class="subsection-label obj-label">Mental Status Exam</div>
+        <table class="mse-table">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Findings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mse-domain">Appearance</td>
+                    <td>31-year-old male who appears stated age. Medium build. Casually dressed in clean, pressed clothing. Well-groomed, good hygiene. Appeared comfortable with examiner.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Behavior</td>
+                    <td>Alert and cooperative. Engaged in the interview with appropriate effort. Good eye contact maintained throughout. Mild psychomotor restlessness observed &mdash; shifted position in chair frequently, intermittently rubbed hands together. No purposeless repetitive movements. No gait abnormalities.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Speech</td>
+                    <td>Spontaneous, normal rate. Normal rhythm. Volume soft at times, particularly when discussing work performance and family expectations. No pressured speech. No poverty of speech. Articulate.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Mood</td>
+                    <td><span class="patient-quote">&ldquo;Stressed out, I guess. Tired.&rdquo;</span></td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Affect</td>
+                    <td>Anxious, mildly constricted in range. Congruent with stated mood. Brightened briefly when discussing girlfriend and running. Became notably more tense and spoke more quietly when discussing parents and work performance. No lability. No flat or blunted affect.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Thought Process</td>
+                    <td>Logical, linear, goal-directed. Occasionally circumstantial when discussing work &mdash; provided extensive detail before reaching the point. No tangentiality, flight of ideas, loose associations, thought blocking, or perseveration.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Thought Content</td>
+                    <td>No delusions elicited. No hallucinations reported or observed. No paranoia. No grandiosity. No homicidal ideation. Denies current suicidal ideation, plan, or intent. No response to internal stimuli observed.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Cognitive Function</td>
+                    <td>Alert and oriented &times;4 (person, place, time, situation). Concentration grossly intact during interview, though patient self-reports impairment. Immediate and recent memory intact. Abstraction intact (similarities testing). Fund of knowledge appropriate for age and education.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Insight</td>
+                    <td>Fair. Patient acknowledges that his symptoms are affecting his functioning and that he needs help. However, he minimizes severity at times, stating, <span class="patient-quote">&ldquo;I should be able to figure this out on my own.&rdquo;</span></td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Judgment</td>
+                    <td>Fair. Patient is seeking treatment (at girlfriend&rsquo;s encouragement), maintaining employment and basic self-care. Has not engaged in impulsive or high-risk behavior. However, avoidance of the promotion opportunity and progressive social withdrawal suggest judgment may be impacted by current symptom burden.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div><!-- end doc-body -->
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+    <span></span>
+    <a href="assignment-part1.html" class="nav-link">Proceed to Assignment Part 1 &rarr;</a>
+</div>
+
+</body>
+</html>

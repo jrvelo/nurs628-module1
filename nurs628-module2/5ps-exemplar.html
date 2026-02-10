@@ -49,7 +49,6 @@
             font-size: 15px;
         }
 
-        /* === HEADER === */
         .page-header {
             background: linear-gradient(135deg, var(--navy-dark), var(--navy));
             color: white;
@@ -63,12 +62,8 @@
             font-weight: 600;
             margin-bottom: 4px;
         }
-        .page-header .subtitle {
-            font-size: 14px;
-            opacity: 0.85;
-        }
+        .page-header .subtitle { font-size: 14px; opacity: 0.85; }
 
-        /* === EXEMPLAR BANNER === */
         .exemplar-banner {
             background: linear-gradient(135deg, var(--green), #2f855a);
             color: white;
@@ -89,12 +84,8 @@
             letter-spacing: 1px;
             white-space: nowrap;
         }
-        .exemplar-banner p {
-            font-size: 14px;
-            line-height: 1.4;
-        }
+        .exemplar-banner p { font-size: 14px; line-height: 1.4; }
 
-        /* === OUTPUT HEADER === */
         .output-header {
             display: flex;
             justify-content: space-between;
@@ -108,10 +99,7 @@
             font-size: 18px;
             color: var(--navy-dark);
         }
-        .output-meta {
-            font-size: 12px;
-            color: var(--gray-500);
-        }
+        .output-meta { font-size: 12px; color: var(--gray-500); }
         .btn-pdf {
             background: var(--coral);
             color: white;
@@ -125,7 +113,6 @@
         }
         .btn-pdf:hover { background: #9b2c2c; }
 
-        /* === OUTPUT MATRIX === */
         .output-matrix {
             width: 100%;
             border-collapse: collapse;
@@ -168,11 +155,7 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        .output-matrix tbody td ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .output-matrix tbody td ul { list-style: none; padding: 0; margin: 0; }
         .output-matrix tbody td li {
             padding: 2px 0;
             border-bottom: 1px dotted var(--gray-100);
@@ -184,7 +167,6 @@
             text-align: center;
         }
 
-        /* === SYNTHESIS BLOCKS === */
         .output-synth-block {
             background: var(--white);
             border: 1px solid var(--gray-200);
@@ -207,7 +189,6 @@
             line-height: 1.7;
         }
 
-        /* === SECTION DIVIDER === */
         .section-divider {
             font-size: 14px;
             font-weight: 700;
@@ -217,21 +198,10 @@
             border-bottom: 2px solid var(--gray-200);
         }
 
-        /* === NAV === */
-        .nav-bar {
-            text-align: center;
-            padding: 16px 0;
-            margin-top: 20px;
-        }
-        .nav-link {
-            color: var(--navy);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
+        .nav-bar { text-align: center; padding: 16px 0; margin-top: 20px; }
+        .nav-link { color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 600; }
         .nav-link:hover { text-decoration: underline; }
 
-        /* === PRINT === */
         @media print {
             body { max-width: 100%; padding: 0; background: white; font-size: 11px; }
             .exemplar-banner { background: #276749 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -241,7 +211,6 @@
             .output-matrix thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .output-synth-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
-
         @media (max-width: 900px) {
             body { padding: 12px; font-size: 14px; }
             .output-matrix { font-size: 11px; }
@@ -250,19 +219,16 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="page-header">
     <h1>5 P&rsquo;s Formulation Matrix &mdash; D.R.</h1>
     <div class="subtitle">NURS 628 &bull; Module 2 &bull; From Diagnostic Reasoning to Case Formulation</div>
 </div>
 
-<!-- EXEMPLAR BANNER -->
 <div class="exemplar-banner">
     <span class="badge">&#9733; Exemplar</span>
-    <p>This is a model response demonstrating the expected quality and depth of clinical reasoning. Your formulation does not need to be identical &mdash; reasonable clinical judgments may differ &mdash; but your work should demonstrate this level of evidence-based reasoning and integration across the 5 P&rsquo;s.</p>
+    <p>This is a model response showing the expected level of clinical reasoning. Your formulation doesn&rsquo;t need to be identical &mdash; reasonable clinical judgments may differ &mdash; but aim for this level of specificity. Remember: this is a working hypothesis, not a final conclusion. The formulation sets up your next step &mdash; evaluating which specific treatment modality fits this clinical picture.</p>
 </div>
 
-<!-- OUTPUT HEADER -->
 <div class="output-header">
     <div>
         <h2>Completed Formulation Matrix</h2>
@@ -288,122 +254,94 @@
         </tr>
     </thead>
     <tbody>
-        <!-- CRITERION A -->
         <tr>
             <td class="om-source-cell">Criterion A / Core Symptoms</td>
             <td>
                 <ul>
-                    <li>Depressed mood, most of the day, nearly every day &times; 6 months</li>
-                    <li>Markedly diminished interest/pleasure &mdash; running, cooking, socializing</li>
-                    <li>Insomnia &mdash; initial (ruminating at bedtime) and terminal (3&ndash;4 AM waking)</li>
-                    <li>Psychomotor changes &mdash; heaviness/slowing mornings; restlessness on exam</li>
-                    <li>Fatigue / loss of energy, especially mornings</li>
-                    <li>Feelings of worthlessness &mdash; &ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;I can&rsquo;t handle it&rdquo;</li>
-                    <li>Diminished concentration &mdash; tasks taking longer, excessive email revision</li>
+                    <li>Depressed mood &times; 6 months</li>
+                    <li>Diminished interest/pleasure</li>
+                    <li>Insomnia (initial + terminal)</li>
+                    <li>Fatigue, especially mornings</li>
+                    <li>Feelings of worthlessness</li>
+                    <li>Diminished concentration</li>
                 </ul>
             </td>
             <td class="om-empty">&mdash;</td>
             <td class="om-empty">&mdash;</td>
             <td>
                 <ul>
-                    <li>Insomnia &mdash; initial (ruminating at bedtime) and terminal (3&ndash;4 AM waking)</li>
-                    <li>Fatigue / loss of energy, especially mornings</li>
-                    <li>Feelings of worthlessness &mdash; &ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;I can&rsquo;t handle it&rdquo;</li>
-                    <li>Diminished concentration &mdash; tasks taking longer, excessive email revision</li>
+                    <li>Insomnia (rumination drives initial; poor sleep drives fatigue)</li>
+                    <li>Diminished concentration (drives compensatory checking)</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Denies appetite/weight changes (pertinent negative)</li>
-                    <li>Denies suicidal ideation, plan, or intent (pertinent negative)</li>
+                    <li>Denies SI, plan, or intent</li>
                 </ul>
             </td>
         </tr>
-
-        <!-- SUBJECTIVE DATA -->
         <tr>
             <td class="om-source-cell">Subjective Data (HPI, ROS, Hx)</td>
             <td>
                 <ul>
-                    <li>CC: &ldquo;I just feel like I&rsquo;m falling behind and I can&rsquo;t catch up, no matter how hard I try&rdquo;</li>
-                    <li>6-month progressive course with 8&ndash;10 week acceleration</li>
-                    <li>Social withdrawal &mdash; declining invitations, constricted routine</li>
-                    <li>Increased irritability with girlfriend; guilt about it</li>
-                    <li>Worry &ldquo;difficult to control,&rdquo; focused on own performance and adequacy</li>
-                    <li>Perfectionism pattern &mdash; rewrites emails 4&ndash;5 times, stays late checking work</li>
-                    <li>&ldquo;Everyone else seems to manage fine. I don&rsquo;t know what&rsquo;s wrong with me&rdquo;</li>
-                    <li>Somatic complaints: tension headaches, heart racing, stomach pain/nausea, shoulder/neck tightness, decreased libido</li>
+                    <li>CC: &ldquo;falling behind and can&rsquo;t catch up&rdquo;</li>
+                    <li>Social withdrawal</li>
+                    <li>Worry focused on performance</li>
+                    <li>Somatic complaints (headaches, GI distress, tension)</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Childhood: gifted programs, valedictorian &mdash; &ldquo;that was kind of the expectation&rdquo;</li>
-                    <li>Mother &ldquo;always been a worrier,&rdquo; never treated; maternal grandmother hospitalized &ldquo;for her nerves&rdquo;</li>
-                    <li>&ldquo;Always kind of stressed about school&rdquo; (developmental history)</li>
+                    <li>Childhood high expectations &mdash; &ldquo;that was kind of the expectation&rdquo;</li>
+                    <li>Mother &ldquo;always a worrier&rdquo;; grandmother hospitalized</li>
+                    <li>&ldquo;Always kind of stressed about school&rdquo;</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Gradual onset with 8&ndash;10 week acceleration</li>
+                    <li>Declined promotion &mdash; &ldquo;proving I can&rsquo;t handle it&rdquo;</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Perfectionism &mdash; rewrites emails 4&ndash;5 times</li>
+                    <li>Social withdrawal (removes support)</li>
                     <li>&ldquo;I should be able to figure this out on my own&rdquo;</li>
-                    <li>Parents call weekly about career progress; frequent comparison to older brother (surgeon)</li>
-                    <li>No prior psychiatric diagnoses, treatment, or hospitalizations</li>
+                    <li>Increased alcohol and caffeine</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>6-month progressive course with 8&ndash;10 week acceleration</li>
-                    <li>Declined promotion: &ldquo;I&rsquo;d probably just end up proving that I can&rsquo;t handle it&rdquo;</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Social withdrawal &mdash; declining invitations, constricted routine</li>
-                    <li>Perfectionism pattern &mdash; rewrites emails 4&ndash;5 times, stays late checking work</li>
-                    <li>&ldquo;Everyone else seems to manage fine. I don&rsquo;t know what&rsquo;s wrong with me&rdquo;</li>
-                    <li>&ldquo;I should be able to figure this out on my own&rdquo;</li>
-                    <li>Declined promotion: &ldquo;I&rsquo;d probably just end up proving that I can&rsquo;t handle it&rdquo;</li>
-                    <li>Parents call weekly about career progress; frequent comparison to older brother (surgeon)</li>
-                    <li>Social ETOH slightly increased (2&ndash;3 &rarr; 3&ndash;4 drinks/weekend); caffeine 3&ndash;4 cups/day (increased)</li>
-                    <li>Worry &ldquo;difficult to control,&rdquo; focused on own performance and adequacy</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>College-educated, employed &times; 4 yrs as project manager, in relationship &times; 2 yrs</li>
-                    <li>No prior psychiatric diagnoses, treatment, or hospitalizations</li>
-                    <li>PCP prescribed hydroxyzine PRN &mdash; helps sleep onset, not maintenance</li>
+                    <li>Employed &times; 4 yrs, in relationship &times; 2 yrs</li>
+                    <li>No prior psychiatric history</li>
                 </ul>
             </td>
         </tr>
-
-        <!-- MSE -->
         <tr>
             <td class="om-source-cell">MSE Findings</td>
             <td>
                 <ul>
-                    <li>Mild psychomotor restlessness &mdash; shifting in seat, rubbing hands</li>
-                    <li>Speech softens on emotionally laden topics (work performance, family expectations)</li>
-                    <li>Mood: &ldquo;Stressed out, I guess. Tired.&rdquo;</li>
-                    <li>Affect: anxious, mildly constricted, congruent with mood</li>
+                    <li>Mood: &ldquo;Stressed out. Tired.&rdquo;</li>
+                    <li>Affect: anxious, mildly constricted</li>
+                    <li>Psychomotor restlessness</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>More tense and quieter when discussing parents and work</li>
-                    <li>Speech softens on emotionally laden topics (work performance, family expectations)</li>
+                    <li>Tense and quieter discussing parents and work</li>
                 </ul>
             </td>
             <td class="om-empty">&mdash;</td>
             <td>
                 <ul>
-                    <li>Insight: fair &mdash; acknowledges impairment but minimizes (&ldquo;I should be able to figure this out on my own&rdquo;)</li>
-                    <li>Judgment: fair &mdash; seeking treatment appropriately, but avoidance of promotion and social withdrawal suggest impact</li>
-                    <li>Thought process: logical, linear, goal-directed; occasionally circumstantial about work details</li>
+                    <li>Fair insight with minimization</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li>Well-groomed, good hygiene, cooperative, good eye contact</li>
-                    <li>Brightens when discussing girlfriend and running</li>
-                    <li>No delusions, hallucinations, SI, or HI</li>
-                    <li>Thought process: logical, linear, goal-directed</li>
-                    <li>Judgment: fair &mdash; seeking treatment appropriately</li>
+                    <li>Well-groomed, cooperative</li>
+                    <li>Brightens discussing girlfriend and running</li>
                 </ul>
             </td>
         </tr>
@@ -411,94 +349,68 @@
 </table>
 
 <!-- ===================== -->
-<!-- CONVERGENT SYNTHESIS -->
+<!-- WORKING FORMULATION -->
 <!-- ===================== -->
-<div class="section-divider">Part 2: Convergent &amp; Discriminant Synthesis</div>
+<div class="section-divider">Part 2: Working Formulation &mdash; What Do We Think Is Going On?</div>
 
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--navy);">Convergent Synthesis &mdash; Presenting</div>
-    <div class="output-synth-body">D.R.&rsquo;s presenting picture shows strong convergence across all three data sources for a moderate-to-severe major depressive episode with prominent secondary anxiety features. Subjective data (CC, HPI, psychiatric ROS) converges with objective MSE findings: he reports depressed mood, anhedonia, insomnia, fatigue, concentration difficulties, and worthlessness &mdash; and the MSE independently confirms anxious and constricted affect, psychomotor restlessness, and speech changes on emotionally laden topics. The somatic complaints (tension headaches, GI distress, shoulder tightness, tachycardia before presentations) converge with the psychological symptoms to indicate a combined mind-body stress response. Seven of nine MDD Criterion A symptoms are met, well above the five-symptom threshold, with 6 months duration exceeding the 2-week minimum. The anxiety features (performance-focused worry, restlessness, muscle tension) onset-track with the depressive episode rather than appearing independently, suggesting they are secondary to the depressive process rather than a comorbid primary anxiety disorder.</div>
-</div>
-
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--purple);">Convergent Synthesis &mdash; Predisposing</div>
-    <div class="output-synth-body">Multiple data sources converge on a longstanding vulnerability pattern rooted in conditional self-worth and performance-contingent identity. Developmental history reveals a childhood shaped by high parental expectations (gifted programs, valedictorian, &ldquo;that was kind of the expectation&rdquo;), with ongoing comparison to an older brother who is a surgeon. This is not just historical context &mdash; the MSE independently confirms emotional reactivity to these themes: D.R.&rsquo;s speech softens and he becomes visibly more tense when discussing parents and work performance. Family psychiatric history (mother &ldquo;always been a worrier,&rdquo; maternal grandmother hospitalized &ldquo;for her nerves&rdquo;) suggests both genetic predisposition to internalizing disorders and a family modeling pattern where distress is endured rather than addressed. His developmental note that he was &ldquo;always kind of stressed about school&rdquo; and his current belief that he &ldquo;should be able to figure this out on my own&rdquo; converge to suggest long-standing schemas around self-reliance, perfectionism, and inadequacy that pre-date this episode and created the cognitive vulnerability for it.</div>
-</div>
-
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--amber);">Convergent Synthesis &mdash; Precipitating</div>
-    <div class="output-synth-body">The precipitating picture is notable for the absence of a single clear stressor. D.R. does not identify a discrete triggering event. Instead, the timeline reveals a gradual onset over 6 months with significant acceleration over the past 8&ndash;10 weeks. The promotion offer &mdash; and his decision to decline it (&ldquo;I&rsquo;d probably just end up proving that I can&rsquo;t handle it&rdquo;) &mdash; functions as both a precipitant for worsening and evidence of how his core schemas were activated. Being offered increased responsibility directly challenged his conditional self-worth framework: the promotion wasn&rsquo;t experienced as an opportunity but as an exposure threat. This is clinically important because it tells us the precipitating context was internal (schema activation in response to performance demand) rather than external (loss, trauma, disruption), which has direct implications for treatment modality selection.</div>
-</div>
-
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--coral);">Convergent Synthesis &mdash; Perpetuating</div>
-    <div class="output-synth-body">The perpetuating factors show the strongest convergence across all data sources and represent the most clinically actionable part of the formulation. Multiple self-reinforcing cycles are visible:
-
-(1) Cognitive cycle: Core beliefs about inadequacy (&ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;everyone else manages fine&rdquo;) drive perfectionist compensatory behaviors (rewriting emails 4&ndash;5 times, staying late) which increase fatigue and reduce performance, which confirm the inadequacy beliefs.
-
-(2) Behavioral avoidance cycle: Declining the promotion, withdrawing socially, and constricting his routine temporarily reduce anxiety but prevent corrective experiences and shrink his world, deepening depression and reinforcing beliefs that he &ldquo;can&rsquo;t handle it.&rdquo;
-
-(3) Physiological cycle: Rumination drives initial insomnia, poor sleep drives fatigue and impaired concentration, which drives more checking behaviors, which drives more rumination at bedtime. Increased caffeine compensates for fatigue but worsens anxiety and insomnia. Increased alcohol provides short-term relief but disrupts sleep quality (contributing to terminal insomnia at 3&ndash;4 AM).
-
-(4) Interpersonal cycle: Irritability with girlfriend and social withdrawal reduce available emotional support. Fair insight with minimization (&ldquo;I should be able to figure this out on my own&rdquo;) delays help-seeking and reflects the same self-reliance schema that is part of the predisposing vulnerability.
-
-(5) Ongoing environmental reinforcement: Weekly calls from parents about career progress maintain the external performance pressure that activates his core schemas. The comparison to his brother (surgeon) continuously reinforces conditional self-worth.
-
-The MSE converges with these subjective patterns: circumstantial thought process about work details reflects the rumination, psychomotor restlessness reflects the anxiety component, and his fair but minimizing insight suggests limited awareness of these cycles &mdash; which is itself a perpetuating factor.</div>
-</div>
-
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--green);">Convergent Synthesis &mdash; Protective</div>
-    <div class="output-synth-body">Protective factors converge from both subjective and objective data sources. D.R. is college-educated, has maintained stable employment for 4 years, and has been in a 2-year relationship &mdash; indicating sustained functional capacity despite current impairment. On MSE, he presents as well-groomed, cooperative, and with intact cognition, suggesting preserved executive functioning and self-care. Critically, his affect brightens when discussing his girlfriend and running, indicating preserved capacity for pleasure (mood reactivity) despite current anhedonia &mdash; a positive prognostic sign. He denies SI with no plan or intent, and there is no access to firearms. The absence of prior psychiatric history means this is a first episode with no treatment failures, which is associated with better treatment response. His decision to seek treatment, while somewhat delayed, demonstrates emerging recognition of need despite his self-reliance schema. These protective factors suggest a patient with significant strengths and resources who is likely to respond well to structured psychotherapy, particularly if the therapeutic approach directly addresses the cognitive patterns maintaining his symptoms.</div>
-</div>
+<table class="output-matrix">
+    <thead>
+        <tr>
+            <th class="om-source" style="width: 15%;">Formulation</th>
+            <th style="background: var(--gray-50); color: var(--gray-700);">Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="om-source-cell" style="background: var(--blue-light); color: var(--navy);">Presenting</td>
+            <td>Presenting concerns consistent with diagnosis of MDD including depressed mood, anhedonia, insomnia, fatigue, concentration problems, and worthlessness. On exam, affect is anxious and constricted, consistent with self-report. He also notes significant worry about his performance at work and meeting expectations. Somatic complaints present (tension headaches, GI distress, muscle tension) &mdash; appear stress-related. Anxiety features seem to track with the depressive timeline &mdash; will need to monitor whether this warrants separate attention.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--purple-light); color: var(--purple);">Predisposing</td>
+            <td>Predisposing factors include family history of anxiety &mdash; mother &ldquo;always a worrier,&rdquo; maternal grandmother hospitalized &ldquo;for her nerves.&rdquo; There was a lot of pressure to do well growing up &mdash; gifted programs, valedictorian, frequent comparison to older brother who is a surgeon. Home life was stable however. On exam he gets noticeably tense and his voice drops when talking about parents and work, suggesting these themes are still active. Reports he was &ldquo;always kind of stressed about school.&rdquo; No prior psychiatric history.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--amber-light); color: var(--amber-dark);">Precipitating</td>
+            <td>Main precipitating factor appears to be increasing demands at work. Symptoms have progressively worsened over 6 months with acceleration over the last 8&ndash;10 weeks. Was offered a promotion and declined &mdash; &ldquo;I&rsquo;d probably just end up proving I can&rsquo;t handle it.&rdquo; No other clear precipitating factors noted &mdash; no loss, trauma, relationship change, or medical event.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--coral-light); color: var(--coral);">Perpetuating</td>
+            <td>Suspected perpetuating factors include significant worry around not measuring up &mdash; &ldquo;everyone else manages fine,&rdquo; &ldquo;what&rsquo;s wrong with me.&rdquo; He is compensating by overworking (rewriting emails 4&ndash;5 times, staying late) which does not seem to be helping. He is isolating &mdash; declining invitations, dropped running and cooking. He is not getting restful sleep &mdash; ruminating at bedtime and waking at 3&ndash;4 AM. He is drinking more coffee to compensate and slightly more alcohol on weekends &mdash; both of these pieces independently are likely perpetuating factors. His belief that he &ldquo;should be able to figure this out on my own&rdquo; may also be a factor.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--green-light); color: var(--green);">Protective</td>
+            <td>Employed and functioning at work, though with difficulty. In a stable 2-year relationship. Affect brightens when discussing girlfriend and running &mdash; capacity for pleasure still present. No SI. No prior psychiatric history &mdash; first episode, no treatment failures. Presented for treatment on his own.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--gray-100); color: var(--gray-700);">What Else Do We Need to Know?<br><span style="font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; font-style: italic;">(what would help us discriminate between treatment options)</span></td>
+            <td>Would want more information on: family dynamics growing up and current relationship with parents (weekly calls about career &mdash; how does he experience those?). Current supports beyond girlfriend. Stability of interpersonal relationships &mdash; is the irritability with girlfriend new or longstanding? His personal goals for treatment. Whether the anxiety features resolve as depression improves or persist independently. Baseline PHQ-9 and GAD-7 to establish severity.</td>
+        </tr>
+    </tbody>
+</table>
 
 <!-- ===================== -->
-<!-- DISCRIMINANT ANALYSIS -->
+<!-- TREATMENT CONSIDERATIONS -->
 <!-- ===================== -->
-
-<div class="output-synth-block">
-    <div class="output-synth-header" style="background: var(--gray-700);">Discriminant Analysis &mdash; What Points Toward Treatment?</div>
-    <div class="output-synth-body">Looking across all five P&rsquo;s, the pattern discriminates clearly toward a treatment approach that targets cognitive and behavioral perpetuating factors rather than biological or interpersonal ones as the primary modality.
-
-The predisposing factors point to deeply held schemas about conditional self-worth and performance-based identity. The precipitating context was schema activation (not trauma, loss, or biological shift). The perpetuating factors are overwhelmingly cognitive-behavioral: negative automatic thoughts, compensatory perfectionism, behavioral avoidance, and self-reinforcing rumination cycles. These factors converge to indicate CBT as the primary treatment modality.
-
-What discriminates AGAINST other modalities at this stage: The absence of trauma history argues against trauma-focused approaches (CPT, PE, EMDR). The absence of interpersonal conflict as the primary precipitant argues against IPT as the first-line choice (though interpersonal elements exist in the parent and girlfriend dynamics). The absence of emotion dysregulation, impulsivity, or self-harm argues against DBT. The intact cognitive functioning and capacity for insight argue FOR a modality that relies on cognitive awareness and behavioral experimentation.
-
-What discriminates TOWARD specific CBT targets: The cognitive content is consistently self-referential and performance-focused (&ldquo;I can&rsquo;t handle it,&rdquo; &ldquo;what&rsquo;s wrong with me,&rdquo; &ldquo;everyone else manages fine&rdquo;), consistent with Beck&rsquo;s depressive triad (negative view of self, world, future). The behavioral patterns (avoidance, withdrawal, perfectionist checking) are clearly maintaining cycles that behavioral activation and graded exposure could interrupt. The somatic symptoms suggest a stress response that could be addressed through relaxation training or behavioral experiments around the physiological cycle.</div>
-</div>
-
-<!-- ===================== -->
-<!-- TREATMENT TARGETS -->
-<!-- ===================== -->
-
-<div class="section-divider">Part 3: Treatment Targets</div>
+<div class="section-divider">Part 3: Preliminary Treatment Considerations</div>
 
 <div class="output-synth-block">
     <div class="output-synth-header" style="background: var(--teal);">Treatment Targets</div>
-    <div class="output-synth-body">1. Negative automatic thoughts about self-worth and competence (&ldquo;I can&rsquo;t handle it,&rdquo; &ldquo;everyone else manages fine,&rdquo; &ldquo;what&rsquo;s wrong with me&rdquo;) &mdash; target with cognitive restructuring, Socratic questioning, and behavioral experiments that test the accuracy of these beliefs.
+    <div class="output-synth-body">Possible treatment targets include:
 
-2. Behavioral avoidance pattern (declined promotion, social withdrawal, constricted routine) &mdash; target with behavioral activation, graded exposure to avoided situations, and activity scheduling to restore engagement with pleasurable activities (running, cooking, socializing).
+1. Pt&rsquo;s rumination around not being good enough &mdash; the &ldquo;what&rsquo;s wrong with me&rdquo; and &ldquo;everyone else manages fine&rdquo; thinking.
 
-3. Perfectionist compensatory behaviors (excessive email checking, staying late) &mdash; target with behavioral experiments around &ldquo;good enough&rdquo; performance, examining evidence for catastrophic predictions, and response prevention for checking behaviors.
+2. Pattern of avoidance &mdash; declining the promotion, pulling away from friends, dropping activities he used to enjoy.
 
-4. Rumination-insomnia cycle &mdash; target with stimulus control and sleep hygiene psychoeducation, cognitive defusion techniques for bedtime rumination, and monitoring the caffeine-anxiety-insomnia feedback loop.
+3. Perfectionist checking at work &mdash; the email rewriting and staying late.
 
-5. Self-reliance schema (&ldquo;I should be able to figure this out on my own&rdquo;) &mdash; target as a therapy-interfering belief that may affect treatment engagement, alliance, and homework compliance. Address through psychoeducation and normalizing help-seeking.
+4. Sleep &mdash; rumination at bedtime is driving the insomnia, and the poor sleep is making everything else harder.
 
-6. Developing awareness of the predisposing vulnerability &mdash; help D.R. recognize how childhood performance expectations created the cognitive framework that makes him vulnerable, so that current symptoms are understood as schema activation rather than evidence of inadequacy.</div>
+5. Improved coping strategies &mdash; the caffeine and alcohol are probably complicating this.</div>
 </div>
 
 <div class="output-synth-block">
     <div class="output-synth-header" style="background: var(--teal);">Treatment Rationale</div>
-    <div class="output-synth-body">The 5 P&rsquo;s formulation builds a construct validity argument for CBT as the primary treatment modality for D.R. The logic flows directly from formulation to intervention:
-
-Predisposing factors (conditional self-worth, performance-contingent identity, family modeling of distress tolerance) created cognitive schemas about inadequacy and self-reliance. These schemas were activated by a precipitating context (promotion offer as performance threat) that was internal/cognitive rather than external/situational. The perpetuating factors are primarily cognitive (negative automatic thoughts, rumination) and behavioral (avoidance, perfectionist checking, social withdrawal) &mdash; exactly the domains CBT is designed to address.
-
-This represents convergent evidence for CBT: the predisposing vulnerability is cognitive (schemas), the maintaining cycles are cognitive-behavioral (NATs &rarr; avoidance &rarr; confirmation), and the precipitant was schema activation. Multiple independent data sources (self-report, behavioral observation, MSE, developmental history) all point to the same mechanism.
-
-The discriminant evidence is equally important: we can articulate why other modalities are less indicated as primary treatment. This is not a case where all therapies would be &ldquo;equally appropriate&rdquo; &mdash; the specific pattern of predisposing and perpetuating factors discriminates toward CBT over IPT, DBT, psychodynamic, or trauma-focused approaches as the first-line intervention.
-
-The protective factors support this direction: D.R.&rsquo;s preserved cognitive functioning, intact thought process, emerging insight, and capacity for emotional engagement (brightening about girlfriend, running) suggest he has the cognitive and motivational resources to engage productively in a structured, collaborative therapy that requires between-session practice and self-monitoring.</div>
+    <div class="output-synth-body">Main concerns appear to center around how pt thinks about himself and the behavioral patterns that follow &mdash; avoidance, overcompensation, withdrawal. Predisposing history suggests this has been building for a long time. This formulation is our working hypothesis. In the next step, we&rsquo;ll use it to evaluate which specific therapy modality is the best match for D.R.&rsquo;s clinical picture.</div>
 </div>
 
 <!-- NAV -->

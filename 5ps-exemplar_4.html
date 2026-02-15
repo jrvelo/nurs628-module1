@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: 5 P's Formulation Matrix — D.R. (Exemplar)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --purple-mid: #9f7aea;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --teal: #2c7a7b;
+            --teal-light: #e6fffa;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .page-header .subtitle { font-size: 14px; opacity: 0.85; }
+
+        .exemplar-banner {
+            background: linear-gradient(135deg, var(--green), #2f855a);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .exemplar-banner .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .exemplar-banner p { font-size: 14px; line-height: 1.4; }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .output-header h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 18px;
+            color: var(--navy-dark);
+        }
+        .output-meta { font-size: 12px; color: var(--gray-500); }
+        .btn-pdf {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .btn-pdf:hover { background: #9b2c2c; }
+
+        .output-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .output-matrix thead th {
+            padding: 10px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .output-matrix thead th.om-source { width: 12%; background: var(--gray-100); }
+        .output-matrix thead th.om-presenting { background: var(--blue-light); color: var(--navy); }
+        .output-matrix thead th.om-predisposing { background: var(--purple-light); color: var(--purple); }
+        .output-matrix thead th.om-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .output-matrix thead th.om-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .output-matrix thead th.om-protective { background: var(--green-light); color: var(--green); }
+
+        .output-matrix tbody td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 12px;
+            line-height: 1.4;
+            vertical-align: top;
+        }
+        .output-matrix tbody td.om-source-cell {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--gray-600);
+            background: var(--gray-50);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .output-matrix tbody td ul { list-style: none; padding: 0; margin: 0; }
+        .output-matrix tbody td li {
+            padding: 2px 0;
+            border-bottom: 1px dotted var(--gray-100);
+        }
+        .output-matrix tbody td li:last-child { border-bottom: none; }
+        .output-matrix tbody td.om-empty {
+            color: var(--gray-300);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .output-synth-block {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .output-synth-header {
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: white;
+        }
+        .output-synth-body {
+            padding: 12px 14px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .section-divider {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy-dark);
+            margin: 24px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .nav-bar { text-align: center; padding: 16px 0; margin-top: 20px; }
+        .nav-link { color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .nav-link:hover { text-decoration: underline; }
+
+        @media print {
+            body { max-width: 100%; padding: 0; background: white; font-size: 11px; }
+            .exemplar-banner { background: #276749 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .nav-bar, .btn-pdf { display: none; }
+            .part2-wrapper { background: #f0f4f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .step-narrative { background: #1a365d !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .output-matrix { page-break-inside: avoid; }
+            .output-synth-block { page-break-inside: avoid; }
+            .output-matrix thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .output-synth-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+        @media (max-width: 900px) {
+            body { padding: 12px; font-size: 14px; }
+            .output-matrix { font-size: 11px; }
+        }
+
+        /* === TRANSITION ARROW === */
+        .step-transition {
+            text-align: center;
+            padding: 20px 0 8px 0;
+        }
+        .step-arrow {
+            font-size: 28px;
+            color: var(--navy);
+            line-height: 1;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .step-narrative {
+            display: inline-block;
+            max-width: 700px;
+            background: var(--navy);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* === PART 2 WRAPPER === */
+        .part2-wrapper {
+            background: #f0f4f8;
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 16px 18px 18px 18px;
+            margin-bottom: 20px;
+        }
+        .part2-wrapper .section-divider {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>5 P&rsquo;s Formulation Matrix &mdash; D.R.</h1>
+    <div class="subtitle">NURS 628 &bull; Module 2 &bull; From Diagnostic Reasoning to Case Formulation</div>
+</div>
+
+<div class="exemplar-banner">
+    <span class="badge">&#9733; Exemplar</span>
+    <p>This is a model response showing the expected level of clinical reasoning. Your formulation doesn&rsquo;t need to be identical &mdash; reasonable clinical judgments may differ &mdash; but aim for this level of specificity. Remember: this is a working hypothesis, not a final conclusion. The formulation sets up your next step &mdash; evaluating which specific treatment modality fits this clinical picture.</p>
+</div>
+
+<div class="output-header">
+    <div>
+        <h2>Completed Formulation Matrix</h2>
+        <div class="output-meta">NURS 628 &bull; Module 2 &bull; Exemplar</div>
+    </div>
+    <button class="btn-pdf" onclick="window.print()">&#128196; Download as PDF</button>
+</div>
+
+<!-- ===================== -->
+<!-- SORTED FINDINGS MATRIX -->
+<!-- ===================== -->
+<div class="section-divider">Part 1: Clinical Findings Sorted by 5 P&rsquo;s</div>
+
+<table class="output-matrix">
+    <thead>
+        <tr>
+            <th class="om-source">Data Source</th>
+            <th class="om-presenting">Presenting</th>
+            <th class="om-predisposing">Predisposing</th>
+            <th class="om-precipitating">Precipitating</th>
+            <th class="om-perpetuating">Perpetuating</th>
+            <th class="om-protective">Protective</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="om-source-cell">Criterion A / Core Symptoms</td>
+            <td>
+                <ul>
+                    <li>Depressed mood &times; 6 months</li>
+                    <li>Diminished interest/pleasure</li>
+                    <li>Insomnia (initial + terminal)</li>
+                    <li>Fatigue, especially mornings</li>
+                    <li>Feelings of worthlessness</li>
+                    <li>Diminished concentration</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Insomnia (rumination drives initial; poor sleep drives fatigue)</li>
+                    <li>Diminished concentration (drives compensatory checking)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Denies SI, plan, or intent</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="om-source-cell">Subjective Data (HPI, ROS, Hx)</td>
+            <td>
+                <ul>
+                    <li>CC: &ldquo;falling behind and can&rsquo;t catch up&rdquo;</li>
+                    <li>Social withdrawal</li>
+                    <li>Worry focused on performance</li>
+                    <li>Somatic complaints (headaches, GI distress, tension)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Childhood high expectations &mdash; &ldquo;that was kind of the expectation&rdquo;</li>
+                    <li>Mother &ldquo;always a worrier&rdquo;; grandmother hospitalized</li>
+                    <li>&ldquo;Always kind of stressed about school&rdquo;</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Gradual onset with 8&ndash;10 week acceleration</li>
+                    <li>Declined promotion &mdash; &ldquo;proving I can&rsquo;t handle it&rdquo;</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Perfectionism &mdash; rewrites emails 4&ndash;5 times</li>
+                    <li>Social withdrawal (removes support)</li>
+                    <li>&ldquo;I should be able to figure this out on my own&rdquo;</li>
+                    <li>Increased alcohol and caffeine</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Employed &times; 4 yrs, in relationship &times; 2 yrs</li>
+                    <li>No prior psychiatric history</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="om-source-cell">MSE Findings</td>
+            <td>
+                <ul>
+                    <li>Mood: &ldquo;Stressed out. Tired.&rdquo;</li>
+                    <li>Affect: anxious, mildly constricted</li>
+                    <li>Psychomotor restlessness</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Tense and quieter discussing parents and work</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Fair insight with minimization</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Well-groomed, cooperative</li>
+                    <li>Brightens discussing girlfriend and running</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- TRANSITION -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now we take the sorted clinical data above and synthesize it &mdash; using critical thinking, clinical judgment, and what we know from current evidence &mdash; to build a working formulation that identifies the priority information for each P.</span>
+</div>
+
+<!-- ===================== -->
+<!-- WORKING FORMULATION -->
+<!-- ===================== -->
+<div class="part2-wrapper">
+<div class="section-divider">Part 2: Working Formulation &mdash; What Do We Think Is Going On?</div>
+
+<table class="output-matrix">
+    <thead>
+        <tr>
+            <th class="om-source" style="width: 15%;">Formulation</th>
+            <th style="background: var(--gray-50); color: var(--gray-700);">Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="om-source-cell" style="background: var(--blue-light); color: var(--navy);">Presenting</td>
+            <td>Presenting concerns consistent with diagnosis of MDD including depressed mood, anhedonia, insomnia, fatigue, concentration problems, and worthlessness. On exam, affect is anxious and constricted, consistent with self-report. He also notes significant worry about his performance at work and meeting expectations. Somatic complaints present (tension headaches, GI distress, muscle tension) &mdash; appear stress-related. Anxiety features seem to track with the depressive timeline &mdash; will need to monitor whether this warrants separate attention.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--purple-light); color: var(--purple);">Predisposing</td>
+            <td>Predisposing factors include family history of anxiety &mdash; mother &ldquo;always a worrier,&rdquo; maternal grandmother hospitalized &ldquo;for her nerves.&rdquo; There was a lot of pressure to do well growing up &mdash; gifted programs, valedictorian, frequent comparison to older brother who is a surgeon. Home life was stable however. On exam he gets noticeably tense and his voice drops when talking about parents and work, suggesting these themes are still active. Reports he was &ldquo;always kind of stressed about school.&rdquo; No prior psychiatric history.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--amber-light); color: var(--amber-dark);">Precipitating</td>
+            <td>Main precipitating factor appears to be increasing demands at work. Symptoms have progressively worsened over 6 months with acceleration over the last 8&ndash;10 weeks. Was offered a promotion and declined &mdash; &ldquo;I&rsquo;d probably just end up proving I can&rsquo;t handle it.&rdquo; No other clear precipitating factors noted &mdash; no loss, trauma, relationship change, or medical event.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--coral-light); color: var(--coral);">Perpetuating</td>
+            <td>Suspected perpetuating factors include significant worry around not measuring up &mdash; &ldquo;everyone else manages fine,&rdquo; &ldquo;what&rsquo;s wrong with me.&rdquo; He is compensating by overworking (rewriting emails 4&ndash;5 times, staying late) which does not seem to be helping. He is isolating &mdash; declining invitations, dropped running and cooking. He is not getting restful sleep &mdash; ruminating at bedtime and waking at 3&ndash;4 AM. He is drinking more coffee to compensate and slightly more alcohol on weekends &mdash; both of these pieces independently are likely perpetuating factors. His belief that he &ldquo;should be able to figure this out on my own&rdquo; may also be a factor.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--green-light); color: var(--green);">Protective</td>
+            <td>Employed and functioning at work, though with difficulty. In a stable 2-year relationship. Affect brightens when discussing girlfriend and running &mdash; capacity for pleasure still present. No SI. No prior psychiatric history &mdash; first episode, no treatment failures. Presented for treatment on his own.</td>
+        </tr>
+        <tr>
+            <td class="om-source-cell" style="background: var(--gray-100); color: var(--gray-700);">What Else Do We Need to Know?<br><span style="font-weight: 400; font-size: 10px; text-transform: none; letter-spacing: 0; font-style: italic;">(what would help us discriminate between treatment options)</span></td>
+            <td>Would want more information on: family dynamics growing up and current relationship with parents (weekly calls about career &mdash; how does he experience those?). Current supports beyond girlfriend. Stability of interpersonal relationships &mdash; is the irritability with girlfriend new or longstanding? His personal goals for treatment. Whether the anxiety features resolve as depression improves or persist independently. Baseline PHQ-9 and GAD-7 to establish severity.</td>
+        </tr>
+    </tbody>
+</table>
+</div><!-- end part2-wrapper -->
+
+<!-- ===================== -->
+<!-- TREATMENT CONSIDERATIONS -->
+<!-- ===================== -->
+<div class="section-divider">Part 3: Preliminary Treatment Considerations</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header" style="background: var(--teal);">Treatment Targets</div>
+    <div class="output-synth-body">Possible treatment targets include:
+
+1. Pt&rsquo;s rumination around not being good enough &mdash; the &ldquo;what&rsquo;s wrong with me&rdquo; and &ldquo;everyone else manages fine&rdquo; thinking.
+
+2. Pattern of avoidance &mdash; declining the promotion, pulling away from friends, dropping activities he used to enjoy.
+
+3. Perfectionist checking at work &mdash; the email rewriting and staying late.
+
+4. Sleep &mdash; rumination at bedtime is driving the insomnia, and the poor sleep is making everything else harder.
+
+5. Improved coping strategies &mdash; the caffeine and alcohol are probably complicating this.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header" style="background: var(--teal);">Treatment Rationale</div>
+    <div class="output-synth-body">Main concerns appear to center around how pt thinks about himself, how he copes with stress, and how those patterns are affecting his functioning and relationships. Predisposing history suggests this has been building for a long time but was manageable until work demands increased. This formulation is our working hypothesis. In the next step, we&rsquo;ll use it to evaluate which specific therapy modality is the best match for D.R.&rsquo;s clinical picture.</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+    <a href="5ps-matrix.html" class="nav-link">&larr; Return to Your Assignment</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="assignment-part1.html" class="nav-link">Diagnostic Matrix</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="case-study.html" class="nav-link">Case Study</a>
+</div>
+
+</body>
+</html>

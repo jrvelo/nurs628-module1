@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Part 2a — Treatment Modality Selection</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --purple-mid: #9f7aea;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --teal: #2c7a7b;
+            --teal-light: #e6fffa;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .page-header .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* === INSTRUCTION BOX === */
+        .instruction-box {
+            background: var(--white);
+            border-left: 4px solid var(--navy);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .instruction-box h2 {
+            font-size: 16px;
+            color: var(--navy-dark);
+            margin-bottom: 8px;
+        }
+        .instruction-box p {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .instruction-box p:last-child { margin-bottom: 0; }
+
+        /* === SECTION DIVIDERS === */
+        .section-divider {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--navy-dark);
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 6px;
+            margin: 32px 0 16px 0;
+        }
+        .section-divider .step-num {
+            display: inline-block;
+            background: var(--navy);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* === COLLAPSIBLE REFERENCE PANEL === */
+        .ref-panel-wrap { margin-bottom: 20px; }
+        .ref-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy-dark);
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .ref-toggle:hover { background: var(--blue-light); border-color: var(--blue-mid); }
+        .ref-toggle .arrow { transition: transform 0.2s; font-size: 12px; }
+        .ref-toggle.open { border-radius: 8px 8px 0 0; border-bottom-color: transparent; background: var(--blue-light); }
+        .ref-toggle.open .arrow { transform: rotate(180deg); }
+        .ref-toggle .badge {
+            display: inline-block;
+            background: var(--navy);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-left: 8px;
+        }
+        .ref-content {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .ref-content.open { display: block; }
+
+        /* === CLINICAL DATA STYLES === */
+        .clin-section { margin-bottom: 18px; }
+        .clin-section:last-child { margin-bottom: 0; }
+        .clin-heading {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--navy);
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+        .clin-section p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.55;
+        }
+        .clin-section p:last-child { margin-bottom: 0; }
+        .clin-subhead {
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 4px;
+        }
+        .patient-quote {
+            color: var(--amber-dark);
+            font-style: italic;
+        }
+        .screening-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        .screening-table th {
+            background: var(--gray-100);
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .screening-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .screening-table .elevated { color: var(--coral); font-weight: 700; }
+        .screening-table .change { font-size: 12px; color: var(--coral); font-weight: 600; }
+        .screening-table .stable { color: var(--gray-500); }
+        .screening-note {
+            font-size: 13px;
+            color: var(--gray-600);
+            font-style: italic;
+            background: var(--amber-light);
+            border-left: 3px solid var(--amber);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 10px;
+        }
+
+        /* === CHECKBOX SORT GRID === */
+        .sort-grid {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+        .sort-grid thead th {
+            padding: 10px 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: center;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .sort-grid thead th.col-finding {
+            text-align: left;
+            padding-left: 14px;
+            width: 42%;
+        }
+        .sort-grid thead th.col-presenting { background: var(--blue-light); color: var(--navy); }
+        .sort-grid thead th.col-predisposing { background: var(--purple-light); color: var(--purple); }
+        .sort-grid thead th.col-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .sort-grid thead th.col-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .sort-grid thead th.col-protective { background: var(--green-light); color: var(--green); }
+
+        .sort-grid tbody td {
+            padding: 8px 6px;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 13px;
+            vertical-align: top;
+        }
+        .sort-grid tbody tr:last-child td { border-bottom: none; }
+        .sort-grid tbody tr:hover { background: var(--gray-50); }
+
+        .sort-grid td.finding-text {
+            padding-left: 14px;
+            line-height: 1.4;
+        }
+        .sort-grid td.check-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .sort-grid td.check-cell input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--navy);
+        }
+        .sort-grid td.check-cell.prefilled {
+            position: relative;
+        }
+        .sort-grid td.check-cell.prefilled input[type="checkbox"] {
+            accent-color: var(--green);
+        }
+
+        .sort-grid .row-divider td {
+            background: var(--gray-100);
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-500);
+        }
+        .sort-grid .row-divider-new td {
+            background: linear-gradient(90deg, var(--teal-light), var(--gray-100));
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--teal);
+        }
+
+        /* === TALLY BAR === */
+        .tally-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 12px 16px;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .tally-item {
+            text-align: center;
+            padding: 8px 4px;
+            border-radius: 6px;
+        }
+        .tally-item .tally-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .tally-item .tally-count { font-size: 22px; font-weight: 700; }
+        .tally-presenting { background: var(--blue-light); color: var(--navy); }
+        .tally-predisposing { background: var(--purple-light); color: var(--purple); }
+        .tally-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .tally-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .tally-protective { background: var(--green-light); color: var(--green); }
+
+        /* === SYNTHESIS TEXT AREAS === */
+        .synth-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .synth-block {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .synth-block-header {
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .synth-block-header.presenting { background: var(--navy); color: white; }
+        .synth-block-header.predisposing { background: var(--purple); color: white; }
+        .synth-block-header.precipitating { background: var(--amber); color: white; }
+        .synth-block-header.perpetuating { background: var(--coral); color: white; }
+        .synth-block-header.protective { background: var(--green); color: white; }
+        .synth-block-header.targets { background: var(--teal); color: white; }
+        .synth-block-header.formulation { background: var(--gray-700); color: white; }
+        .synth-block-header.individual { background: #2b6cb0; color: white; }
+        .synth-block-header.group { background: #6b46c1; color: white; }
+        .synth-block-header.modality { background: var(--navy-dark); color: white; }
+
+        .synth-block-body {
+            padding: 12px 14px;
+        }
+        .synth-block-body label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+        .synth-block-body textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px 12px;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            resize: vertical;
+            color: var(--gray-700);
+        }
+        .synth-block-body textarea:focus {
+            outline: none;
+            border-color: var(--blue-mid);
+            box-shadow: 0 0 0 3px rgba(66,153,225,0.15);
+        }
+        .synth-block-body textarea::placeholder {
+            color: var(--gray-300);
+            font-style: italic;
+        }
+        .synth-block-body .prompt {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+            font-style: italic;
+            line-height: 1.45;
+        }
+        .synth-block-body .p-hint {
+            display: inline-block;
+            font-size: 11px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .synth-full { grid-column: 1 / -1; }
+
+        /* === YALOM REFERENCE === */
+        .yalom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .yalom-factor {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .yalom-factor .factor-name {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--purple);
+            margin-bottom: 2px;
+        }
+        .yalom-factor .factor-def {
+            font-size: 12px;
+            color: var(--gray-600);
+            line-height: 1.4;
+        }
+
+        /* === CONVERGENT/DISCRIMINANT EXPLAINER === */
+        .validity-explainer {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 16px 0 20px 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .validity-explainer h4 {
+            font-size: 14px;
+            color: var(--navy-dark);
+            margin-bottom: 10px;
+        }
+        .validity-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .validity-card {
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+        .validity-card.convergent {
+            background: var(--teal-light);
+            border: 1px solid #81e6d9;
+        }
+        .validity-card.discriminant {
+            background: var(--amber-light);
+            border: 1px solid #f6e05e;
+        }
+        .validity-card .vc-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .validity-card.convergent .vc-label { color: var(--teal); }
+        .validity-card.discriminant .vc-label { color: var(--amber-dark); }
+        .validity-card p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--gray-700);
+        }
+        .validity-card .vc-example {
+            font-size: 12px;
+            color: var(--gray-600);
+            font-style: italic;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px dashed rgba(0,0,0,0.1);
+        }
+        .validity-analogy {
+            font-size: 13px;
+            color: var(--gray-600);
+            font-style: italic;
+            margin-top: 6px;
+        }
+
+        /* === STEP TRANSITIONS === */
+        .step-transition {
+            text-align: center;
+            padding: 14px 0;
+            color: var(--gray-500);
+        }
+        .step-transition .step-arrow {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .step-transition .step-narrative {
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* === ACTION BAR === */
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .action-bar .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .btn-save { background: var(--navy); color: white; }
+        .btn-save:hover { background: var(--navy-dark); }
+        .btn-clear { background: var(--gray-200); color: var(--gray-600); }
+        .btn-clear:hover { background: var(--gray-300); }
+        .btn-print { background: var(--green); color: white; }
+        .btn-print:hover { background: #1e5631; }
+        .save-status { font-size: 12px; color: var(--gray-500); font-style: italic; }
+
+        /* === NAVIGATION === */
+        .nav-bar {
+            text-align: center;
+            padding: 16px 0;
+            margin-top: 20px;
+        }
+        .nav-link {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .nav-link:hover { text-decoration: underline; }
+
+        /* === PRINT === */
+        @media print {
+            body { max-width: 100%; padding: 0; background: white; font-size: 11px; }
+            .page-header { padding: 14px 18px; margin-bottom: 12px; page-break-after: avoid; }
+            .page-header h1 { font-size: 16px; }
+            .action-bar, .nav-bar, .ref-toggle, .btn, .save-status { display: none !important; }
+            .ref-content { display: block !important; border: 1px solid #ccc; margin-bottom: 12px; padding: 12px; }
+            .sort-grid { font-size: 10px; }
+            .sort-grid td.check-cell input[type="checkbox"] { width: 12px; height: 12px; }
+            .synth-block-body textarea {
+                border: 1px solid #ccc;
+                min-height: 60px;
+                font-size: 10px;
+            }
+            .section-divider { margin-top: 18px; page-break-before: auto; }
+            .validity-explainer { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="page-header">
+    <h1>Part 2a: Treatment Modality Selection &mdash; D.R.</h1>
+    <div class="subtitle">NURS 628 &bull; Module 2 &bull; From Formulation to Format Selection</div>
+</div>
+
+<div class="instruction-box">
+    <h2>Assignment Overview</h2>
+    <p>In Part 1, you built a 5 P&rsquo;s formulation using D.R.&rsquo;s presenting symptoms, HPI, psychiatric ROS, MSE, and screening tools. Now you&rsquo;ll receive additional clinical information from the same evaluation, integrate it into your formulation, and use it to evaluate treatment format.</p>
+    <p>Work through each section in order &mdash; each builds on the previous one. Your work auto-saves to this browser.</p>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+    <div>
+        <button class="btn btn-save" onclick="saveAll()">&#128190; Save Progress</button>
+        <button class="btn btn-clear" onclick="clearAll()">Clear All</button>
+        <span class="save-status" id="saveStatus"></span>
+    </div>
+    <div>
+        <button class="btn btn-print" onclick="window.print()">&#128196; Print / PDF</button>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 1: ADDITIONAL CLINICAL DATA                        -->
+<!-- ========================================================= -->
+<div class="section-divider"><span class="step-num">1</span> Additional Clinical Data &mdash; D.R.</div>
+
+<p class="section-desc">You completed your initial formulation using data available at that point. The following additional information was gathered during the same evaluation. Review this data and consider how it adds to, refines, or changes your understanding of this patient.</p>
+
+<!-- DEVELOPMENTAL HISTORY -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Developmental History</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p>Met all developmental milestones on time per parental report. No history of learning disabilities, IEP, or 504 plan. Placed in gifted and talented programs beginning in 3rd grade &mdash; <span class="patient-quote">&ldquo;I was always in the advanced classes. That was kind of the expectation.&rdquo;</span> Participated in soccer and academic decathlon. Describes himself as having been <span class="patient-quote">&ldquo;pretty social but always kind of stressed about school.&rdquo;</span> Valedictorian of his high school class: <span class="patient-quote">&ldquo;I worked really hard for that. My parents expected it, honestly.&rdquo;</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- FAMILY PSYCHIATRIC HISTORY -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Family Psychiatric History</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p><strong>Mother:</strong> Described as <span class="patient-quote">&ldquo;always a worrier&rdquo;</span> &mdash; no formal diagnosis or treatment reported.</p>
+            <p><strong>Maternal grandmother:</strong> Hospitalized once <span class="patient-quote">&ldquo;for her nerves&rdquo;</span> &mdash; details unknown.</p>
+            <p><strong>Father:</strong> No psychiatric history reported.</p>
+            <p><strong>Brother</strong> (older, surgeon): No psychiatric history reported.</p>
+            <p><strong>Paternal side:</strong> No psychiatric history reported. No family history of suicide or substance use disorders reported.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SOCIAL HISTORY & INTERPERSONAL -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Social History &amp; Interpersonal Functioning</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p class="clin-subhead">Relationships</p>
+            <p>In a relationship with his girlfriend (age 29) &times; 2 years. They share an apartment. Describes the relationship as <span class="patient-quote">&ldquo;good &mdash; she&rsquo;s really patient with me&rdquo;</span> but notes increased friction due to his irritability and withdrawal. She encouraged him to seek this evaluation. She has told him she feels like he&rsquo;s <span class="patient-quote">&ldquo;shutting her out&rdquo;</span> and doesn&rsquo;t know how to help. He feels guilty about this: <span class="patient-quote">&ldquo;I don&rsquo;t want to burden her with my stuff.&rdquo;</span></p>
+
+            <p class="clin-subhead">Social Functioning</p>
+            <p>Used to be part of a running group &mdash; dropped out about 4 months ago: <span class="patient-quote">&ldquo;I didn&rsquo;t want to slow everyone down.&rdquo;</span> When asked if he misses it: <span class="patient-quote">&ldquo;Yeah, actually.&rdquo;</span> Has close friends from college but has been declining invitations. A coworker mentioned seeing a therapist, but D.R. says: <span class="patient-quote">&ldquo;I wouldn&rsquo;t know what to say about it. I&rsquo;d probably just sit there.&rdquo;</span> Sometimes feels like he&rsquo;s the only one who struggles like this.</p>
+
+            <p class="clin-subhead">Family Dynamics (Current)</p>
+            <p>Parents call weekly &mdash; calls have gotten more tense. Mother asks about work, he gives short answers, she pushes, he gets irritable and ends the call. Father mostly stays quiet. <span class="patient-quote">&ldquo;They mean well, I just can&rsquo;t deal with the questions right now.&rdquo;</span> Not close with older brother &mdash; <span class="patient-quote">&ldquo;he&rsquo;s busy, he&rsquo;s a surgeon.&rdquo;</span> Admits he checks his brother&rsquo;s social media and it <span class="patient-quote">&ldquo;makes me feel worse.&rdquo;</span> No significant family conflict or dysfunction &mdash; more emotional distance and performance-as-connection.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SUPPORT SYSTEMS -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Support Systems / Strengths / Hobbies</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p>Girlfriend (primary support). Close friends from college (though contact has decreased). Previously active in a running group. Enjoys running and cooking (participation has declined). Employed and functioning. No religious or spiritual affiliations mentioned.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SUBSTANCE USE ADDITIONAL -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Substance Use &mdash; Additional Detail</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p><strong>Caffeine:</strong> 3&ndash;4 cups daily &mdash; increased from 1&ndash;2 over the past several months to compensate for fatigue. Notes that it increases feelings of anxiety &mdash; especially somatic symptoms: muscle tension, heart racing, sense of being on edge, mind racing.</p>
+        </div>
+    </div>
+</div>
+
+<!-- UPDATED SCREENING -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Updated Screening Tools <span class="badge">Updated</span></span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <table class="screening-table">
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Part 1</th>
+                        <th>Current</th>
+                        <th>Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PHQ-9</td>
+                        <td>19</td>
+                        <td>19</td>
+                        <td>Moderately severe depression <span class="stable">(unchanged)</span></td>
+                    </tr>
+                    <tr>
+                        <td>GAD-7</td>
+                        <td>6</td>
+                        <td class="elevated">12</td>
+                        <td>Moderate anxiety <span class="change">(&uarr; from mild)</span></td>
+                    </tr>
+                    <tr>
+                        <td>AUDIT-C</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>Monitor <span class="stable">(unchanged)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="screening-note">The GAD-7 increase from 6 to 12 may reflect more accurate self-reporting as D.R. becomes more comfortable disclosing, or it may reflect genuine worsening. Either way, anxiety features are now more prominent in the clinical picture than they appeared initially.</div>
+        </div>
+    </div>
+</div>
+
+<!-- TREATMENT ENGAGEMENT -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle open" onclick="toggleRef(this)">
+        <span>Treatment Engagement</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content open">
+        <div class="clin-section">
+            <p>When discussing treatment options, D.R. asked: <span class="patient-quote">&ldquo;What are the benefits of the different options?&rdquo;</span> He asked about group therapy specifically: <span class="patient-quote">&ldquo;How open would I have to be? Do I have to tell them my whole history and everything I just told you? I feel weird opening up to people. It makes me uncomfortable. It was hard enough to come in and talk to you.&rdquo;</span></p>
+            <p>Also asked <span class="patient-quote">&ldquo;how long does this usually take?&rdquo;</span> and <span class="patient-quote">&ldquo;will I have homework?&rdquo;</span> &mdash; appears oriented toward structure and concrete goals.</p>
+            <p><span class="patient-quote">&ldquo;I&rsquo;m tired of trying to figure it out alone.&rdquo;</span></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 2: 5 P's SORTING MATRIX                            -->
+<!-- ========================================================= -->
+<div class="section-divider"><span class="step-num">2</span> 5 P&rsquo;s Sorting Matrix &mdash; Expanded</div>
+
+<p class="section-desc">Sort the new clinical data into the 5 P&rsquo;s framework, adding to the formulation you built in Part 1. The first four rows are pre-filled from your Part 1 work. Focus on the new rows &mdash; how does this additional information change or enrich your formulation?</p>
+
+<table class="sort-grid" id="sortGrid">
+    <thead>
+        <tr>
+            <th class="col-finding">Clinical Finding</th>
+            <th class="col-presenting">Presenting</th>
+            <th class="col-predisposing">Predisposing</th>
+            <th class="col-precipitating">Precipitating</th>
+            <th class="col-perpetuating">Perpetuating</th>
+            <th class="col-protective">Protective</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- PRE-FILLED SECTION -->
+        <tr class="row-divider"><td colspan="6">&#9989; Part 1 Data (Pre-filled from your previous work)</td></tr>
+
+        <!-- Criterion A -->
+        <tr>
+            <td class="finding-text">Depressed mood &times; 6 months</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Diminished interest / pleasure</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Insomnia (initial + terminal)</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Fatigue / low energy, especially mornings</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Feelings of worthlessness</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Diminished concentration</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">CC: &ldquo;falling behind and can&rsquo;t catch up&rdquo;</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Social withdrawal &mdash; declining invitations</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Worry focused on work performance</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Somatic complaints (headaches, GI, tension)</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Perfectionism &mdash; rewrites emails 4&ndash;5 times</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">&ldquo;I should be able to figure this out on my own&rdquo;</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Increased alcohol and caffeine use</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">MSE: Mood &ldquo;stressed out, tired&rdquo;; affect anxious, constricted</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">MSE: Fair insight with minimization</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">MSE: Well-groomed, cooperative; brightens re: girlfriend, running</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">PHQ-9: 19 (moderately severe); GAD-7: 6 (mild); AUDIT-C: 4</td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Employed &times; 4 yrs; in relationship &times; 2 yrs; denies SI</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+        </tr>
+
+        <!-- NEW DATA SECTION -->
+        <tr class="row-divider-new"><td colspan="6">&#10024; New Data &mdash; Sort the findings below into the 5 P&rsquo;s</td></tr>
+
+        <!-- Developmental & Family History -->
+        <tr class="row-divider"><td colspan="6">Developmental &amp; Family History</td></tr>
+        <tr>
+            <td class="finding-text">Gifted programs starting 3rd grade &mdash; <em>&ldquo;that was kind of the expectation&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Valedictorian &mdash; <em>&ldquo;my parents expected it, honestly&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text"><em>&ldquo;Always kind of stressed about school&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Mother <em>&ldquo;always a worrier&rdquo;</em>; grandmother hospitalized <em>&ldquo;for her nerves&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Older brother is a surgeon &mdash; high-achieving family comparison</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+
+        <!-- Social & Interpersonal -->
+        <tr class="row-divider"><td colspan="6">Social &amp; Interpersonal Functioning</td></tr>
+        <tr>
+            <td class="finding-text">Dropped running group &mdash; <em>&ldquo;didn&rsquo;t want to slow everyone down&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Girlfriend says he&rsquo;s <em>&ldquo;shutting her out&rdquo;</em>; he feels guilty</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text"><em>&ldquo;I don&rsquo;t want to burden her with my stuff&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Feels like <em>&ldquo;the only one who struggles like this&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Coworker sees therapist but D.R.: <em>&ldquo;I wouldn&rsquo;t know what to say&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+
+        <!-- Family Dynamics -->
+        <tr class="row-divider"><td colspan="6">Family Dynamics (Current)</td></tr>
+        <tr>
+            <td class="finding-text">Weekly parent calls increasingly tense; mother pushes on career</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Gets irritable, ends calls &mdash; father stays quiet</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Checks brother&rsquo;s social media &mdash; <em>&ldquo;makes me feel worse&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Performance-as-connection pattern: achievement = parental approval</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+
+        <!-- Treatment Readiness -->
+        <tr class="row-divider"><td colspan="6">Treatment Readiness &amp; Updated Data</td></tr>
+        <tr>
+            <td class="finding-text"><em>&ldquo;How open would I have to be?&rdquo;</em> &mdash; anxious about group disclosure</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Oriented toward structure: asks about homework, timeline</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text"><em>&ldquo;I&rsquo;m tired of trying to figure it out alone&rdquo;</em></td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">GAD-7 &uarr; from 6 to 12 (mild &rarr; moderate anxiety)</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+        <tr>
+            <td class="finding-text">Caffeine &uarr; to 3&ndash;4 cups; worsening somatic anxiety symptoms</td>
+            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
+            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
+            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
+            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- TALLY BAR -->
+<div class="tally-bar" id="tallyBar">
+    <div class="tally-item tally-presenting"><span class="tally-label">Presenting</span><span class="tally-count" id="tally-presenting">0</span></div>
+    <div class="tally-item tally-predisposing"><span class="tally-label">Predisposing</span><span class="tally-count" id="tally-predisposing">0</span></div>
+    <div class="tally-item tally-precipitating"><span class="tally-label">Precipitating</span><span class="tally-count" id="tally-precipitating">0</span></div>
+    <div class="tally-item tally-perpetuating"><span class="tally-label">Perpetuating</span><span class="tally-count" id="tally-perpetuating">0</span></div>
+    <div class="tally-item tally-protective"><span class="tally-label">Protective</span><span class="tally-count" id="tally-protective">0</span></div>
+</div>
+
+<!-- SYNTHESIS -->
+<div class="synth-grid">
+    <div class="synth-block">
+        <div class="synth-block-header presenting">Presenting &mdash; Updated Synthesis</div>
+        <div class="synth-block-body">
+            <div class="prompt">Integrate the original Part 1 presenting data with any new findings. What is the full clinical picture now?</div>
+            <textarea id="synth_presenting" placeholder="Updated presenting synthesis..."></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header predisposing">Predisposing &mdash; Updated Synthesis</div>
+        <div class="synth-block-body">
+            <div class="prompt">How does the new developmental and family history data expand your understanding of predisposing factors?</div>
+            <textarea id="synth_predisposing" placeholder="Updated predisposing synthesis..."></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header precipitating">Precipitating &mdash; Updated Synthesis</div>
+        <div class="synth-block-body">
+            <div class="prompt">Did the new data add to or change your understanding of what precipitated this episode?</div>
+            <textarea id="synth_precipitating" placeholder="Updated precipitating synthesis..."></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header perpetuating">Perpetuating &mdash; Updated Synthesis</div>
+        <div class="synth-block-body">
+            <div class="prompt">How do the interpersonal patterns, family dynamics, and caffeine data add to the perpetuating picture?</div>
+            <textarea id="synth_perpetuating" placeholder="Updated perpetuating synthesis..."></textarea>
+        </div>
+    </div>
+    <div class="synth-block synth-full">
+        <div class="synth-block-header protective">Protective &mdash; Updated Synthesis</div>
+        <div class="synth-block-body">
+            <div class="prompt">What protective factors did the new data reveal or clarify?</div>
+            <textarea id="synth_protective" placeholder="Updated protective synthesis..."></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 3: TREATMENT TARGETS                               -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now use your updated formulation to identify treatment targets &mdash; first for CBT generally, then comparing what each format uniquely offers.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">3</span> Treatment Targets</div>
+
+<!-- 3A: CORE CBT -->
+<div class="synth-grid">
+    <div class="synth-block synth-full">
+        <div class="synth-block-header targets">3A: Core CBT Treatment Targets</div>
+        <div class="synth-block-body">
+            <div class="prompt">Regardless of whether D.R. receives individual or group CBT, what are the core treatment targets that CBT as a modality can address? Based on your 5 P&rsquo;s formulation, identify the primary targets and explain why CBT is suited to address them.</div>
+            <textarea id="targets_core" placeholder="Core CBT targets and rationale..." style="min-height: 140px;"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- 3B & 3C: INDIVIDUAL vs GROUP -->
+<div class="synth-grid">
+    <div class="synth-block">
+        <div class="synth-block-header individual">3B: Individual CBT &mdash; What Does This Format Add?</div>
+        <div class="synth-block-body">
+            <div class="prompt">What can individual CBT offer D.R. that group cannot &mdash; or that it does differently? For each target, explain how the individual format addresses it.</div>
+            <textarea id="targets_individual" placeholder="Individual CBT format advantages..." style="min-height: 160px;"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header group">3C: Group CBT &mdash; What Does This Format Add?</div>
+        <div class="synth-block-body">
+            <div class="prompt">What can group CBT offer D.R. that individual cannot &mdash; or that it does differently? Consider relevant therapeutic factors. For each target, explain how the group format addresses it.</div>
+            <textarea id="targets_group" placeholder="Group CBT format advantages..." style="min-height: 160px;"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- YALOM REFERENCE PANEL -->
+<div class="ref-panel-wrap">
+    <button class="ref-toggle" onclick="toggleRef(this)">
+        <span>&#128218; Reference: Yalom&rsquo;s Therapeutic Factors</span>
+        <span class="arrow">&#9660;</span>
+    </button>
+    <div class="ref-content">
+        <p style="font-size: 13px; color: var(--gray-600); font-style: italic; margin-bottom: 12px;">You do not need to address all of these. Identify and apply the factors that are most clinically relevant to D.R.</p>
+        <div class="yalom-grid">
+            <div class="yalom-factor">
+                <div class="factor-name">Universality</div>
+                <div class="factor-def">Recognizing that others share similar feelings, thoughts, and problems. Reduces isolation and shame.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Instillation of Hope</div>
+                <div class="factor-def">Seeing others at different stages of recovery; believing improvement is possible.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Interpersonal Learning</div>
+                <div class="factor-def">Gaining insight into one&rsquo;s own interpersonal patterns through feedback and interaction with group members.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Group Cohesiveness</div>
+                <div class="factor-def">Sense of belonging, acceptance, and mutual support within the group. Analogous to therapeutic alliance in individual therapy.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Altruism</div>
+                <div class="factor-def">Helping others in the group; discovering one has something of value to offer. Counteracts feelings of worthlessness.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Corrective Recapitulation</div>
+                <div class="factor-def">Re-experiencing and reworking family-of-origin dynamics within the group setting.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Socializing Techniques</div>
+                <div class="factor-def">Developing social skills through group interaction, feedback, and modeling.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Imitative Behavior</div>
+                <div class="factor-def">Modeling coping strategies and behaviors observed in other group members or the therapist.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Catharsis</div>
+                <div class="factor-def">Expressing and processing strong emotions within a safe, supportive environment.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Existential Factors</div>
+                <div class="factor-def">Confronting fundamental issues of responsibility, meaning, and acceptance of life&rsquo;s limitations.</div>
+            </div>
+            <div class="yalom-factor">
+                <div class="factor-name">Imparting Information</div>
+                <div class="factor-def">Psychoeducation and guidance provided by the therapist or other group members.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 4: CLINICAL FORMULATION                            -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Pull everything together into a clinical formulation. This follows the same structure you use in 629B &mdash; the 5 P&rsquo;s map directly onto it.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">4</span> Clinical Formulation</div>
+
+<p class="section-desc">Write a formulation as you would for your 629B clinical notes. Use the structure below. Notice how the 5 P&rsquo;s framework maps directly onto the formulation &mdash; this is the same clinical reasoning, organized for documentation.</p>
+
+<div class="synth-grid" style="grid-template-columns: 1fr;">
+    <div class="synth-block">
+        <div class="synth-block-header formulation">Brief Summary</div>
+        <div class="synth-block-body">
+            <div class="prompt">Summarize D.R.&rsquo;s history, current presentation, and functional status in 3&ndash;5 sentences.</div>
+            <span class="p-hint">&#9654; Look at your 5 P&rsquo;s &mdash; especially presenting concerns and precipitating factors.</span>
+            <textarea id="form_summary" placeholder="Brief summary..." style="min-height: 100px;"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header formulation">Biological Factors</div>
+        <div class="synth-block-body">
+            <div class="prompt">Discuss relevant medical history, family psychiatric history, current medications, and any biological contributors.</div>
+            <span class="p-hint">&#9654; Look at your 5 P&rsquo;s &mdash; especially predisposing factors.</span>
+            <textarea id="form_bio" placeholder="Biological factors..." style="min-height: 100px;"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header formulation">Psychological Factors</div>
+        <div class="synth-block-body">
+            <div class="prompt">Discuss current and past psychological factors &mdash; including childhood circumstances, cognitive and behavioral patterns, and relevant personality or coping characteristics.</div>
+            <span class="p-hint">&#9654; Look at your 5 P&rsquo;s &mdash; especially predisposing, precipitating, perpetuating, and protective factors.</span>
+            <textarea id="form_psych" placeholder="Psychological factors..." style="min-height: 120px;"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header formulation">Social Factors</div>
+        <div class="synth-block-body">
+            <div class="prompt">Discuss current psychosocial stressors and supports &mdash; including work, relationships, family dynamics, and social functioning.</div>
+            <span class="p-hint">&#9654; Look at your 5 P&rsquo;s &mdash; especially precipitating, perpetuating, and protective factors.</span>
+            <textarea id="form_social" placeholder="Social factors..." style="min-height: 120px;"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header formulation">Diagnosis &amp; Core Treatment Targets</div>
+        <div class="synth-block-body">
+            <div class="prompt">Based on the above, state your working diagnosis with rationale. Then identify the core treatment targets that emerge from this formulation.</div>
+            <span class="p-hint">&#9654; This is the same reasoning from Part 1 &mdash; you&rsquo;re pulling it all together here.</span>
+            <textarea id="form_dx" placeholder="Diagnosis and treatment targets..." style="min-height: 120px;"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 5: MODALITY SELECTION                              -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now make the call. Use your formulation, treatment targets, and convergent/discriminant reasoning to recommend a treatment format.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">5</span> Modality Selection</div>
+
+<p class="section-desc">Based on your 5 P&rsquo;s formulation and clinical formulation, determine which therapy format &mdash; individual CBT, group CBT, or both &mdash; is most appropriate as an <strong>initial</strong> intervention for D.R. If one format is better suited initially, address whether the other may be appropriate later in treatment. If both are equally appropriate, provide reasoning for using both.</p>
+
+<div class="instruction-box" style="margin-bottom: 16px;">
+    <h2>Your clinical reasoning must address:</h2>
+    <p><strong>Case study data:</strong> Integrate relevant details from the case to demonstrate how client history, presenting concerns, and contextual factors inform your format selection.</p>
+    <p><strong>Strengths and limitations:</strong> Incorporate what you identified in your treatment targets analysis (Sections 3A&ndash;3C), including predisposing, precipitating, and perpetuating factors.</p>
+    <p><strong>Convergent and discriminant validity considerations:</strong> See the framework below.</p>
+    <p>Support your rationale with at least <strong>one course-assigned resource</strong> and <strong>one additional scholarly, peer-reviewed source.</strong></p>
+</div>
+
+<!-- CONVERGENT / DISCRIMINANT EXPLAINER -->
+<div class="validity-explainer">
+    <h4>Convergent &amp; Discriminant Validity &mdash; Applied to Treatment Format</h4>
+    <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 12px;">Think about this the same way you evaluated diagnostic evidence in Part 1:</p>
+    <div class="validity-row">
+        <div class="validity-card convergent">
+            <div class="vc-label">Convergent Targets</div>
+            <p>Treatment goals that <strong>both</strong> formats can address. Convergent targets confirm that CBT is the right modality &mdash; but they don&rsquo;t help you choose between formats.</p>
+            <div class="vc-example"><strong>Example:</strong> Both individual and group CBT can target automatic thoughts through cognitive restructuring. This is like a transdiagnostic symptom &mdash; it supports the diagnosis but doesn&rsquo;t help you discriminate between two possible diagnoses.</div>
+        </div>
+        <div class="validity-card discriminant">
+            <div class="vc-label">Discriminant Targets</div>
+            <p>Treatment goals that <strong>one format addresses meaningfully better</strong> than the other. These are the findings that help you choose.</p>
+            <div class="vc-example"><strong>Example for group:</strong> D.R.&rsquo;s belief that &ldquo;I&rsquo;m the only one who struggles like this&rdquo; &mdash; group directly challenges this through universality in a way individual therapy cannot replicate.</div>
+            <div class="vc-example"><strong>Example for individual:</strong> Deep-rooted family-of-origin schemas around performance may require the sustained, individualized attention that individual CBT provides.</div>
+        </div>
+    </div>
+    <p class="validity-analogy">Identify which of D.R.&rsquo;s treatment targets converge across formats and which discriminate between them. Use the discriminant targets to support your recommendation.</p>
+</div>
+
+<div class="synth-grid" style="grid-template-columns: 1fr;">
+    <div class="synth-block">
+        <div class="synth-block-header modality">Modality Selection &mdash; Clinical Reasoning</div>
+        <div class="synth-block-body">
+            <textarea id="modality_selection" placeholder="Your modality selection with clinical reasoning..." style="min-height: 280px;"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<!-- ACTION BAR (bottom) -->
+<div class="action-bar">
+    <div>
+        <button class="btn btn-save" onclick="saveAll()">&#128190; Save Progress</button>
+        <span class="save-status" id="saveStatusBottom"></span>
+    </div>
+    <div>
+        <button class="btn btn-print" onclick="window.print()">&#128196; Print / PDF</button>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+    <a href="5ps-matrix.html" class="nav-link">&larr; Part 1: 5 P&rsquo;s Matrix</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="case-study.html" class="nav-link">Case Study</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="5ps-exemplar.html" class="nav-link">Exemplar</a>
+</div>
+
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// === TOGGLE REFERENCE PANELS ===
+function toggleRef(btn) {
+    btn.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open');
+}
+
+// === TALLY COUNTER (new checkboxes only) ===
+function updateTallies() {
+    const cols = ['presenting','predisposing','precipitating','perpetuating','protective'];
+    const newCheckboxes = document.querySelectorAll('.sort-grid input[type="checkbox"][data-col]');
+    const counts = { presenting:0, predisposing:0, precipitating:0, perpetuating:0, protective:0 };
+    newCheckboxes.forEach(cb => {
+        if (cb.checked) counts[cb.dataset.col]++;
+    });
+    cols.forEach(c => {
+        document.getElementById('tally-' + c).textContent = counts[c];
+    });
+}
+
+// Attach listeners to new checkboxes
+document.querySelectorAll('.sort-grid input[type="checkbox"][data-col]').forEach(cb => {
+    cb.addEventListener('change', () => {
+        updateTallies();
+        autoSave();
+    });
+});
+
+// === AUTO-SAVE ===
+const SAVE_KEY = 'nurs628_part2a_v2';
+let saveTimeout;
+
+function autoSave() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => saveAll(true), 2000);
+}
+
+function saveAll(isAuto) {
+    const data = {};
+
+    // Save new checkboxes
+    const newCBs = document.querySelectorAll('.sort-grid input[type="checkbox"][data-col]');
+    data.checkboxes = [];
+    newCBs.forEach(cb => { data.checkboxes.push(cb.checked); });
+
+    // Save all textareas
+    document.querySelectorAll('textarea').forEach(ta => {
+        data[ta.id] = ta.value;
+    });
+
+    localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+
+    const msg = isAuto ? 'Auto-saved' : 'Saved!';
+    const ts = new Date().toLocaleTimeString();
+    const statusText = msg + ' ' + ts;
+    ['saveStatus','saveStatusBottom'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = statusText;
+    });
+}
+
+function loadSaved() {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    try {
+        const data = JSON.parse(raw);
+
+        // Load checkboxes
+        if (data.checkboxes) {
+            const newCBs = document.querySelectorAll('.sort-grid input[type="checkbox"][data-col]');
+            data.checkboxes.forEach((val, i) => {
+                if (newCBs[i]) newCBs[i].checked = val;
+            });
+        }
+
+        // Load textareas
+        document.querySelectorAll('textarea').forEach(ta => {
+            if (data[ta.id]) ta.value = data[ta.id];
+        });
+
+        updateTallies();
+    } catch(e) { console.warn('Load error:', e); }
+}
+
+function clearAll() {
+    if (!confirm('Clear all your work on this page? This cannot be undone.')) return;
+    localStorage.removeItem(SAVE_KEY);
+    document.querySelectorAll('.sort-grid input[type="checkbox"][data-col]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('textarea').forEach(ta => ta.value = '');
+    updateTallies();
+    ['saveStatus','saveStatusBottom'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = 'Cleared';
+    });
+}
+
+// Auto-save on textarea input
+document.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', autoSave);
+});
+
+// Load on page ready
+loadSaved();
+</script>
+
+</body>
+</html>

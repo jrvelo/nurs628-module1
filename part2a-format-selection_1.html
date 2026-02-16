@@ -253,13 +253,36 @@
         .sort-grid thead th.col-finding {
             text-align: left;
             padding-left: 14px;
-            width: 42%;
+            width: 36%;
         }
         .sort-grid thead th.col-presenting { background: var(--blue-light); color: var(--navy); }
         .sort-grid thead th.col-predisposing { background: var(--purple-light); color: var(--purple); }
         .sort-grid thead th.col-precipitating { background: var(--amber-light); color: var(--amber-dark); }
         .sort-grid thead th.col-perpetuating { background: var(--coral-light); color: var(--coral); }
         .sort-grid thead th.col-protective { background: var(--green-light); color: var(--green); }
+        .sort-grid thead th.col-source {
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 10px;
+            width: 90px;
+            min-width: 80px;
+        }
+
+        .sort-grid td.source-cell {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+        }
+        .sort-grid tr.prefilled-row {
+            background: var(--gray-50);
+        }
+        .sort-grid tr.prefilled-row td.finding-text {
+            color: var(--gray-600);
+        }
 
         .sort-grid tbody td {
             padding: 8px 6px;
@@ -761,174 +784,89 @@
 <!-- ========================================================= -->
 <div class="section-divider"><span class="step-num">2</span> 5 P&rsquo;s Sorting Matrix &mdash; Expanded</div>
 
-<p class="section-desc">Sort the new clinical data into the 5 P&rsquo;s framework, adding to the formulation you built in Part 1. The first four rows are pre-filled from your Part 1 work. Focus on the new rows &mdash; how does this additional information change or enrich your formulation?</p>
+<p class="section-desc">Sort the new clinical data into the 5 P&rsquo;s framework, just as you did in Part 1. The MSE and screening tool rows are pre-filled since they come from the same evaluation. After sorting, write an updated synthesis for each P that integrates these new findings with your Part 1 work.</p>
 
 <table class="sort-grid" id="sortGrid">
     <thead>
         <tr>
             <th class="col-finding">Clinical Finding</th>
             <th class="col-presenting">Presenting</th>
-            <th class="col-predisposing">Predisposing</th>
-            <th class="col-precipitating">Precipitating</th>
-            <th class="col-perpetuating">Perpetuating</th>
+            <th class="col-predisposing">Predis&shy;posing</th>
+            <th class="col-precipitating">Precipi&shy;tating</th>
+            <th class="col-perpetuating">Perpetu&shy;ating</th>
             <th class="col-protective">Protective</th>
+            <th class="col-source">Data Source</th>
         </tr>
     </thead>
     <tbody>
-        <!-- PRE-FILLED SECTION -->
-        <tr class="row-divider"><td colspan="6">&#9989; Part 1 Data (Pre-filled from your previous work)</td></tr>
-
-        <!-- Criterion A -->
-        <tr>
-            <td class="finding-text">Depressed mood &times; 6 months</td>
+        <!-- PRE-FILLED: MSE (same evaluation) -->
+        <tr class="row-divider"><td colspan="7">&#9989; Pre-filled &mdash; Same evaluation as Part 1</td></tr>
+        <tr class="prefilled-row">
+            <td class="finding-text">Mood: &ldquo;Stressed out, I guess. Tired.&rdquo;; Affect: anxious, constricted</td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">MSE</td>
         </tr>
-        <tr>
-            <td class="finding-text">Diminished interest / pleasure</td>
+        <tr class="prefilled-row">
+            <td class="finding-text">Brightens when discussing girlfriend and running</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">MSE</td>
         </tr>
-        <tr>
-            <td class="finding-text">Insomnia (initial + terminal)</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+        <tr class="prefilled-row">
+            <td class="finding-text">More tense and quieter when discussing parents and work</td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">MSE</td>
         </tr>
-        <tr>
-            <td class="finding-text">Fatigue / low energy, especially mornings</td>
+        <tr class="prefilled-row">
+            <td class="finding-text">Insight: fair &mdash; acknowledges impairment but minimizes</td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">MSE</td>
         </tr>
-        <tr>
-            <td class="finding-text">Feelings of worthlessness</td>
+        <tr class="prefilled-row">
+            <td class="finding-text">PHQ-9: 19 (moderately severe) &mdash; unchanged</td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">Screening</td>
         </tr>
-        <tr>
-            <td class="finding-text">Diminished concentration</td>
+        <tr class="prefilled-row">
+            <td class="finding-text">GAD-7: 12 (moderate) <span style="color:var(--coral); font-weight:600;">&uarr; from 6</span></td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
+            <td class="source-cell">Screening</td>
         </tr>
-        <tr>
-            <td class="finding-text">CC: &ldquo;falling behind and can&rsquo;t catch up&rdquo;</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Social withdrawal &mdash; declining invitations</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Worry focused on work performance</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Somatic complaints (headaches, GI, tension)</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Perfectionism &mdash; rewrites emails 4&ndash;5 times</td>
+        <tr class="prefilled-row">
+            <td class="finding-text">AUDIT-C: 4 &mdash; monitor (unchanged)</td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
             <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">&ldquo;I should be able to figure this out on my own&rdquo;</td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Increased alcohol and caffeine use</td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">MSE: Mood &ldquo;stressed out, tired&rdquo;; affect anxious, constricted</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">MSE: Fair insight with minimization</td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">MSE: Well-groomed, cooperative; brightens re: girlfriend, running</td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">PHQ-9: 19 (moderately severe); GAD-7: 6 (mild); AUDIT-C: 4</td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-        </tr>
-        <tr>
-            <td class="finding-text">Employed &times; 4 yrs; in relationship &times; 2 yrs; denies SI</td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" disabled></td>
-            <td class="check-cell prefilled"><input type="checkbox" checked disabled></td>
+            <td class="source-cell">Screening</td>
         </tr>
 
-        <!-- NEW DATA SECTION -->
-        <tr class="row-divider-new"><td colspan="6">&#10024; New Data &mdash; Sort the findings below into the 5 P&rsquo;s</td></tr>
-
-        <!-- Developmental & Family History -->
-        <tr class="row-divider"><td colspan="6">Developmental &amp; Family History</td></tr>
+        <!-- NEW DATA TO SORT -->
+        <tr class="row-divider-new"><td colspan="7">&#10024; New Data &mdash; Sort into the 5 P&rsquo;s</td></tr>
         <tr>
             <td class="finding-text">Gifted programs starting 3rd grade &mdash; <em>&ldquo;that was kind of the expectation&rdquo;</em></td>
             <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
@@ -936,6 +874,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Developmental Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Valedictorian &mdash; <em>&ldquo;my parents expected it, honestly&rdquo;</em></td>
@@ -944,6 +883,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Developmental Hx</td>
         </tr>
         <tr>
             <td class="finding-text"><em>&ldquo;Always kind of stressed about school&rdquo;</em></td>
@@ -952,6 +892,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Developmental Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Mother <em>&ldquo;always a worrier&rdquo;</em>; grandmother hospitalized <em>&ldquo;for her nerves&rdquo;</em></td>
@@ -960,6 +901,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Psych Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Older brother is a surgeon &mdash; high-achieving family comparison</td>
@@ -968,10 +910,8 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Psych Hx</td>
         </tr>
-
-        <!-- Social & Interpersonal -->
-        <tr class="row-divider"><td colspan="6">Social &amp; Interpersonal Functioning</td></tr>
         <tr>
             <td class="finding-text">Dropped running group &mdash; <em>&ldquo;didn&rsquo;t want to slow everyone down&rdquo;</em></td>
             <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
@@ -979,6 +919,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Social Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Girlfriend says he&rsquo;s <em>&ldquo;shutting her out&rdquo;</em>; he feels guilty</td>
@@ -987,6 +928,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Social Hx</td>
         </tr>
         <tr>
             <td class="finding-text"><em>&ldquo;I don&rsquo;t want to burden her with my stuff&rdquo;</em></td>
@@ -995,6 +937,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Social Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Feels like <em>&ldquo;the only one who struggles like this&rdquo;</em></td>
@@ -1003,6 +946,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Social Hx</td>
         </tr>
         <tr>
             <td class="finding-text">Coworker sees therapist but D.R.: <em>&ldquo;I wouldn&rsquo;t know what to say&rdquo;</em></td>
@@ -1011,10 +955,8 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Social Hx</td>
         </tr>
-
-        <!-- Family Dynamics -->
-        <tr class="row-divider"><td colspan="6">Family Dynamics (Current)</td></tr>
         <tr>
             <td class="finding-text">Weekly parent calls increasingly tense; mother pushes on career</td>
             <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
@@ -1022,6 +964,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Dynamics</td>
         </tr>
         <tr>
             <td class="finding-text">Gets irritable, ends calls &mdash; father stays quiet</td>
@@ -1030,6 +973,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Dynamics</td>
         </tr>
         <tr>
             <td class="finding-text">Checks brother&rsquo;s social media &mdash; <em>&ldquo;makes me feel worse&rdquo;</em></td>
@@ -1038,6 +982,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Dynamics</td>
         </tr>
         <tr>
             <td class="finding-text">Performance-as-connection pattern: achievement = parental approval</td>
@@ -1046,10 +991,8 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Family Dynamics</td>
         </tr>
-
-        <!-- Treatment Readiness -->
-        <tr class="row-divider"><td colspan="6">Treatment Readiness &amp; Updated Data</td></tr>
         <tr>
             <td class="finding-text"><em>&ldquo;How open would I have to be?&rdquo;</em> &mdash; anxious about group disclosure</td>
             <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
@@ -1057,6 +1000,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Tx Readiness</td>
         </tr>
         <tr>
             <td class="finding-text">Oriented toward structure: asks about homework, timeline</td>
@@ -1065,6 +1009,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Tx Readiness</td>
         </tr>
         <tr>
             <td class="finding-text"><em>&ldquo;I&rsquo;m tired of trying to figure it out alone&rdquo;</em></td>
@@ -1073,14 +1018,7 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
-        </tr>
-        <tr>
-            <td class="finding-text">GAD-7 &uarr; from 6 to 12 (mild &rarr; moderate anxiety)</td>
-            <td class="check-cell"><input type="checkbox" data-col="presenting"></td>
-            <td class="check-cell"><input type="checkbox" data-col="predisposing"></td>
-            <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
-            <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
-            <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Tx Readiness</td>
         </tr>
         <tr>
             <td class="finding-text">Caffeine &uarr; to 3&ndash;4 cups; worsening somatic anxiety symptoms</td>
@@ -1089,11 +1027,12 @@
             <td class="check-cell"><input type="checkbox" data-col="precipitating"></td>
             <td class="check-cell"><input type="checkbox" data-col="perpetuating"></td>
             <td class="check-cell"><input type="checkbox" data-col="protective"></td>
+            <td class="source-cell">Updated Data</td>
         </tr>
     </tbody>
 </table>
 
-<!-- TALLY BAR -->
+<!-- TALLY BAR (new data only) -->
 <div class="tally-bar" id="tallyBar">
     <div class="tally-item tally-presenting"><span class="tally-label">Presenting</span><span class="tally-count" id="tally-presenting">0</span></div>
     <div class="tally-item tally-predisposing"><span class="tally-label">Predisposing</span><span class="tally-count" id="tally-predisposing">0</span></div>
@@ -1103,40 +1042,42 @@
 </div>
 
 <!-- SYNTHESIS -->
+<p class="section-desc" style="margin-top: 20px;"><strong>Updated Synthesis:</strong> Write an updated synthesis for each P that integrates the new findings above with your Part 1 work. Reference your Part 1 submission as needed.</p>
+
 <div class="synth-grid">
     <div class="synth-block">
         <div class="synth-block-header presenting">Presenting &mdash; Updated Synthesis</div>
         <div class="synth-block-body">
-            <div class="prompt">Integrate the original Part 1 presenting data with any new findings. What is the full clinical picture now?</div>
-            <textarea id="synth_presenting" placeholder="Updated presenting synthesis..."></textarea>
+            <div class="prompt">Integrate the new data with your Part 1 presenting synthesis. What is the full clinical picture now?</div>
+            <textarea id="synth_presenting" placeholder="Combine your Part 1 presenting synthesis with the new findings..."></textarea>
         </div>
     </div>
     <div class="synth-block">
         <div class="synth-block-header predisposing">Predisposing &mdash; Updated Synthesis</div>
         <div class="synth-block-body">
-            <div class="prompt">How does the new developmental and family history data expand your understanding of predisposing factors?</div>
-            <textarea id="synth_predisposing" placeholder="Updated predisposing synthesis..."></textarea>
+            <div class="prompt">Integrate the new developmental and family history data with your Part 1 predisposing synthesis.</div>
+            <textarea id="synth_predisposing" placeholder="Combine your Part 1 predisposing synthesis with the new findings..."></textarea>
         </div>
     </div>
     <div class="synth-block">
         <div class="synth-block-header precipitating">Precipitating &mdash; Updated Synthesis</div>
         <div class="synth-block-body">
-            <div class="prompt">Did the new data add to or change your understanding of what precipitated this episode?</div>
-            <textarea id="synth_precipitating" placeholder="Updated precipitating synthesis..."></textarea>
+            <div class="prompt">Integrate any new precipitating information with your Part 1 synthesis. Did the new data change your understanding?</div>
+            <textarea id="synth_precipitating" placeholder="Combine your Part 1 precipitating synthesis with the new findings..."></textarea>
         </div>
     </div>
     <div class="synth-block">
         <div class="synth-block-header perpetuating">Perpetuating &mdash; Updated Synthesis</div>
         <div class="synth-block-body">
-            <div class="prompt">How do the interpersonal patterns, family dynamics, and caffeine data add to the perpetuating picture?</div>
-            <textarea id="synth_perpetuating" placeholder="Updated perpetuating synthesis..."></textarea>
+            <div class="prompt">Integrate the interpersonal patterns, family dynamics, and updated data with your Part 1 perpetuating synthesis.</div>
+            <textarea id="synth_perpetuating" placeholder="Combine your Part 1 perpetuating synthesis with the new findings..."></textarea>
         </div>
     </div>
     <div class="synth-block synth-full">
         <div class="synth-block-header protective">Protective &mdash; Updated Synthesis</div>
         <div class="synth-block-body">
-            <div class="prompt">What protective factors did the new data reveal or clarify?</div>
-            <textarea id="synth_protective" placeholder="Updated protective synthesis..."></textarea>
+            <div class="prompt">Integrate any new protective factors with your Part 1 synthesis.</div>
+            <textarea id="synth_protective" placeholder="Combine your Part 1 protective synthesis with the new findings..."></textarea>
         </div>
     </div>
 </div>
@@ -1438,7 +1379,7 @@ function loadSaved() {
 
         // Load textareas
         document.querySelectorAll('textarea').forEach(ta => {
-            if (data[ta.id]) ta.value = data[ta.id];
+            if (data[ta.id] !== undefined) ta.value = data[ta.id];
         });
 
         updateTallies();

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Part 2a Exemplar — M.T. (Treatment Format Selection)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --purple-mid: #9f7aea;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --teal: #2c7a7b;
+            --teal-light: #e6fffa;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .page-header .subtitle { font-size: 14px; opacity: 0.85; }
+
+        .exemplar-banner {
+            background: linear-gradient(135deg, var(--green), #2f855a);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .exemplar-banner .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .exemplar-banner p { font-size: 14px; line-height: 1.5; }
+
+        /* === SECTION DIVIDERS === */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 28px 0 14px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .section-divider .step-num {
+            background: var(--navy);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section-divider {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy-dark);
+        }
+
+        /* === TRANSITIONS === */
+        .step-transition {
+            text-align: center;
+            padding: 20px 0 8px 0;
+        }
+        .step-arrow {
+            font-size: 28px;
+            color: var(--navy);
+            line-height: 1;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .step-narrative {
+            display: inline-block;
+            max-width: 700px;
+            background: var(--navy);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* === OUTPUT MATRIX (sorting results) === */
+        .output-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .output-matrix thead th {
+            padding: 10px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        .output-matrix thead th.om-source { width: 12%; background: var(--gray-100); }
+        .output-matrix thead th.om-presenting { background: var(--blue-light); color: var(--navy); }
+        .output-matrix thead th.om-predisposing { background: var(--purple-light); color: var(--purple); }
+        .output-matrix thead th.om-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .output-matrix thead th.om-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .output-matrix thead th.om-protective { background: var(--green-light); color: var(--green); }
+
+        .output-matrix tbody td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 12px;
+            line-height: 1.4;
+            vertical-align: top;
+        }
+        .output-matrix tbody td.om-source-cell {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--gray-600);
+            background: var(--gray-50);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .output-matrix tbody td ul { list-style: none; padding: 0; margin: 0; }
+        .output-matrix tbody td li {
+            padding: 2px 0;
+            border-bottom: 1px dotted var(--gray-100);
+        }
+        .output-matrix tbody td li:last-child { border-bottom: none; }
+        .output-matrix tbody td.om-empty {
+            color: var(--gray-300);
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* === SYNTHESIS BLOCKS (read-only) === */
+        .output-synth-block {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .output-synth-header {
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: white;
+        }
+        .output-synth-body {
+            padding: 14px 16px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .output-synth-body p { margin-bottom: 8px; }
+        .output-synth-body p:last-child { margin-bottom: 0; }
+
+        /* Header colors */
+        .hdr-presenting { background: var(--blue-mid); }
+        .hdr-predisposing { background: var(--purple-mid); }
+        .hdr-precipitating { background: var(--amber); }
+        .hdr-perpetuating { background: var(--coral); }
+        .hdr-protective { background: var(--green-mid); }
+        .hdr-targets { background: var(--teal); }
+        .hdr-individual { background: var(--navy); }
+        .hdr-group { background: var(--purple); }
+        .hdr-formulation { background: var(--gray-600); }
+        .hdr-modality { background: linear-gradient(135deg, var(--navy-dark), var(--teal)); }
+
+        /* === SIDE-BY-SIDE === */
+        .side-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* === COLLAPSIBLE REFERENCE === */
+        .ref-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        .ref-toggle .arrow {
+            transition: transform 0.2s;
+            font-size: 12px;
+        }
+        .ref-toggle.open .arrow { transform: rotate(180deg); }
+        .ref-content {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0 0 8px 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .ref-content.open { display: block; }
+
+        /* === VALIDITY CARDS === */
+        .validity-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .validity-card {
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .validity-card.convergent {
+            background: var(--blue-light);
+            border-left: 4px solid var(--blue-mid);
+        }
+        .validity-card.discriminant {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+        }
+        .vc-label {
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .convergent .vc-label { color: var(--navy); }
+        .discriminant .vc-label { color: var(--amber-dark); }
+
+        /* === NAV === */
+        .nav-bar { text-align: center; padding: 16px 0; margin-top: 20px; }
+        .nav-link { color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .nav-link:hover { text-decoration: underline; }
+
+        .btn-pdf {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .btn-pdf:hover { background: #9b2c2c; }
+
+        /* === PRINT === */
+        @media print {
+            body { max-width: 100%; padding: 0; background: white; font-size: 11px; }
+            .exemplar-banner { background: #276749 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .nav-bar, .btn-pdf { display: none; }
+            .output-matrix { page-break-inside: avoid; }
+            .output-synth-block { page-break-inside: avoid; }
+            .output-matrix thead th, .output-synth-header, .step-narrative { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .section-divider { page-break-before: auto; margin-top: 18px; }
+        }
+        @media (max-width: 900px) {
+            body { padding: 12px; font-size: 14px; }
+            .side-grid, .validity-row { grid-template-columns: 1fr; }
+            .output-matrix { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>Part 2a: Treatment Format Selection &mdash; M.T.</h1>
+    <div class="subtitle">NURS 628 &bull; Module 2 &bull; CBT Format Selection: Individual vs. Group</div>
+</div>
+
+<div class="exemplar-banner">
+    <span class="badge">&#9733; Exemplar</span>
+    <p>This is a model response for a different patient &mdash; M.T., a 43-year-old school counselor presenting with depression following her divorce. Use this to see how the same framework you&rsquo;re applying to D.R. works with a different clinical picture. Notice how M.T.&rsquo;s formulation leads to a different format recommendation than you might reach for D.R. &mdash; the framework is the same, but the data drives different conclusions.</p>
+</div>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+    <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; color:var(--navy-dark);">Completed Format Selection</h2>
+        <div style="font-size:12px; color:var(--gray-500);">NURS 628 &bull; Module 2 &bull; Exemplar</div>
+    </div>
+    <button class="btn-pdf" onclick="window.print()">&#128196; Download as PDF</button>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 1: CLINICAL DATA                                    -->
+<!-- ========================================================= -->
+<div class="section-divider"><span class="step-num">1</span> Clinical Data &mdash; M.T.</div>
+
+<div class="ref-toggle" onclick="toggleRef(this)">
+    <span>&#128203; M.T. Clinical Data &mdash; Full Psychiatric Evaluation (click to expand)</span>
+    <span class="arrow">&#9660;</span>
+</div>
+<div class="ref-content" style="font-size:13px; line-height:1.6;">
+    <p><strong>Demographics:</strong> M.T. | 43F (she/her) | School counselor | Self-referred, initial evaluation</p>
+    <p><strong>CC:</strong> &ldquo;I just feel like I&rsquo;m going through the motions. I take care of everyone else but I don&rsquo;t even know what I need anymore.&rdquo;</p>
+    <p><strong>HPI:</strong> 43F presenting for initial evaluation, self-referred. Symptoms began ~18 months ago around divorce with worsening over past 4&ndash;5 months. Reports persistent low mood, anhedonia (dropped book club, gardening, cooking for friends), insomnia onset (&ldquo;lying in bed thinking about everything&rdquo;), ~5&ndash;6 hrs/night. Fatigue, concentration difficulties (&ldquo;read same email three times&rdquo;), guilt centered on divorce and children, feelings of worthlessness tied to identity loss. Mild weight gain (~5 lbs). Ex-husband initiated separation after 16 years; entered new relationship within months &mdash; &ldquo;it made me wonder if I was just... replaceable.&rdquo; Two teenagers in shared custody: daughter (17) acting out, son (15) quiet. Describes longstanding pattern of prioritizing others. Has friend group but declining invitations &mdash; &ldquo;I don&rsquo;t want to be the sad divorced friend.&rdquo; On identity: &ldquo;I&rsquo;ve been someone&rsquo;s wife and someone&rsquo;s mom for 20 years. I don&rsquo;t know who I am outside of that.&rdquo; On needs: quiet for several seconds, then: &ldquo;I honestly don&rsquo;t know. No one&rsquo;s ever really asked me that.&rdquo; Rates distress 6/10. &ldquo;Running on autopilot.&rdquo; No SI.</p>
+    <p><strong>Past Psych Hx:</strong> ~8 sessions individual therapy 6 yrs ago after mother&rsquo;s death (LCSW). Found helpful: &ldquo;She helped me realize I was allowed to grieve.&rdquo; Terminated when &ldquo;felt better&rdquo; &mdash; did not explore deeper patterns. No hospitalizations, no prior meds, no SA/SH history.</p>
+    <p><strong>Developmental:</strong> Oldest of 3. Caretaker role from childhood &mdash; mother worked night shifts, M.T. got siblings ready for school, managed household. &ldquo;I was the one who made sure everyone was okay.&rdquo; &ldquo;I learned pretty early that if everyone around me was okay, then I was okay.&rdquo; Home &ldquo;stable but emotionally quiet &mdash; we didn&rsquo;t really talk about feelings.&rdquo; No abuse, neglect, adversity.</p>
+    <p><strong>Family Psych Hx:</strong> Mother &mdash; depression (&ldquo;bad spells, especially in winter,&rdquo; never treated), died 6 yrs ago. Father &mdash; living, 71, emotionally distant. Sister (39) &mdash; on SSRI. Brother (37) &mdash; no psych hx. No family suicide, SUD, or psychosis.</p>
+    <p><strong>Medical:</strong> Hypothyroidism (levothyroxine 50mcg, well-controlled, TSH 2.1). Appendectomy age 22. Vit D 28 (low-normal). All other labs WNL ~4 months ago.</p>
+    <p><strong>Social:</strong> BA Education, MS School Counseling. Middle school counselor &times;12 yrs. Strong professional identity. Divorced 18 mos, co-parenting functional. Not dating. Friend group exists but underutilized &mdash; stopped book club, declining invitations. Close friend Diane calls weekly, M.T. keeps it short. Father local, relationship surface-level. Sister supportive, out of state. Church &mdash; attends occasionally, &ldquo;sits in back and leaves early.&rdquo;</p>
+    <p><strong>MSE:</strong> Well-groomed, cooperative, warm. Tears briefly re: children/divorce. Incongruent smiling. Voice drops discussing own needs. Mood: &ldquo;Stuck.&rdquo; Affect: sad, mildly constricted, brightens re: work/students. Redirects to others when asked about herself. Linear, goal-directed TP. TC: self-blame, guilt, worthlessness re: identity &mdash; &ldquo;I&rsquo;m not sure I have value outside of being useful to other people.&rdquo; No SI/HI/delusions. Insight fair to good. Judgment good.</p>
+    <p><strong>Screening:</strong> PHQ-9: 16 (moderately severe) | GAD-7: 8 (mild) | AUDIT-C: 2 (low risk)</p>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 2: 5 P's SORTING MATRIX                            -->
+<!-- ========================================================= -->
+<div class="section-divider"><span class="step-num">2</span> 5 P&rsquo;s Sorting Matrix &mdash; Expanded</div>
+
+<table class="output-matrix">
+    <thead>
+        <tr>
+            <th class="om-presenting">Presenting</th>
+            <th class="om-predisposing">Predisposing</th>
+            <th class="om-precipitating">Precipitating</th>
+            <th class="om-perpetuating">Perpetuating</th>
+            <th class="om-protective">Protective</th>
+            <th class="om-source">Source</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li>Mood: &ldquo;Stuck&rdquo;</li>
+                    <li>Affect: sad, constricted</li>
+                    <li>Tears re: children</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Voice drops discussing own needs</li>
+                    <li>Redirects to others when asked about self</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Incongruent smiling</li>
+                    <li>Insight fair to good &mdash; can name pattern but can&rsquo;t change it</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Well-groomed, cooperative</li>
+                    <li>Brightens re: work/students</li>
+                    <li>Judgment good</li>
+                </ul>
+            </td>
+            <td class="om-source-cell">MSE</td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>PHQ-9: 16 (mod. severe)</li>
+                    <li>GAD-7: 8 (mild)</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>AUDIT-C: 2 (low risk)</li>
+                </ul>
+            </td>
+            <td class="om-source-cell">Screening</td>
+        </tr>
+        <tr>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Oldest of 3 &mdash; caretaker from childhood</li>
+                    <li>&ldquo;If everyone around me was okay, then I was okay&rdquo;</li>
+                    <li>Emotionally quiet home &mdash; didn&rsquo;t talk about feelings</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Value tied to usefulness since childhood</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-source-cell">Developmental Hx</td>
+        </tr>
+        <tr>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Mother: depression, untreated</li>
+                    <li>Sister on SSRI</li>
+                    <li>Father emotionally distant</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-source-cell">Family Psych Hx</td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li>&ldquo;Sad divorced friend&rdquo; &mdash; shame about status</li>
+                    <li>Declining invitations</li>
+                    <li>Keeps Diane at arm&rsquo;s length</li>
+                </ul>
+            </td>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Social withdrawal driven by shame</li>
+                    <li>Stopped book club, church</li>
+                    <li>&ldquo;I&rsquo;m the person everyone comes to &mdash; no one thinks I need help&rdquo;</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Friend group exists &mdash; colleagues inviting to yoga</li>
+                    <li>Diane persistent</li>
+                </ul>
+            </td>
+            <td class="om-source-cell">Social Hx</td>
+        </tr>
+        <tr>
+            <td class="om-empty">&mdash;</td>
+            <td class="om-empty">&mdash;</td>
+            <td>
+                <ul>
+                    <li>Divorce (husband-initiated) &mdash; 18 months ago</li>
+                    <li>Ex&rsquo;s new relationship &mdash; &ldquo;replaceable&rdquo;</li>
+                    <li>Identity loss: wife + intact family</li>
+                    <li>Daughter acting out</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Father &mdash; surface-level relationship</li>
+                    <li>Guilt about divorce impact on children</li>
+                    <li>Absorbs daughter&rsquo;s anger without boundaries</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Co-parenting functional</li>
+                    <li>Kids as sense of purpose</li>
+                    <li>Sister supportive (out of state)</li>
+                </ul>
+            </td>
+            <td class="om-source-cell">Family Dynamics</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<!-- SYNTHESIS -->
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-presenting">Presenting &mdash; Updated Synthesis</div>
+    <div class="output-synth-body">Depressed mood &times; 18 months with worsening over last 4&ndash;5 months. PHQ-9 of 16, moderately severe. Core symptoms: anhedonia (dropped book club, gardening, cooking for friends), insomnia (onset &mdash; lies in bed &ldquo;thinking about everything&rdquo;), fatigue, guilt, concentration difficulties, feelings of worthlessness tied to identity and role loss. Mild anxiety (GAD-7: 8) &mdash; appears situational, centered on children and future, rather than generalized. On exam: affect sad and mildly constricted, incongruent smiling, tears when discussing children, voice drops when discussing her own needs. Redirects to others when asked about herself. Mild weight gain (~5 lbs). Appetite fluctuation &mdash; comfort eating.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-predisposing">Predisposing &mdash; Updated Synthesis</div>
+    <div class="output-synth-body">Caretaker role since childhood &mdash; oldest sibling, took over household responsibilities while mother worked nights. &ldquo;I was the one who made sure everyone was okay.&rdquo; Learned early that her value was tied to being useful to others: &ldquo;If everyone around me was okay, then I was okay.&rdquo; Family emotional style was &ldquo;quiet &mdash; we didn&rsquo;t really talk about feelings.&rdquo; Mother had depression (&ldquo;bad spells, especially in winter,&rdquo; never treated). Sister on SSRI. Father emotionally distant. Pattern of prioritizing others&rsquo; emotional needs over her own is longstanding and was largely adaptive until the divorce removed the framework it depended on. Prior grief response after mother&rsquo;s death showed the same pattern &mdash; took care of everyone else before allowing herself to grieve.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-precipitating">Precipitating &mdash; Updated Synthesis</div>
+    <div class="output-synth-body">Divorce 18 months ago &mdash; ex-husband initiated. Loss of identity as &ldquo;wife&rdquo; and intact family structure. Ex-husband entered new relationship quickly &mdash; triggered cognition of being &ldquo;replaceable.&rdquo; Daughter&rsquo;s acting out adds ongoing stress. Accumulated role loss: wife, intact family unit, sense of social belonging with married friend group.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-perpetuating">Perpetuating &mdash; Updated Synthesis</div>
+    <div class="output-synth-body">Social withdrawal driven by shame &mdash; &ldquo;I don&rsquo;t want to be the sad divorced friend.&rdquo; Keeps Diane at arm&rsquo;s length, stopped book club and church attendance. Self-blame rumination about divorce: &ldquo;What could I have done differently.&rdquo; Absorbs daughter&rsquo;s anger without setting boundaries. Continues caretaking at work &mdash; emotionally depleted by end of day with nothing left for herself. Incongruent smiling and redirecting away from own needs in session &mdash; pattern likely occurs in all relationships. Identity remains organized around being useful to others with no alternative self-concept developed. Comfort eating and reduced physical activity may be contributing to low energy.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-protective">Protective &mdash; Updated Synthesis</div>
+    <div class="output-synth-body">Prior positive therapy experience &mdash; knows it can work, willing to engage again. Professional functioning intact &mdash; strong competence and purpose at work. Close friend Diane is persistent and available. Open to both individual and group treatment. Good insight &mdash; can name the pattern even if she can&rsquo;t yet change it. Faith community exists (underutilized). Motivated: &ldquo;I want to do this right.&rdquo; Kids provide a sense of purpose. No substance concerns. No SI &mdash; strong protective factor in children: &ldquo;My kids need me.&rdquo;</div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 3: TREATMENT TARGETS                               -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now use the formulation to identify treatment targets &mdash; first what CBT can address regardless of format, then what each format uniquely offers.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">3</span> Treatment Targets</div>
+
+<!-- 3A: CORE CBT -->
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-targets">3A: Core CBT Treatment Targets</div>
+    <div class="output-synth-body">
+        <p><strong>1. Automatic thoughts around worthlessness and identity.</strong> &ldquo;I&rsquo;m not sure I have value outside of being useful to other people.&rdquo; This is a core cognition driving her depressed mood. CBT can help her identify, examine, and test this belief through thought records, behavioral experiments, and examining the evidence for and against it.</p>
+        <p><strong>2. Behavioral withdrawal and avoidance.</strong> She has stopped book club, church, yoga invitations, and social events. She keeps Diane&rsquo;s calls short. Behavioral activation directly targets the avoidance cycle &mdash; the withdrawal reduces access to positive reinforcement and social support, which deepens the depression.</p>
+        <p><strong>3. Self-blame and ruminative thinking about the divorce.</strong> The &ldquo;what could I have done differently&rdquo; loop is a ruminative pattern that drives bedtime insomnia and maintains depressed mood. CBT can address this through cognitive restructuring &mdash; identifying thinking traps (personalization, &ldquo;should&rdquo; statements) and developing balanced appraisals.</p>
+        <p><strong>4. Caretaking as avoidance of own emotional needs.</strong> Her pattern of focusing on others functions as avoidance of her own emotional experience. This is both behavioral (she fills her time with others&rsquo; needs) and cognitive (she believes she must be useful to have value). CBT can help her recognize this as a pattern, identify the automatic thoughts driving it, and develop alternative responses.</p>
+        <p><strong>5. Sleep onset insomnia.</strong> Driven by nighttime rumination. Cognitive and behavioral strategies targeting sleep (stimulus control, sleep restriction, cognitive strategies for managing bedtime worry) are evidence-based and directly applicable.</p>
+    </div>
+</div>
+
+<!-- 3B & 3C: INDIVIDUAL vs GROUP -->
+<div class="side-grid">
+    <div class="output-synth-block">
+        <div class="output-synth-header hdr-individual">3B: Individual CBT &mdash; What This Format Adds</div>
+        <div class="output-synth-body">
+            <p><strong>Sustained exploration of the caretaking schema.</strong> The belief that &ldquo;if everyone around me was okay, then I was okay&rdquo; appears to be a longstanding pattern rooted in childhood. Individual CBT may provide the sustained, private space needed to trace this from childhood household management through her marriage and career, and to begin developing an alternative self-concept. This kind of work may require a level of safety and depth that individual format supports.</p>
+            <p><strong>Processing divorce-specific cognitions.</strong> The &ldquo;replaceable&rdquo; cognition and self-blame rumination involve painful, private content. Individual CBT would allow uninterrupted exploration of these automatic thoughts through thought records and Socratic questioning without concern about group dynamics or self-censoring.</p>
+            <p><strong>Risk of caretaking pattern activation.</strong> M.T. herself identified this: &ldquo;I&rsquo;d probably spend the whole time worrying about everyone else.&rdquo; Individual format removes the opportunity for this avoidance pattern to activate during session &mdash; though whether that is an advantage or a disadvantage depends on how you think about it (see 3C).</p>
+        </div>
+    </div>
+    <div class="output-synth-block">
+        <div class="output-synth-header hdr-group">3C: Group CBT &mdash; What This Format Adds</div>
+        <div class="output-synth-body">
+            <p><strong>Universality may directly challenge isolation and shame.</strong> M.T.&rsquo;s withdrawal appears driven by the belief that she&rsquo;s &ldquo;the sad divorced friend&rdquo; and that no one thinks of her as someone who needs help. Hearing others share similar struggles could provide behavioral evidence that disconfirms these beliefs &mdash; the kind of corrective experience that individual therapy may not be able to replicate.</p>
+            <p><strong>Caretaking pattern may become visible and addressable in real time.</strong> This may be the critical discriminant consideration. If M.T. starts focusing on other members&rsquo; needs, the pattern is happening live in the room. A skilled group leader could name it, the group could reflect it back, and M.T. would get corrective feedback in the moment rather than talking about the pattern in the abstract. This is the flip side of the 3B concern &mdash; the same pattern that could be a liability in group is also what makes group uniquely suited to address it.</p>
+            <p><strong>Identity reconstruction through social mirror.</strong> M.T.&rsquo;s identity concern (&ldquo;I don&rsquo;t know who I am&rdquo;) appears interpersonal at its core. Group could provide a context where she practices being seen as more than &ldquo;useful&rdquo; &mdash; where she receives without giving, is vulnerable without caretaking, and begins to discover what she needs rather than just what others need.</p>
+            <p><strong>Instillation of hope.</strong> Seeing other members at different stages of working through similar losses could provide motivation and model that recovery is possible &mdash; something she may not be able to access from her current social network given her withdrawal.</p>
+            <p><strong>Interpersonal learning and feedback.</strong> Group members could provide honest feedback about how M.T.&rsquo;s deflection and incongruent smiling affect them &mdash; the kind of feedback she likely does not receive in her current relationships.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 4: CLINICAL FORMULATION                            -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Pull everything together into a clinical formulation &mdash; the same structure you use in 629B.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">4</span> Clinical Formulation</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-formulation">Brief Summary</div>
+    <div class="output-synth-body">M.T. is a 43-year-old female school counselor presenting with an 18-month history of depressive symptoms that have worsened over the past 4&ndash;5 months following her husband-initiated divorce. She reports persistent low mood, anhedonia, insomnia, fatigue, guilt, concentration difficulties, and feelings of worthlessness tied to identity and role loss. PHQ-9 of 16 (moderately severe). She is maintaining employment and parenting responsibilities but describes herself as &ldquo;running on autopilot.&rdquo; Significant social withdrawal appears driven by shame about her post-divorce status.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-formulation">Biological Factors</div>
+    <div class="output-synth-body">Family psychiatric history notable for maternal depression (untreated, &ldquo;bad spells, especially in winter&rdquo;) and sister currently on SSRI. Hypothyroidism present but well-controlled (TSH 2.1 on levothyroxine) &mdash; should be rechecked given current depressive episode, as subclinical changes could be contributing. Vitamin D low-normal (28) &mdash; supplementation may be warranted. No current psychiatric medications. Sleep disruption (5&ndash;6 hours) and mild weight gain may be both contributing to and resulting from the depressive episode. No substance concerns.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-formulation">Psychosocial Factors</div>
+    <div class="output-synth-body">M.T.&rsquo;s presentation appears best understood through the interaction of a longstanding caretaking pattern with an acute loss that dismantled the framework it depended on. She developed a self-concept organized around being useful to others during childhood, when she took on household responsibilities while her mother worked nights. This was largely adaptive for decades &mdash; she built a career in school counseling, a 16-year marriage, and a social network around it. The divorce removed the central structure, and the ex-husband&rsquo;s quick new relationship may have activated the belief that she was &ldquo;replaceable&rdquo; &mdash; which, for someone whose value appears defined by usefulness, would be a particularly painful cognition.
+
+Suspected perpetuating factors include social withdrawal driven by shame, which reduces access to support and positive reinforcement. The caretaking pattern continues at work, leaving her depleted with nothing left for self-reflection. Self-blame rumination appears to maintain depressed mood and may be driving the insomnia. She absorbs her daughter&rsquo;s anger without boundaries. Her identity remains organized around being useful to others with no alternative self-concept developed, and the incongruent smiling and deflection visible on exam likely prevent authentic connection in her current relationships. Available supports exist &mdash; Diane, colleagues, faith community, sister &mdash; but her shame-driven withdrawal keeps them at arm&rsquo;s length.</div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-formulation">Diagnostic Formulation</div>
+    <div class="output-synth-body">Working diagnosis is Major Depressive Disorder, single episode, moderate. M.T. appears to meet DSM-5 criteria with depressed mood, anhedonia, insomnia, fatigue, guilt, concentration difficulty, and worthlessness present for well over two weeks with significant functional impact. PHQ-9 of 16 supports moderately severe severity. Mild anxiety symptoms (GAD-7: 8) are present but appear situational and secondary to the depressive episode rather than representing a comorbid anxiety disorder &mdash; they center specifically on children and future rather than being generalized. Adjustment disorder was considered given the clear precipitant, but symptom severity, duration (18 months), and the degree to which predisposing factors appear to contribute to the presentation support MDD. Persistent depressive disorder could be considered if the symptoms have been more chronic than M.T. reports, but her description of a clear pre-morbid baseline and identifiable onset argues against it. Thyroid should be rechecked to rule out contribution. No evidence of bipolar features, psychotic symptoms, PTSD, or personality disorder, though the caretaking pattern warrants ongoing observation.</div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 5: MODALITY SELECTION                              -->
+<!-- ========================================================= -->
+<div class="step-transition">
+    <span class="step-arrow">&#9660;</span>
+    <span class="step-narrative">Now make the call. Bring treatment targets forward, apply convergent/discriminant reasoning, and recommend a format.</span>
+</div>
+
+<div class="section-divider"><span class="step-num">5</span> Treatment Targets &amp; Modality Selection</div>
+
+<!-- Convergent / Discriminant Framework -->
+<div class="validity-row">
+    <div class="validity-card convergent">
+        <div class="vc-label">Convergent Targets (both formats address)</div>
+        <p>Cognitive restructuring of worthlessness/self-blame, behavioral activation to counter withdrawal, psychoeducation on depression and the cognitive model, sleep-related cognitive strategies. These confirm CBT as the right modality but don&rsquo;t differentiate between individual and group.</p>
+    </div>
+    <div class="validity-card discriminant">
+        <div class="vc-label">Discriminant Targets (favor one format)</div>
+        <p><strong>Favor group:</strong> Universality to counter shame-driven isolation. Real-time visibility of the caretaking pattern. Identity reconstruction through interpersonal feedback. Instillation of hope from peers at different recovery stages.</p>
+        <p><strong>Favor individual:</strong> Sustained schema exploration of childhood caretaking roots. Private processing of divorce-related cognitions.</p>
+    </div>
+</div>
+
+<div class="output-synth-block">
+    <div class="output-synth-header hdr-modality">Treatment Targets &amp; Modality Selection</div>
+    <div class="output-synth-body">
+        <p>M.T.&rsquo;s five core CBT treatment targets are: (1) automatic thoughts around worthlessness and identity, (2) behavioral withdrawal driven by shame, (3) self-blame rumination about the divorce, (4) caretaking as avoidance of her own emotional needs, and (5) sleep onset insomnia. All five appear accessible to CBT intervention. The question is which format &mdash; individual or group &mdash; may be the better initial approach.</p>
+
+        <p>Both individual and group CBT can address cognitive restructuring of worthlessness cognitions and behavioral activation to counter her withdrawal. These are convergent targets &mdash; they support CBT as the right modality but do not help discriminate between formats. The discriminant targets appear to favor group CBT as the initial intervention for M.T., for several reasons.</p>
+
+        <p>First, M.T.&rsquo;s shame-driven social withdrawal appears to be a primary perpetuating factor. She has isolated herself based on the belief that she is &ldquo;the sad divorced friend&rdquo; and that &ldquo;no one thinks of me as someone who needs help.&rdquo; Group CBT could provide a corrective experience that individual therapy may not be able to replicate: hearing others share similar struggles would provide behavioral evidence that disconfirms these beliefs. This maps to Yalom&rsquo;s universality factor, which research consistently identifies as one of the most valued therapeutic experiences in group therapy (Yalom &amp; Leszcz, 2020). For M.T., universality would not just be a nice addition &mdash; it would target the shame that appears to be driving her withdrawal.</p>
+
+        <p>Second, M.T.&rsquo;s caretaking pattern appears to be the thread connecting her predisposing factors to her current perpetuating factors. In individual therapy, this pattern would likely be discussed in the abstract. In group, it may be activated in real time &mdash; and M.T. already suspects this: &ldquo;I&rsquo;d probably spend the whole time worrying about everyone else instead of focusing on myself.&rdquo; This self-awareness may actually be an indicator of readiness. If the pattern activates in group, it becomes observable, nameable, and addressable in the moment. A skilled group leader could invite M.T. to notice what she is doing, and group members could reflect back how her deflection affects them &mdash; the kind of feedback she likely does not receive in her current relationships. This corrective interpersonal experience is identified as a primary mechanism of change in group therapy (Bieling et al., 2006) and may represent something individual CBT cannot provide in the same way.</p>
+
+        <p>Third, M.T.&rsquo;s identity concern appears interpersonal at its core. She does not know who she is outside of being useful to others. Group could provide a context where she practices being seen as more than &ldquo;useful&rdquo; &mdash; where she receives support, is vulnerable, and begins to discover what she needs. This maps to what Yalom describes as interpersonal learning and group cohesiveness &mdash; the sense of belonging and acceptance that can become a laboratory for developing new ways of relating.</p>
+
+        <p>The discriminant targets favoring individual CBT &mdash; sustained schema exploration and private divorce processing &mdash; are clinically important. However, they may be better suited as a secondary or concurrent intervention once M.T. has begun to re-engage socially and has experienced the corrective interpersonal feedback that group provides. The schema work in particular may be more meaningful once she has had the lived experience of being valued for something other than caretaking.</p>
+
+        <p><strong>Recommendation:</strong> Group CBT as the initial intervention, with consideration for adding individual CBT concurrently or sequentially for targeted schema work. M.T. appears to have multiple indicators of group readiness: openness to the format, capacity for self-reflection about her own patterns, good interpersonal skills, motivation, and a presentation (moderate depression without SI, personality disorder, or active substance use) that would be appropriate for outpatient group. The group format appears to most directly target her primary perpetuating factors &mdash; shame-driven isolation, caretaking avoidance, and identity loss &mdash; through mechanisms that individual therapy alone may not provide.</p>
+    </div>
+</div>
+
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+    <a href="part2a-format-selection.html" class="nav-link">&larr; Return to Your Assignment (D.R.)</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="5ps-exemplar.html" class="nav-link">Part 1 Exemplar (D.R.)</a>
+    &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+    <a href="case-study.html" class="nav-link">D.R. Case Study</a>
+</div>
+
+<script>
+function toggleRef(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

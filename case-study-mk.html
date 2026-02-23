@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Case Study — M.K.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .doc-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--blue-mid) 100%);
+            color: white;
+            padding: 28px 32px;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+        .doc-header::after {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--amber), var(--blue-mid), var(--green-mid));
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+        }
+        .doc-header .course-tag {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+        .doc-header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.65em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .doc-header .subtitle {
+            font-size: 1.05em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* === DOCUMENT BODY === */
+        .doc-body {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+
+        /* === DEMOGRAPHICS BAR === */
+        .demographics {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 14px 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 24px;
+        }
+        .demo-item {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        .demo-item strong {
+            color: var(--gray-700);
+            font-weight: 600;
+        }
+
+        /* === SECTION DIVIDERS === */
+        .section-divider {
+            padding: 12px 28px;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .section-divider.subjective {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+        }
+        .section-divider.objective {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+        }
+
+        /* === SUBSECTIONS === */
+        .subsection {
+            padding: 18px 28px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .subsection:last-child {
+            border-bottom: none;
+        }
+        .subsection-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--navy);
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--gray-200);
+            display: inline-block;
+        }
+        .subsection-label.obj-label {
+            color: var(--green);
+        }
+        .subsection p {
+            margin-bottom: 10px;
+        }
+        .subsection p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* === CLINICAL TEXT STYLES === */
+        .patient-quote {
+            color: var(--gray-700);
+            font-style: italic;
+        }
+        .clinical-note {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        /* === ROS GRID === */
+        .ros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .ros-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .ros-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .ros-item:nth-last-child(1),
+        .ros-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .ros-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+        .ros-pos {
+            color: var(--coral);
+        }
+        .ros-neg {
+            color: var(--gray-500);
+        }
+
+        /* === MSE TABLE === */
+        .mse-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .mse-table th {
+            background: var(--green);
+            color: var(--white);
+            text-align: left;
+            padding: 8px 14px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .mse-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .mse-table tr:last-child td {
+            border-bottom: none;
+        }
+        .mse-table tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+        .mse-domain {
+            font-weight: 600;
+            color: var(--green);
+            white-space: nowrap;
+            width: 140px;
+        }
+
+        /* === PHYSICAL EXAM === */
+        .pe-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0;
+            margin-top: 10px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+        .pe-label {
+            padding: 10px 14px;
+            font-weight: 600;
+            color: var(--green);
+            background: var(--green-light);
+            border-bottom: 1px solid var(--gray-200);
+            border-right: 1px solid var(--gray-200);
+        }
+        .pe-value {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .pe-grid .pe-label:nth-last-child(2),
+        .pe-grid .pe-value:last-child {
+            border-bottom: none;
+        }
+
+        /* === MED ROS === */
+        .med-ros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .med-ros-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .med-ros-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .med-ros-item:nth-last-child(1),
+        .med-ros-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .med-ros-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        /* === SUBSTANCE TABLE === */
+        .substance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .substance-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .substance-item:nth-child(odd) {
+            border-right: 1px solid var(--gray-200);
+        }
+        .substance-item:nth-last-child(1),
+        .substance-item:nth-last-child(2) {
+            border-bottom: none;
+        }
+        .substance-category {
+            font-weight: 600;
+            color: var(--gray-700);
+            display: block;
+            margin-bottom: 2px;
+            font-size: 13px;
+        }
+
+        /* === NAVIGATION === */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
+        }
+        .nav-link.disabled {
+            background: var(--gray-300);
+            pointer-events: none;
+        }
+
+        /* === CONSENT BANNER === */
+        .consent-banner {
+            background: var(--amber-light);
+            border-left: 4px solid var(--amber);
+            padding: 10px 28px;
+            font-size: 13px;
+            color: var(--amber-dark);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        /* === PRINT === */
+        @media print {
+            body { background: white; padding: 0; font-size: 12px; }
+            .doc-header { break-after: avoid; }
+            .nav-bar { display: none; }
+            .subsection { break-inside: avoid; }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 700px) {
+            body { padding: 12px; }
+            .doc-header { padding: 20px; }
+            .subsection { padding: 14px 18px; }
+            .demographics { padding: 12px 18px; }
+            .ros-grid, .med-ros-grid, .substance-grid { grid-template-columns: 1fr; }
+            .ros-item, .med-ros-item, .substance-item { border-right: none !important; }
+            .ros-item:nth-last-child(1) { border-bottom: none; }
+            .pe-grid { grid-template-columns: 100px 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+    <div class="course-tag">NURS 628 &bull; Introduction to Behavioral Health Therapy Across the Lifespan</div>
+    <h1>Psychiatric Evaluation: M.K.</h1>
+    <div class="subtitle">Initial Evaluation &mdash; New Patient</div>
+</div>
+
+<div class="doc-body">
+
+    <!-- CONSENT -->
+    <div class="consent-banner">
+        <strong>Consent obtained.</strong> Patient provided informed consent for evaluation and treatment. Limits of confidentiality reviewed.
+    </div>
+
+    <!-- DEMOGRAPHICS -->
+    <div class="demographics">
+        <div class="demo-item"><strong>Patient:</strong> M.K.</div>
+        <div class="demo-item"><strong>Age:</strong> 32</div>
+        <div class="demo-item"><strong>DOB:</strong> 09/03/1993</div>
+        <div class="demo-item"><strong>Sex:</strong> Female</div>
+        <div class="demo-item"><strong>Pronouns:</strong> She/Her</div>
+        <div class="demo-item"><strong>Marital Status:</strong> Single</div>
+        <div class="demo-item"><strong>Date of Eval:</strong> 02/18/2026</div>
+        <div class="demo-item"><strong>Setting:</strong> Outpatient psychiatric clinic</div>
+        <div class="demo-item"><strong>Informant:</strong> Patient (self)</div>
+        <div class="demo-item"><strong>Reliability:</strong> Appears reliable, cooperative after initial guardedness</div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SUBJECTIVE -->
+    <!-- ============================================ -->
+    <div class="section-divider subjective">Subjective</div>
+
+    <!-- CHIEF COMPLAINT -->
+    <div class="subsection">
+        <div class="subsection-label">Chief Concern</div>
+        <p><span class="patient-quote">&ldquo;I guess I need to get my shit together. They told me at the crisis center I had to follow up.&rdquo;</span></p>
+    </div>
+
+    <!-- HPI -->
+    <div class="subsection">
+        <div class="subsection-label">History of Present Illness</div>
+        <p>M.K. is a 32-year-old female presenting for initial outpatient psychiatric evaluation following a crisis center visit 5 days ago. Patient was brought to the crisis center by a friend after becoming intoxicated and having what she describes as a &ldquo;breakdown&rdquo; &mdash; crying uncontrollably, stating she &ldquo;couldn&rsquo;t do this anymore,&rdquo; and cutting herself. She was evaluated, medically cleared, and discharged with outpatient follow-up instructions.</p>
+
+        <p>Patient reports she has been <span class="patient-quote">&ldquo;struggling for a long time&rdquo;</span> but that things have worsened significantly over the past 3&ndash;4 months following the end of an 8-month romantic relationship. She describes the breakup as sudden &mdash; <span class="patient-quote">&ldquo;He said I was too much.&rdquo;</span> She reports difficulty functioning at work since, calling in sick frequently, and isolating from friends. She rates current distress at 8/10.</p>
+
+        <p>She describes her mood as <span class="patient-quote">&ldquo;all over the place&rdquo;</span> since the breakup. She reports she has reached out to friends for support but is currently in a fight with her closest friend as well. She describes a <span class="patient-quote">&ldquo;hollow feeling, like something is missing and I don&rsquo;t even know what it is&rdquo;</span> that has been present <span class="patient-quote">&ldquo;as long as I can remember&rdquo;</span> and intensifies when she is alone. She reports using alcohol and going out to relieve it, but states she gets angry when she drinks.</p>
+
+        <p>Aggravating factors: interpersonal conflict, perceived rejection, being alone in the evenings, alcohol use. Relieving factors: contact with best friend, being busy at work, exercise when she can motivate. Timing: symptoms worst in evenings and unstructured time &mdash; <span class="patient-quote">&ldquo;If I&rsquo;m busy I&rsquo;m okay. It&rsquo;s when I stop that everything hits.&rdquo;</span></p>
+    </div>
+
+    <!-- PAST PSYCHIATRIC HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Past Psychiatric History</div>
+        <p><strong>Past psychiatric diagnoses:</strong> Reports she was diagnosed with depression <span class="patient-quote">&ldquo;a few years ago&rdquo;</span> by her PCP. Reports she was also told she has ADHD, though she is unsure who diagnosed this &mdash; <span class="patient-quote">&ldquo;I think it was a nurse practitioner at an urgent care or something.&rdquo;</span> Reports that someone told her she is bipolar but she cannot remember who or when &mdash; <span class="patient-quote">&ldquo;Someone said that to me once but I don&rsquo;t remember if it was a doctor or just someone I was dating.&rdquo;</span></p>
+
+        <p><strong>Treatment history:</strong> Reports she has tried therapy <span class="patient-quote">&ldquo;a couple of times&rdquo;</span> but never attended beyond the first one or two appointments &mdash; <span class="patient-quote">&ldquo;I&rsquo;d make the appointment and then just not go back.&rdquo;</span> Denies completion of any psychotherapy course. Reports she considered seeing a therapist after the sexual assault at age 15 but <span class="patient-quote">&ldquo;my mom didn&rsquo;t follow through with making the appointment.&rdquo;</span></p>
+
+        <p><strong>Medication history:</strong></p>
+        <p style="margin-left: 16px; font-size: 14px;">
+            <strong>Escitalopram</strong> &mdash; prescribed by PCP, dose and duration unclear. Reports she <span class="patient-quote">&ldquo;felt numb on it&rdquo;</span> and discontinued.<br>
+            <strong>Fluoxetine</strong> &mdash; prescribed by PCP, took for approximately 3 months. Reports she felt like <span class="patient-quote">&ldquo;it did nothing.&rdquo;</span> Discontinued.<br>
+            <strong>Venlafaxine</strong> &mdash; prescribed by a previous psychiatric provider, dose unclear. Reports it <span class="patient-quote">&ldquo;upset my stomach too much&rdquo;</span> and she stopped it. Duration unclear.<br>
+            <strong>Lamotrigine</strong> &mdash; prescribed by previous psychiatric provider. Reports she felt like it helped &mdash; <span class="patient-quote">&ldquo;things were a little more even&rdquo;</span> &mdash; but her mood was <span class="patient-quote">&ldquo;still frequently up and down.&rdquo;</span> Reports she stopped going to that prescriber because <span class="patient-quote">&ldquo;I didn&rsquo;t like her&rdquo;</span> and is not currently taking it.<br>
+            Not currently on any psychiatric medications.
+        </p>
+
+        <p><strong>Psychiatric hospitalizations:</strong> Denies prior psychiatric hospitalizations. Reports the crisis center visit 5 days ago (described in HPI) &mdash; evaluated, medically cleared, discharged same day.</p>
+
+        <p><strong>Self-harm history:</strong> Reports a pattern of cutting on her upper thighs that began in her early 20s, stopped for <span class="patient-quote">&ldquo;a couple of years,&rdquo;</span> and resumed approximately 4 months ago following the breakup. Denies prior suicide attempts.</p>
+
+        <p><strong>Prior ED visits:</strong> Reports one ED visit approximately 2 years ago for a <span class="patient-quote">&ldquo;panic attack&rdquo;</span> &mdash; evaluated, given lorazepam, discharged with recommendation to follow up with PCP. Did not follow up.</p>
+    </div>
+
+    <!-- PSYCHIATRIC ROS -->
+    <div class="subsection">
+        <div class="subsection-label">Psychiatric Review of Systems</div>
+        <div class="ros-grid">
+            <div class="ros-item">
+                <span class="ros-category">Neurodevelopmental Symptoms</span>
+                <span class="ros-pos">Endorses: difficulty with attention and concentration over the past 3&ndash;4 months, difficulty concentrating at work, worries about job performance. Reports she was <span class="patient-quote">&ldquo;always kind of scattered&rdquo;</span> but managed in school until high school.</span><br>
+                <span class="ros-neg">Denies: childhood symptoms of hyperactivity. Denies learning disabilities.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Psychotic Symptoms</span>
+                <span class="ros-pos">Endorses: occasional feeling of <span class="patient-quote">&ldquo;people are looking at me&rdquo;</span> when she enters a room, particularly at work &mdash; states <span class="patient-quote">&ldquo;I know it&rsquo;s probably not true but I can&rsquo;t shake the feeling.&rdquo;</span> Reports more prominent when stressed.</span><br>
+                <span class="ros-neg">Denies: auditory or visual hallucinations, paranoid ideation, delusions, ideas of reference, thought broadcasting.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Depressive Symptoms</span>
+                <span class="ros-pos">Endorses: depressed mood most days over the past 3&ndash;4 months, decreased enjoyment in painting, running, and socializing, fatigue and low energy, difficulty concentrating, feelings of worthlessness &mdash; <span class="patient-quote">&ldquo;I&rsquo;m the common denominator in everything that goes wrong.&rdquo;</span> Endorses guilt about the self-harm and about <span class="patient-quote">&ldquo;being a burden.&rdquo;</span></span><br>
+                <span class="ros-neg">Denies: persistent hopelessness &mdash; <span class="patient-quote">&ldquo;Sometimes I think things will never change, but then I have a good day and I think maybe they will.&rdquo;</span></span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Bipolar Symptoms</span>
+                <span class="ros-pos">Endorses: periods lasting 1&ndash;3 days where she feels <span class="patient-quote">&ldquo;really good&rdquo;</span> &mdash; energetic, sleeping less (5&ndash;6 hours instead of usual 8), spending money impulsively, more social and talkative. States these often follow a positive interpersonal event &mdash; someone showing interest, making up after a fight &mdash; and are typically followed by a <span class="patient-quote">&ldquo;crash.&rdquo;</span> States these feel <span class="patient-quote">&ldquo;like the real me is coming back.&rdquo;</span> Reports these patterns have occurred for <span class="patient-quote">&ldquo;years.&rdquo;</span></span><br>
+                <span class="ros-neg">Denies: sustained periods of elevated or irritable mood lasting a week or more. Denies grandiosity. Denies any period where the mood change caused hospitalization or inability to function.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Anxiety Symptoms</span>
+                <span class="ros-pos">Endorses: chronic worry, primarily about relationships and being <span class="patient-quote">&ldquo;left.&rdquo;</span> Endorses restlessness. Endorses muscle tension in shoulders and neck. Reports one panic-like episode approximately 2 years ago (ED visit). Endorses avoidance of parties and <span class="patient-quote">&ldquo;situations where I feel out of control.&rdquo;</span></span><br>
+                <span class="ros-neg">Denies: recurrent panic attacks since ED visit. Denies agoraphobia. Denies specific phobias.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Sleep / Fatigue Symptoms</span>
+                <span class="ros-pos">Endorses: difficulty with sleep onset &mdash; <span class="patient-quote">&ldquo;takes me an hour or more.&rdquo;</span> Middle-of-night waking 3&ndash;4 times per week. Nightmares &mdash; sometimes involving parents fighting, sometimes described as <span class="patient-quote">&ldquo;just a feeling of being trapped.&rdquo;</span> Nightmares present on and off since adolescence, increased over past several months. Daytime fatigue. Average sleep duration 5&ndash;6 hours most nights.</span><br>
+                <span class="ros-neg">Denies: hypersomnia.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">OCD Symptoms</span>
+                <span class="ros-neg">Denies: obsessive thoughts, compulsive rituals, excessive checking, counting, or ordering.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Trauma Symptoms</span>
+                <span class="ros-pos">Endorses: occasional intrusive memories of sexual assault at age 15, particularly during intimate situations. Nightmares with themes of parental conflict and feeling trapped. Avoidance of parties and uncontrolled social situations. Difficulty trusting others, particularly romantic partners. Emotional numbing &mdash; <span class="patient-quote">&ldquo;sometimes I just go blank and can&rsquo;t feel anything.&rdquo;</span></span><br>
+                <span class="ros-neg">Denies: persistent hypervigilance to environmental threats. Denies exaggerated startle response. Denies flashbacks (distinct from intrusive memories).</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Eating Symptoms</span>
+                <span class="ros-pos">Endorses: decreased appetite.</span><br>
+                <span class="ros-neg">Denies: excessive concern about weight or body image. Denies binge eating, purging, restriction, or compensatory behaviors.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Neurocognitive Symptoms</span>
+                <span class="ros-neg">Denies: changes in memory beyond concentration difficulty. Denies word retrieval difficulty, apraxia, or agnosia.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Personality / Relationship Symptoms</span>
+                <span class="ros-pos">Endorses: difficulty maintaining stable relationships. Fear of abandonment &mdash; <span class="patient-quote">&ldquo;I&rsquo;m always waiting for people to leave.&rdquo;</span> Rapid shifts in how she views others &mdash; <span class="patient-quote">&ldquo;Someone can go from being the most important person in my life to someone I never want to see again, and I know that&rsquo;s not normal.&rdquo;</span> Reports feeling <span class="patient-quote">&ldquo;empty&rdquo;</span> most of the time. Difficulty with sense of identity. Intense anger in close relationships.</span>
+            </div>
+            <div class="ros-item">
+                <span class="ros-category">Substance / Addictive Symptoms</span>
+                <span class="ros-pos">Endorses: increased alcohol use over the past 3&ndash;4 months (see substance history). Impulsive online spending during <span class="patient-quote">&ldquo;good&rdquo;</span> periods.</span><br>
+                <span class="ros-neg">Denies: cravings. Denies excessive gambling or sexual behaviors.</span>
+            </div>
+            <div class="ros-item" style="grid-column: 1 / -1; border-right: none;">
+                <span class="ros-category">Safety</span>
+                <span class="ros-pos">Endorses: currently cutting 1&ndash;2 times per week using a razor blade, typically in the evening when alone. Describes it as providing rapid relief &mdash; <span class="patient-quote">&ldquo;It&rsquo;s like the pressure just releases. I know it&rsquo;s bad but it&rsquo;s the only thing that works fast.&rdquo;</span> Denies cutting with intent to die. Endorses passive death wish &mdash; <span class="patient-quote">&ldquo;Sometimes I think everyone would be better off without me, but I don&rsquo;t actually want to die.&rdquo;</span></span><br>
+                <span class="ros-neg">Denies: active suicidal ideation, plan, or intent. Denies homicidal ideation. Reports no access to firearms.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVELOPMENTAL HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Developmental History</div>
+        <p><strong>Birth:</strong> Reports born at term via normal vaginal delivery. Denies knowledge of complications.</p>
+        <p><strong>Milestones:</strong> States milestones were met at appropriate times per her mother.</p>
+        <p><strong>Learning:</strong> Denies learning disorders. Reports she did well academically through middle school but grades declined in high school, which she attributes to social difficulties and <span class="patient-quote">&ldquo;not caring anymore.&rdquo;</span> Reports she was described by teachers as <span class="patient-quote">&ldquo;sensitive&rdquo;</span> and <span class="patient-quote">&ldquo;reactive.&rdquo;</span> Reports one suspension in 10th grade for a verbal altercation with another student.</p>
+        <p><strong>Home environment:</strong> Reports a childhood history of significant parental conflict &mdash; frequent loud arguments, objects thrown, her mother leaving for days at a time and then returning. States, <span class="patient-quote">&ldquo;I never knew which version of my parents I was going to get.&rdquo;</span> Reports her father was <span class="patient-quote">&ldquo;emotionally unavailable&rdquo;</span> and her mother was <span class="patient-quote">&ldquo;either all over me or completely checked out.&rdquo;</span> States she was not physically abused but describes an incident at age 14 where her mother told her <span class="patient-quote">&ldquo;I wish I never had you&rdquo;</span> during an argument, which the patient reports was <span class="patient-quote">&ldquo;the worst thing anyone has ever said to me.&rdquo;</span></p>
+        <p><strong>Trauma:</strong> Reports that at age 15 she was sexually assaulted by an older peer at a party. She told her mother, who responded, <span class="patient-quote">&ldquo;What did you expect?&rdquo;</span> Patient states she has never discussed this with anyone else. Reports occasional intrusive memories of the assault, particularly in intimate situations, and avoidance of parties and <span class="patient-quote">&ldquo;situations where I&rsquo;m not in control.&rdquo;</span></p>
+    </div>
+
+    <!-- FAMILY PSYCHIATRIC HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Family Psychiatric History</div>
+        <p><strong>Mother:</strong> Patient reports her mother has <span class="patient-quote">&ldquo;mood swings&rdquo;</span> and was prescribed an antidepressant by her PCP at some point but <span class="patient-quote">&ldquo;stopped taking it because she said it made her feel flat.&rdquo;</span> No formal psychiatric diagnosis to the patient&rsquo;s knowledge. Reports mother also takes <span class="patient-quote">&ldquo;something for sleep &mdash; maybe trazodone.&rdquo;</span></p>
+        <p><strong>Father:</strong> Patient reports father <span class="patient-quote">&ldquo;definitely drinks too much&rdquo;</span> but has never been treated for alcohol use. No psychiatric diagnosis to patient&rsquo;s knowledge. Reports father&rsquo;s brother (paternal uncle) was diagnosed with bipolar disorder and was hospitalized at least once <span class="patient-quote">&ldquo;for a manic episode.&rdquo;</span></p>
+        <p><strong>Maternal grandmother:</strong> Reports history of <span class="patient-quote">&ldquo;nervous breakdown&rdquo;</span> in her 40s; limited details available.</p>
+        <p><strong>Sibling:</strong> Younger brother, age 28 &mdash; no known psychiatric history.</p>
+        <p><strong>Suicide/violence:</strong> Denies family history of completed suicide. Reports maternal aunt made a suicide attempt <span class="patient-quote">&ldquo;a long time ago &mdash; pills&rdquo;</span> but survived. Denies family history of violence toward others beyond the parental conflict described.</p>
+    </div>
+
+    <!-- MEDICAL HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Medical History</div>
+        <p>No significant medical history. Reports occasional tension headaches. Reports one ED visit 2 years ago for <span class="patient-quote">&ldquo;panic attack&rdquo;</span> (described in past psychiatric history). Last physical exam with PCP 2 weeks ago &mdash; patient reports she was told <span class="patient-quote">&ldquo;everything looked fine.&rdquo;</span> Denies history of seizures, head injury, thyroid disorder, or chronic medical conditions. Reports irregular menstrual cycles &mdash; <span class="patient-quote">&ldquo;they&rsquo;ve always been irregular.&rdquo;</span></p>
+    </div>
+
+    <!-- SOCIAL HISTORY -->
+    <div class="subsection">
+        <div class="subsection-label">Social History</div>
+        <p><strong>Education:</strong> Completed high school. Attended community college for one year studying hospitality management but withdrew &mdash; <span class="patient-quote">&ldquo;I couldn&rsquo;t focus and I was going through a breakup.&rdquo;</span> Has not returned.</p>
+        <p><strong>Employment:</strong> Currently employed full-time as a restaurant manager for the past 2 years. Reports this is the longest she has held a single job. Prior employment includes multiple food service positions, each lasting 6 months to 1 year. Reports recent work performance issues including calling in sick 4 times in the past month.</p>
+        <p><strong>Relationships:</strong> Currently single. Relationship pattern described in HPI. Reports few close friendships &mdash; identifies one best friend, <span class="patient-quote">&ldquo;Jess,&rdquo;</span> known since high school. Reports losing touch with several friends over the years due to conflict or <span class="patient-quote">&ldquo;just drifting.&rdquo;</span></p>
+        <p><strong>Legal:</strong> Denies any legal history, arrests, charges, or pending legal matters.</p>
+        <p><strong>Safety:</strong> Active self-harm as described. Lives alone in an apartment. Reports she feels physically safe in her home. Denies IPV. Denies access to firearms.</p>
+    </div>
+
+    <!-- SUPPORT SYSTEM -->
+    <div class="subsection">
+        <div class="subsection-label">Support System / Strengths / Hobbies</div>
+        <p><strong>Support system:</strong> Best friend Jess, whom she sees 1&ndash;2 times per week (currently in conflict). Mother &mdash; relationship is complicated; they talk on the phone <span class="patient-quote">&ldquo;most weeks&rdquo;</span> but patient describes it as <span class="patient-quote">&ldquo;draining.&rdquo;</span> Reports she is not currently close with her father. Younger brother lives out of state &mdash; they text occasionally.</p>
+        <p><strong>Hobbies:</strong> Enjoys painting &mdash; <span class="patient-quote">&ldquo;I used to paint a lot but I haven&rsquo;t picked it up in months.&rdquo;</span> Enjoys running &mdash; reports she was running 3&ndash;4 times per week until the breakup, currently <span class="patient-quote">&ldquo;maybe once a week if that.&rdquo;</span> Reports watching TV and scrolling social media as current primary activities.</p>
+        <p><strong>&ldquo;Go to&rdquo; person:</strong> Jess.</p>
+        <p><strong>Spiritual practices:</strong> Denies current spiritual or religious practice. States she attended church growing up but <span class="patient-quote">&ldquo;it didn&rsquo;t stick.&rdquo;</span></p>
+        <p><strong>Strengths:</strong> Employed and working full-time. Maintained one long-term friendship. Able to articulate her experiences. Presented for treatment following crisis center recommendation.</p>
+    </div>
+
+    <!-- SUBSTANCE USE -->
+    <div class="subsection">
+        <div class="subsection-label">Substance Use History</div>
+        <div class="substance-grid">
+            <div class="substance-item">
+                <span class="substance-category">Alcohol</span>
+                Reports drinking 3&ndash;5 drinks on weekends, increased to 4&ndash;6 drinks 2&ndash;3 times per week over the past 3&ndash;4 months. Drinks wine and <span class="patient-quote">&ldquo;whatever my friends are having.&rdquo;</span> Reports drinking alone at home on weeknights <span class="patient-quote">&ldquo;a couple times a week now.&rdquo;</span> Last use: 2 days ago (3 glasses of wine alone at home). Denies morning drinking, blackouts, or withdrawal symptoms. Reports drinking <span class="patient-quote">&ldquo;to take the edge off&rdquo;</span> and to fall asleep. CAGE: 1/4 positive (reports feeling she should cut down).
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">THC</span>
+                Reports occasional use, <span class="patient-quote">&ldquo;maybe twice a month, just gummies to relax.&rdquo;</span> Last use approximately 1 week ago.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Stimulants</span>
+                Denies use.
+            </div>
+            <div class="substance-item">
+                <span class="substance-category">Opiates</span>
+                Denies use.
+            </div>
+            <div class="substance-item" style="grid-column: 1 / -1; border-right: none;">
+                <span class="substance-category">Other</span>
+                Reports one prior use of MDMA approximately 3 years ago. No other illicit drug use.
+            </div>
+        </div>
+    </div>
+
+    <!-- ALLERGIES -->
+    <div class="subsection">
+        <div class="subsection-label">Allergies</div>
+        <p><strong>Medication allergies:</strong> Penicillin &mdash; rash as a child.</p>
+        <p><strong>Food allergies:</strong> None reported.</p>
+    </div>
+
+    <!-- CURRENT MEDICATIONS -->
+    <div class="subsection">
+        <div class="subsection-label">Current Medications</div>
+        <p>Ibuprofen 400 mg PO PRN for headaches &mdash; uses approximately 2&ndash;3 times per week. Reports adequate relief. No side effects.</p>
+        <p>Oral contraceptive (combination pill) &mdash; daily &times; 3 years. No concerns.</p>
+        <p>No prescription psychiatric medications at this time.</p>
+        <p>No OTC supplements.</p>
+    </div>
+
+    <!-- MEDICAL ROS -->
+    <div class="subsection">
+        <div class="subsection-label">Medical Review of Systems</div>
+        <div class="med-ros-grid">
+            <div class="med-ros-item">
+                <span class="med-ros-category">Constitutional</span>
+                Endorses: fatigue, low energy. Denies: fever, night sweats, unintentional weight change.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">HEENT</span>
+                Endorses: tension headaches 2&ndash;3 times per week, bilateral temporal. Denies: vision changes, hearing changes, sore throat.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Skin</span>
+                Endorses: healing superficial lacerations on bilateral upper thighs (self-inflicted, described in past psychiatric history). Denies: rash, new lesions elsewhere, bruising.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Respiratory</span>
+                Denies: shortness of breath, cough, wheezing.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Cardiovascular</span>
+                Endorses: occasional palpitations during periods of intense distress. Denies: chest pain, edema, syncope.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Gastrointestinal</span>
+                Endorses: decreased appetite, intermittent nausea most prominent in the mornings. Denies: vomiting, blood in stool, constipation, diarrhea.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Musculoskeletal</span>
+                Endorses: tension in neck and shoulders. Denies: joint pain, swelling.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Neurological</span>
+                Endorses: difficulty concentrating. Endorses occasional <span class="patient-quote">&ldquo;spacey&rdquo;</span> episodes where she feels <span class="patient-quote">&ldquo;disconnected&rdquo;</span> or <span class="patient-quote">&ldquo;like I&rsquo;m watching myself from outside&rdquo;</span> &mdash; reports these occur during or after intense emotional distress and typically last minutes to an hour. Denies: seizures, tremor, numbness, tingling.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Endocrine</span>
+                Reports irregular menses. Denies: heat/cold intolerance, polydipsia, polyuria.
+            </div>
+            <div class="med-ros-item">
+                <span class="med-ros-category">Genitourinary</span>
+                Endorses: decreased libido over the past 3&ndash;4 months. Denies: urinary complaints.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- OBJECTIVE -->
+    <!-- ============================================ -->
+    <div class="section-divider objective">Objective</div>
+
+    <!-- PHYSICAL EXAM -->
+    <div class="subsection">
+        <div class="subsection-label obj-label">Physical Exam</div>
+        <div class="pe-grid">
+            <div class="pe-label">Vitals</div>
+            <div class="pe-value">BP 118/74 mmHg &bull; HR 82 bpm &bull; RR 16 &bull; Temp 98.2&deg;F &bull; SpO&#8322; 99% RA &bull; BMI 22.1</div>
+            <div class="pe-label">General</div>
+            <div class="pe-value">Appears stated age. Thin build. Alert, in no acute distress.</div>
+            <div class="pe-label">Head &amp; Neck</div>
+            <div class="pe-value">Normocephalic, atraumatic. Neck supple, no visible thyromegaly. No cervical lymphadenopathy. No facial asymmetry.</div>
+            <div class="pe-label">Skin</div>
+            <div class="pe-value">Multiple superficial healing linear lacerations observed on bilateral upper thighs (patient showed examiner at request). Wounds in various stages of healing &mdash; some appear days old, some 1&ndash;2 weeks old. No signs of infection. No lacerations on forearms, wrists, or other exposed skin. No bruising. No jaundice.</div>
+            <div class="pe-label">Respiratory</div>
+            <div class="pe-value">No labored breathing. No acute respiratory distress.</div>
+            <div class="pe-label">Neurological</div>
+            <div class="pe-value">Cranial nerves II&ndash;XII grossly intact. Gait steady, symmetric. No tremor. No involuntary movements.</div>
+        </div>
+    </div>
+
+    <!-- MENTAL STATUS EXAM -->
+    <div class="subsection">
+        <div class="subsection-label obj-label">Mental Status Exam</div>
+        <table class="mse-table">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Findings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mse-domain">Appearance</td>
+                    <td>32-year-old female who appears stated age. Thin build. Dressed in dark jeans and oversized sweater; clothing clean but somewhat disheveled &mdash; sleeves pulled over hands throughout the interview. Hair in messy bun. Minimal makeup. Small tattoo visible on left wrist (script text). Multiple ear piercings bilaterally. Adequate hygiene.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Behavior</td>
+                    <td>Initially guarded &mdash; arms crossed, limited spontaneous speech. Gradually engaged over the course of the interview. Became tearful multiple times when discussing the breakup and the assault &mdash; actively wiped eyes and attempted to compose herself, stating <span class="patient-quote">&ldquo;sorry, I don&rsquo;t usually do this.&rdquo;</span> Became notably more animated and spoke more quickly when describing the <span class="patient-quote">&ldquo;good&rdquo;</span> periods. Fidgeted throughout &mdash; picked at cuticles, adjusted sleeves, shifted in chair. Eye contact variable &mdash; good when discussing factual details, avoidant during emotionally laden content, intermittently intense when describing anger in relationships.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Speech</td>
+                    <td>Rate variable &mdash; normal at baseline, accelerated when emotionally activated (particularly describing anger and relationship conflict), slowed when discussing the assault and emptiness. Volume soft at baseline, increased during emotionally charged content. Occasional profanity when recounting relationship conflict. Articulate. No pressured speech. No poverty of speech.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Neurodevelopmental</td>
+                    <td>Attention adequate for the interview, though patient self-reports concentration difficulty. Maintained focus on questions throughout.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Mood</td>
+                    <td><span class="patient-quote">&ldquo;All over the place, honestly. Right now? Nervous.&rdquo;</span></td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Affect</td>
+                    <td>Labile. Shifted from tearful to irritable to matter-of-fact to briefly bright (when discussing her friend Jess and painting) within the span of the interview. Congruent with content discussed. Range notably wide &mdash; not constricted or blunted. Reactivity present &mdash; responded to humor with brief smile, to difficult content with tearfulness.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Thought Process</td>
+                    <td>Logical and linear overall. Goal-directed when focused. Some tangentiality when discussing relationship history &mdash; went into extended narrative before returning to the question. No loose associations, flight of ideas, thought blocking, or perseveration. No racing thoughts reported or observed.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Thought Content</td>
+                    <td>Endorses passive death wish as described. Denies active suicidal ideation, plan, or intent. Denies homicidal ideation. Denies delusions. Reports transient paranoid-like feelings in social settings (described in Psych ROS) &mdash; no fixed delusions. No grandiosity. No hallucinations reported or observed. No response to internal stimuli. Endorses intrusive memories of sexual assault. Endorses preoccupation with perceived abandonment.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Cognitive Function</td>
+                    <td>Alert and oriented &times;4 (person, place, time, situation). Short-term and long-term memory grossly intact. Able to provide detailed chronological history. Fund of knowledge appropriate for education level.</td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Insight</td>
+                    <td>Limited to fair. Patient recognizes that the self-harm is <span class="patient-quote">&ldquo;not a good way to cope&rdquo;</span> and that her relationship patterns are problematic &mdash; <span class="patient-quote">&ldquo;I know I do this, I just can&rsquo;t stop.&rdquo;</span> However, she externalizes the majority of her distress to the breakup and describes the self-harm primarily in functional terms rather than recognizing it as part of a broader pattern. States, <span class="patient-quote">&ldquo;I just need to find the right person and things will be better.&rdquo;</span></td>
+                </tr>
+                <tr>
+                    <td class="mse-domain">Judgment</td>
+                    <td>Fair. Presented for evaluation following crisis center recommendation. Maintains employment. However, demonstrated impaired judgment in some areas &mdash; active self-harm without professional support, increased alcohol use as coping, impulsive spending. States, <span class="patient-quote">&ldquo;I&rsquo;m not ready to give it up yet, but I know I probably need to.&rdquo;</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LABS/SCREENING -->
+    <div class="subsection">
+        <div class="subsection-label obj-label">Labs / Screening Tools</div>
+        <p><strong>Labs:</strong> Ordered by PCP 2 weeks ago: CBC, CMP, TSH, lipid panel &mdash; patient reports she was told <span class="patient-quote">&ldquo;everything was normal.&rdquo;</span> Records requested.</p>
+        <p><strong>Screening tools administered today:</strong></p>
+        <p style="margin-left: 16px; font-size: 14px;">
+            PHQ-9: <strong>16</strong> (moderately severe)<br>
+            GAD-7: <strong>12</strong> (moderate)
+        </p>
+    </div>
+
+</div><!-- end doc-body -->
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+    <span></span>
+    <a href="assignment-part1-mk.html" class="nav-link">Proceed to Assignment Part 1 &rarr;</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: Diagnostic Validity Matrix — M.K.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #b7791f;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --teal: #2c7a7b;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header .course-tag { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 6px; }
+        .page-header h1 { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+        .page-header .subtitle { font-size: 14px; opacity: 0.85; }
+
+        /* === INSTRUCTION BOX === */
+        .instruction-box {
+            background: var(--white);
+            border-left: 4px solid var(--navy);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .instruction-box h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+        .instruction-box p, .instruction-box li { font-size: 14px; color: var(--gray-600); margin-bottom: 6px; }
+        .instruction-box ul { margin-left: 20px; margin-bottom: 8px; }
+        .key-concept { background: var(--blue-light); border-radius: 4px; padding: 8px 12px; margin-top: 8px; font-size: 13px; color: var(--navy-dark); }
+
+        /* === PHASE BAR === */
+        .phase-bar { display: flex; gap: 0; margin-bottom: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+        .phase-step { flex: 1; padding: 12px 16px; text-align: center; font-size: 13px; font-weight: 600; background: var(--gray-100); color: var(--gray-500); transition: all 0.3s; }
+        .phase-step.active { background: var(--navy); color: white; }
+        .phase-step.complete { background: var(--green); color: white; }
+        .phase-num { display: inline-block; width: 22px; height: 22px; line-height: 22px; border-radius: 50%; background: rgba(255,255,255,0.2); font-size: 12px; margin-right: 6px; text-align: center; }
+
+        /* === ACTION BAR === */
+        .action-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 10px 16px; background: var(--white); border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .btn { padding: 8px 18px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-save { background: var(--navy); color: white; }
+        .btn-save:hover { background: var(--navy-dark); }
+        .btn-ref { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-300); }
+        .btn-ref:hover { background: var(--gray-200); }
+        .save-status { font-size: 13px; color: var(--gray-500); font-style: italic; }
+
+        /* === TALLY BAR === */
+        .tally-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .tally-item { padding: 10px 14px; border-radius: 8px; text-align: center; }
+        .tally-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+        .tally-count { font-size: 22px; font-weight: 700; }
+        .tally-bpd { background: var(--blue-light); color: var(--navy); }
+        .tally-bipolar { background: var(--amber-light); color: var(--amber-dark); }
+        .tally-ptsd { background: var(--purple-light); color: var(--purple); }
+
+        /* === SORTING TABLE === */
+        .sort-section { background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 20px; overflow: hidden; }
+        .sort-section-header { padding: 12px 20px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; font-weight: 600; color: var(--white); display: flex; justify-content: space-between; align-items: center; }
+        .sort-section-header.criterion-a { background: linear-gradient(135deg, var(--navy), var(--blue-mid)); }
+        .sort-section-header.subjective { background: linear-gradient(135deg, #4a5568, #718096); }
+        .sort-section-header.mse { background: linear-gradient(135deg, var(--green), var(--green-mid)); }
+        .sort-section-header.screening { background: linear-gradient(135deg, var(--teal), #38b2ac); }
+        .sort-section-header.medical { background: linear-gradient(135deg, #744210, var(--amber)); }
+        .section-hint { font-size: 12px; opacity: 0.85; font-family: 'Source Sans 3', sans-serif; font-weight: 400; }
+
+        .sort-table { width: 100%; border-collapse: collapse; }
+        .sort-table thead th { padding: 10px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; border-bottom: 2px solid var(--gray-200); }
+        .sort-table thead th:first-child { text-align: left; width: 58%; }
+        .th-bpd { background: var(--blue-light); color: var(--navy); }
+        .th-bipolar { background: var(--amber-light); color: var(--amber-dark); }
+        .th-ptsd { background: var(--purple-light); color: var(--purple); }
+
+        .sort-table tbody tr { border-bottom: 1px solid var(--gray-100); transition: background 0.15s; }
+        .sort-table tbody tr:hover { background: var(--gray-50); }
+        .sort-table td { padding: 10px 14px; vertical-align: top; }
+        .finding-text { font-size: 14px; line-height: 1.5; }
+        .pertinent-neg { color: var(--gray-500); font-style: italic; }
+        .cb-cell { text-align: center; vertical-align: middle; }
+        .cb-cell input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--navy); }
+        .cb-cell.bpd-hl { background: rgba(44, 82, 130, 0.08); }
+        .cb-cell.bipolar-hl { background: rgba(183, 121, 31, 0.08); }
+        .cb-cell.ptsd-hl { background: rgba(85, 60, 154, 0.08); }
+
+        /* === GENERATE BUTTON === */
+        .generate-bar { text-align: center; padding: 24px; background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 24px; }
+        .btn-generate { padding: 14px 40px; background: linear-gradient(135deg, var(--navy), var(--blue-mid)); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3); }
+        .generate-note { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+
+        /* === PHASE 2+ CONTAINER === */
+        #phase2-container { display: none; }
+        #phase2-container.visible { display: block; }
+
+        /* === GENERATED MATRIX (matches Excel template) === */
+        .matrix-wrap { background: var(--white); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px; overflow: hidden; }
+        .matrix-title-bar { padding: 14px 20px; background: linear-gradient(135deg, var(--navy-dark), var(--navy)); color: white; font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .matrix-question { background: var(--blue-light); padding: 10px 20px; font-size: 13px; color: var(--navy-dark); font-style: italic; border-bottom: 1px solid var(--gray-200); }
+        .btn-edit-sort { padding: 6px 14px; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .btn-edit-sort:hover { background: rgba(255,255,255,0.3); }
+
+        .gm { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .gm th { padding: 12px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: left; border-bottom: 2px solid var(--gray-200); vertical-align: bottom; }
+        .gm-src-th { background: var(--gray-100); color: var(--gray-700); width: 130px; }
+        .gm-bpd-th { background: var(--blue-light); color: var(--navy); }
+        .gm-bip-th { background: var(--amber-light); color: var(--amber-dark); }
+        .gm-ptsd-th { background: var(--purple-light); color: var(--purple); }
+        .gm-disc-th { background: var(--coral-light); color: var(--coral); width: 220px; }
+
+        .gm td { padding: 10px 14px; border-bottom: 1px solid var(--gray-200); vertical-align: top; line-height: 1.5; }
+        .gm-src { font-weight: 700; color: var(--gray-600); background: var(--gray-50); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; vertical-align: top; }
+        .gm-src small { display: block; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--gray-500); font-size: 11px; margin-top: 2px; }
+        .gm ul { margin: 0; padding-left: 15px; }
+        .gm li { margin-bottom: 4px; font-size: 13px; }
+        .gm li.neg { color: var(--gray-500); font-style: italic; }
+        .gm .empty-cell { color: var(--gray-300); text-align: center; font-style: italic; font-size: 12px; }
+        .gm .disc-cell { background: var(--coral-light); }
+        .disc-ta { width: 100%; min-height: 60px; font-size: 12px; border: 1px solid #fed7d7; border-radius: 4px; padding: 6px 8px; font-family: 'Source Sans 3', sans-serif; resize: vertical; line-height: 1.5; color: var(--gray-700); }
+        .disc-ta:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 2px rgba(197, 48, 48, 0.1); }
+
+        /* === VALIDITY SYNTHESIS (matches template rows 11-13) === */
+        .synth-wrap { background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 24px; overflow: hidden; }
+        .synth-title { padding: 12px 20px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; font-weight: 600; color: var(--white); background: linear-gradient(135deg, var(--navy-dark), var(--navy)); }
+        .synth-row { display: grid; grid-template-columns: 130px 1fr 1fr; border-bottom: 1px solid var(--gray-200); }
+        .synth-row:last-child { border-bottom: none; }
+        .synth-label { padding: 14px; background: var(--gray-50); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); border-right: 1px solid var(--gray-200); }
+        .synth-label small { display: block; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--gray-500); margin-top: 2px; }
+        .synth-cell { padding: 14px; border-right: 1px solid var(--gray-200); }
+        .synth-cell:last-child { border-right: none; }
+        .synth-cell-head { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .synth-cell.conv .synth-cell-head { color: var(--navy); }
+        .synth-cell.disc .synth-cell-head { color: var(--coral); }
+        textarea { width: 100%; min-height: 80px; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; line-height: 1.5; color: var(--gray-700); resize: vertical; transition: border-color 0.2s; }
+        textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.15); }
+        textarea.lg { min-height: 110px; }
+
+        /* === DIAGNOSTIC CONCLUSION (matches template rows 15-17) === */
+        .dx-wrap { background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 24px; overflow: hidden; }
+        .dx-title { padding: 12px 20px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; font-weight: 600; color: var(--white); background: linear-gradient(135deg, var(--green), var(--green-mid)); }
+        .dx-body { padding: 20px; }
+        .dx-label { font-size: 14px; font-weight: 700; display: block; margin-bottom: 6px; }
+        .dx-label.primary { color: var(--green); }
+        .dx-label.rationale { color: var(--navy); }
+        .dx-input { width: 100%; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 15px; font-family: 'Source Sans 3', sans-serif; }
+        .dx-input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 2px rgba(39, 103, 73, 0.15); }
+
+        /* === SUBMIT === */
+        .submit-bar { text-align: center; padding: 20px; background: var(--white); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        .btn-submit { padding: 14px 40px; background: linear-gradient(135deg, var(--green), var(--green-mid)); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(39, 103, 73, 0.3); }
+        .submit-note { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+
+        /* === OUTPUT === */
+        .output-section { display: none; }
+        body.submitted .form-section { display: none; }
+        body.submitted .output-section { display: block; }
+        .output-banner { background: var(--green-light); border: 1px solid var(--green-mid); border-radius: 8px; padding: 14px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .output-banner-text { font-size: 14px; color: var(--green); font-weight: 600; }
+        .btn-edit-final { padding: 8px 18px; background: var(--navy); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .btn-print { padding: 8px 18px; background: var(--gray-600); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-left: 8px; }
+        .out-block { background: var(--white); border-radius: 8px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .out-block-header { padding: 10px 16px; color: white; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .out-block-body { padding: 14px 16px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+        .out-block-body.empty { color: var(--gray-400); font-style: italic; }
+
+        /* === REFERENCE PANEL === */
+        .ref-panel { display: none; position: fixed; right: 0; top: 0; width: 380px; height: 100vh; background: var(--white); border-left: 2px solid var(--gray-200); box-shadow: -4px 0 20px rgba(0,0,0,0.1); z-index: 1000; overflow-y: auto; padding: 20px; }
+        .ref-panel.open { display: block; }
+        .ref-panel h3 { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: var(--navy); margin-bottom: 12px; }
+        .ref-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--gray-500); }
+        .ref-s { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-100); }
+        .ref-s-t { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin-bottom: 6px; }
+        .ref-s p { font-size: 13px; color: var(--gray-600); margin-bottom: 4px; line-height: 1.5; }
+
+        /* === NAV === */
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+        .nav-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: linear-gradient(135deg, var(--navy), var(--blue-mid)); color: white; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-link:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3); }
+
+        /* === PRINT === */
+        @media print {
+            body { background: white; padding: 0; font-size: 11px; max-width: 100%; }
+            .action-bar, .ref-panel, .nav-bar, .submit-bar, .tally-bar, .phase-bar, .generate-bar { display: none !important; }
+            #phase1-sorting { display: none !important; }
+            #phase2-container { display: block !important; }
+            .btn-edit-sort, .btn-edit-final, .btn-print { display: none !important; }
+            body.submitted .form-section { display: none !important; }
+            body.submitted .output-section { display: block !important; }
+            .matrix-wrap, .synth-wrap, .dx-wrap { page-break-inside: avoid; }
+            .out-block { page-break-inside: avoid; }
+        }
+        @media (max-width: 900px) {
+            .tally-bar { grid-template-columns: 1fr; }
+            .phase-bar { flex-direction: column; }
+            .synth-row { grid-template-columns: 1fr; }
+            .synth-label { border-right: none; border-bottom: 1px solid var(--gray-200); }
+            .synth-cell { border-right: none; }
+            .ref-panel { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-section">
+
+<!-- HEADER -->
+<div class="page-header">
+    <div class="course-tag">NURS 628 &bull; Introduction to Behavioral Health Therapy Across the Lifespan</div>
+    <h1>Diagnostic Validity Matrix &mdash; M.K.</h1>
+    <div class="subtitle">Differential Diagnosis Using Convergent &amp; Discriminant Evidence</div>
+</div>
+
+<!-- PHASE BAR -->
+<div class="phase-bar">
+    <div class="phase-step active" id="ph1"><span class="phase-num">1</span> Sort Findings</div>
+    <div class="phase-step" id="ph2"><span class="phase-num">2</span> Review Matrix</div>
+    <div class="phase-step" id="ph3"><span class="phase-num">3</span> Validity Synthesis</div>
+    <div class="phase-step" id="ph4"><span class="phase-num">4</span> Diagnosis</div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="instruction-box" id="sortInstructions">
+    <h2>Part 1: Sort Clinical Findings</h2>
+    <p>Using M.K.&rsquo;s psychiatric evaluation, evaluate each clinical finding and check the box under <strong>every diagnosis it could support.</strong></p>
+    <ul>
+        <li><strong style="color:var(--navy);">Borderline Personality Disorder (BPD)</strong></li>
+        <li><strong style="color:var(--amber);">Bipolar II Disorder</strong></li>
+        <li><strong style="color:var(--purple);">Post-Traumatic Stress Disorder (PTSD)</strong></li>
+    </ul>
+    <p>Many findings will legitimately support more than one diagnosis &mdash; check all that apply. <strong>Pertinent negatives</strong> <span style="color:var(--gray-500);font-style:italic;">(shown in italics)</span> are included. Consider what the patient <em>denies</em> or what is <em>absent</em> &mdash; this is critical for discriminant analysis.</p>
+    <p>When you are finished, click <strong>&ldquo;Generate Matrix&rdquo;</strong> to see your sorted findings in the diagnostic validity matrix format.</p>
+    <div class="key-concept">
+        <strong>Remember:</strong> A finding checked under multiple diagnoses has <em>low discriminant value.</em> Findings checked under only one diagnosis, and pertinent negatives, have <em>high discriminant value.</em>
+    </div>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+    <div>
+        <button class="btn btn-save" onclick="saveWork()">&#128190; Save Draft</button>
+        <button class="btn btn-ref" onclick="toggleRef()" style="margin-left:8px;">&#128196; Case Reference</button>
+    </div>
+    <span class="save-status" id="saveStatus"></span>
+</div>
+
+<!-- ============================================ -->
+<!-- PHASE 1: SORTING -->
+<!-- ============================================ -->
+<div id="phase1-sorting">
+
+<div class="tally-bar">
+    <div class="tally-item tally-bpd"><span class="tally-label">BPD</span><span class="tally-count" id="tally-bpd">0</span></div>
+    <div class="tally-item tally-bipolar"><span class="tally-label">Bipolar II</span><span class="tally-count" id="tally-bipolar">0</span></div>
+    <div class="tally-item tally-ptsd"><span class="tally-label">PTSD</span><span class="tally-count" id="tally-ptsd">0</span></div>
+</div>
+
+<!-- ===== CRITERION A ===== -->
+<div class="sort-section">
+    <div class="sort-section-header criterion-a">Criterion A &mdash; Core DSM-5-TR Symptoms (+/&minus;)<span class="section-hint">Does the evidence meet diagnostic criteria?</span></div>
+    <table class="sort-table" id="grid-critA"><thead><tr>
+        <th>Clinical Finding from M.K.&rsquo;s Evaluation</th>
+        <th class="th-bpd" style="width:11%;">BPD</th>
+        <th class="th-bipolar" style="width:11%;">Bipolar II</th>
+        <th class="th-ptsd" style="width:11%;">PTSD</th>
+    </tr></thead><tbody>
+        <tr><td class="finding-text">&ldquo;I&rsquo;m always waiting for people to leave.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">&ldquo;Someone can go from being the most important person in my life to someone I never want to see again, and I know that&rsquo;s not normal.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">&ldquo;I don&rsquo;t really know who I am.&rdquo; Reports changing interests, appearance, and friend groups with each romantic partner &mdash; &ldquo;I become whatever person I&rsquo;m with needs me to be.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports impulsive spending during &ldquo;good&rdquo; periods and increased alcohol use &mdash; &ldquo;to take the edge off.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports cutting on upper thighs 1&ndash;2 times per week &mdash; &ldquo;It&rsquo;s the only thing that works fast.&rdquo; Endorses passive death wish &mdash; &ldquo;Sometimes I think everyone would be better off without me.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports mood shifts from &ldquo;totally fine to completely falling apart in an hour&rdquo; &mdash; describes these as triggered by arguments or feeling rejected, lasting hours.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">&ldquo;Hollow feeling, like something is missing and I don&rsquo;t even know what it is.&rdquo; Present &ldquo;as long as I can remember.&rdquo; Intensifies when alone.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports she will &ldquo;explode over nothing&rdquo; with people close to her. Threw phone during argument with ex-partner.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports &ldquo;spacey&rdquo; episodes where she feels &ldquo;disconnected&rdquo; or &ldquo;like I&rsquo;m watching myself from outside&rdquo; &mdash; occur during intense distress, last minutes to an hour. Reports occasional feeling &ldquo;people are looking at me&rdquo; &mdash; &ldquo;I know it&rsquo;s probably not true but I can&rsquo;t shake the feeling.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports periods lasting 1&ndash;3 days of feeling &ldquo;really good&rdquo; &mdash; energetic, sleeping 5&ndash;6 hours instead of usual 8, spending money, more social and talkative. States these follow a positive interpersonal event like someone showing interest or making up after a fight &mdash; &ldquo;It feels like the real me is coming back.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text"><span class="pertinent-neg">DENIES: sustained elevated or irritable mood lasting 4 or more consecutive days. Denies grandiosity. Denies any period where the mood change caused hospitalization or inability to function.</span></td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports sexual assault at age 15 by an older peer at a party.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports occasional intrusive memories of the assault, particularly during intimate situations. Reports nightmares with themes of &ldquo;feeling trapped&rdquo; &mdash; present on and off since adolescence, increased recently.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports avoiding parties and &ldquo;situations where I&rsquo;m not in control.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">&ldquo;Sometimes I just go blank and can&rsquo;t feel anything.&rdquo; Reports difficulty trusting others, particularly romantic partners.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text"><span class="pertinent-neg">DENIES: persistent hypervigilance to environmental threats. Denies exaggerated startle response. Denies flashbacks (distinct from intrusive memories).</span></td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+    </tbody></table>
+</div>
+
+<!-- ===== SUBJECTIVE DATA ===== -->
+<div class="sort-section">
+    <div class="sort-section-header subjective">Subjective Data &mdash; HPI, Psych ROS<span class="section-hint">Patient-reported details that support or fail to support criteria</span></div>
+    <table class="sort-table" id="grid-subjective"><thead><tr>
+        <th>Clinical Finding from M.K.&rsquo;s Evaluation</th>
+        <th class="th-bpd" style="width:11%;">BPD</th>
+        <th class="th-bipolar" style="width:11%;">Bipolar II</th>
+        <th class="th-ptsd" style="width:11%;">PTSD</th>
+    </tr></thead><tbody>
+        <tr><td class="finding-text">Most recent relationship ended after 8 months &mdash; &ldquo;He said I was too much.&rdquo; Describes reaching out to friends for support but currently in a fight with closest friend as well.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">&ldquo;Sometimes I think things will never change, but then I have a good day and I think maybe they will.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports &ldquo;good&rdquo; periods are consistently tied to positive interpersonal events &mdash; not spontaneous. Describes these as always followed by a &ldquo;crash.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Describes using alcohol &ldquo;to take the edge off&rdquo; and to fall asleep. Reports she gets angry when she drinks.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports symptoms worst in evenings and unstructured time &mdash; &ldquo;If I&rsquo;m busy I&rsquo;m okay. It&rsquo;s when I stop that everything hits.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Reports never discussing the assault with anyone besides her mother. Reports intrusive memories specifically during intimate situations.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text"><span class="pertinent-neg">DENIES: recurrent panic attacks since ED visit 2 years ago. Denies longstanding pattern of excessive worry across multiple domains.</span></td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+    </tbody></table>
+</div>
+
+<!-- ===== MSE ===== -->
+<div class="sort-section">
+    <div class="sort-section-header mse">MSE Findings &mdash; Objective Observations (+/&minus;)<span class="section-hint">What did the clinician directly observe?</span></div>
+    <table class="sort-table" id="grid-mse"><thead><tr>
+        <th>Clinical Finding from M.K.&rsquo;s Evaluation</th>
+        <th class="th-bpd" style="width:11%;">BPD</th>
+        <th class="th-bipolar" style="width:11%;">Bipolar II</th>
+        <th class="th-ptsd" style="width:11%;">PTSD</th>
+    </tr></thead><tbody>
+        <tr><td class="finding-text">Affect labile &mdash; shifted from tearful to irritable to matter-of-fact to briefly bright within a single interview. Congruent with interpersonal content discussed. Range notably wide.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Thought content: passive death wish. Transient paranoid-like feelings in social settings. Preoccupation with perceived abandonment. Intrusive memories of assault.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Speech rate variable &mdash; accelerated with emotional activation (anger, relationship conflict), slowed with difficult content (assault, emptiness). Volume soft at baseline.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text"><span class="pertinent-neg">ABSENT: No pressured speech. No flight of ideas. No racing thoughts observed or reported. No grandiosity. No psychomotor agitation consistent with mania.</span></td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Insight limited to fair &mdash; recognizes self-harm is &ldquo;not a good way to cope&rdquo; but states &ldquo;I just need to find the right person and things will be better.&rdquo;</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+    </tbody></table>
+</div>
+
+<!-- ===== SCREENING ===== -->
+<div class="sort-section">
+    <div class="sort-section-header screening">Screening Tools<span class="section-hint">What do the instruments show?</span></div>
+    <table class="sort-table" id="grid-screening"><thead><tr>
+        <th>Clinical Finding from M.K.&rsquo;s Evaluation</th>
+        <th class="th-bpd" style="width:11%;">BPD</th>
+        <th class="th-bipolar" style="width:11%;">Bipolar II</th>
+        <th class="th-ptsd" style="width:11%;">PTSD</th>
+    </tr></thead><tbody>
+        <tr><td class="finding-text">PHQ-9: 16 (moderately severe)</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">GAD-7: 12 (moderate)</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text"><span class="pertinent-neg">No MDQ (Mood Disorder Questionnaire) administered. No PCL-5 (PTSD Checklist) administered.</span></td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+    </tbody></table>
+</div>
+
+<!-- ===== MEDICAL EXCLUSION ===== -->
+<div class="sort-section">
+    <div class="sort-section-header medical">Medical Exclusion &mdash; Physical Exam, Labs<span class="section-hint">Rule out physiological causes</span></div>
+    <table class="sort-table" id="grid-medical"><thead><tr>
+        <th>Clinical Finding from M.K.&rsquo;s Evaluation</th>
+        <th class="th-bpd" style="width:11%;">BPD</th>
+        <th class="th-bipolar" style="width:11%;">Bipolar II</th>
+        <th class="th-ptsd" style="width:11%;">PTSD</th>
+    </tr></thead><tbody>
+        <tr><td class="finding-text">Skin exam: multiple superficial healing linear lacerations on bilateral upper thighs, various stages of healing &mdash; some days old, some 1&ndash;2 weeks old.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">CBC, CMP, TSH reported normal per PCP. No abnormal lab values.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+        <tr><td class="finding-text">Vitals within normal limits. No thyromegaly. No neurological abnormalities on exam.</td><td class="cb-cell"><input type="checkbox" data-col="bpd" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="bipolar" onchange="uc(this)"></td><td class="cb-cell"><input type="checkbox" data-col="ptsd" onchange="uc(this)"></td></tr>
+    </tbody></table>
+</div>
+
+<!-- GENERATE BUTTON -->
+<div class="generate-bar">
+    <button class="btn-generate" onclick="genMatrix()">&#9654; Generate Diagnostic Matrix</button>
+    <div class="generate-note">Your sorted findings will be displayed in the diagnostic validity matrix. You can return to edit your sorting afterward.</div>
+</div>
+
+</div><!-- end phase1-sorting -->
+
+<!-- ============================================ -->
+<!-- PHASE 2-4: MATRIX → SYNTHESIS → CONCLUSION -->
+<!-- ============================================ -->
+<div id="phase2-container">
+
+<!-- GENERATED MATRIX -->
+<div class="matrix-wrap">
+    <div class="matrix-title-bar">
+        Diagnostic Validity Matrix
+        <button class="btn-edit-sort" onclick="document.getElementById('phase1-sorting').scrollIntoView({behavior:'smooth'});">&#9998; Edit Sorting</button>
+    </div>
+    <div class="matrix-question">Clinical Question: Does evidence <strong>converge</strong> on the primary diagnosis while <strong>discriminating</strong> against alternatives?</div>
+    <div id="genMatrixContainer"></div>
+</div>
+
+<!-- VALIDITY SYNTHESIS -->
+<div class="synth-wrap">
+    <div class="synth-title">Validity Synthesis</div>
+    <div class="synth-row">
+        <div class="synth-label">Subjective Data<small>Summary</small></div>
+        <div class="synth-cell conv">
+            <div class="synth-cell-head">Convergent: What subjective findings converge on primary dx?</div>
+            <textarea id="synth-subj-conv" placeholder="Which subjective findings (patient reports, HPI, Psych ROS) converge to support the primary diagnosis? What patterns emerge when you read down the column?"></textarea>
+        </div>
+        <div class="synth-cell disc">
+            <div class="synth-cell-head">Discriminant: What subjective findings discriminate against differentials?</div>
+            <textarea id="synth-subj-disc" placeholder="Which subjective findings discriminate AGAINST the differentials? What does the patient deny or what is absent that rules out alternatives?"></textarea>
+        </div>
+    </div>
+    <div class="synth-row">
+        <div class="synth-label">Objective Data<small>Summary</small></div>
+        <div class="synth-cell conv">
+            <div class="synth-cell-head">Convergent: What objective findings converge on primary dx?</div>
+            <textarea id="synth-obj-conv" placeholder="Which objective findings (MSE observations, screening scores, physical exam, labs) converge to support the primary diagnosis?"></textarea>
+        </div>
+        <div class="synth-cell disc">
+            <div class="synth-cell-head">Discriminant: What objective findings discriminate against differentials?</div>
+            <textarea id="synth-obj-disc" placeholder="Which objective findings discriminate AGAINST the differentials? What is absent on MSE? What screens were negative or not administered?"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- DIAGNOSTIC CONCLUSION -->
+<div class="dx-wrap">
+    <div class="dx-title">Diagnostic Conclusion</div>
+    <div class="dx-body">
+        <div style="margin-bottom:16px;">
+            <label class="dx-label primary">Primary Diagnosis:</label>
+            <input type="text" id="dx-primary" class="dx-input" placeholder="Diagnosis with ICD-10 code">
+        </div>
+        <div>
+            <label class="dx-label rationale">Rationale: <span style="font-weight:400;font-size:13px;color:var(--gray-500);">(Cite BOTH convergent AND discriminant evidence)</span></label>
+            <textarea id="dx-rationale" class="lg" placeholder="Why is this the primary diagnosis? Cite specific convergent evidence (what supports it) AND specific discriminant evidence (what rules out the alternatives). What additional information would you want to confirm?"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- SUBMIT -->
+<div class="submit-bar">
+    <button class="btn-submit" onclick="submitFinal()">&#9989; Submit Completed Matrix</button>
+    <div class="submit-note">Generates a formatted output for print or PDF.</div>
+</div>
+
+</div><!-- end phase2-container -->
+
+<!-- NAV -->
+<div class="nav-bar">
+    <a href="case-study-mk.html" class="nav-link">&larr; Back to Case Study</a>
+    <a href="5ps-matrix-mk.html" class="nav-link">Proceed to 5 P&rsquo;s &rarr;</a>
+</div>
+
+</div><!-- end form-section -->
+
+<!-- ============================================================ -->
+<!-- OUTPUT SECTION -->
+<!-- ============================================================ -->
+<div class="output-section">
+    <div class="page-header">
+        <div class="course-tag">NURS 628 &bull; Diagnostic Validity Matrix</div>
+        <h1>M.K. &mdash; Completed Diagnostic Matrix</h1>
+        <div class="subtitle">Submitted: <span id="outputDate"></span></div>
+    </div>
+    <div class="output-banner">
+        <span class="output-banner-text">&#9989; Matrix submitted successfully</span>
+        <div>
+            <button class="btn-edit-final" onclick="editAll()">&#9998; Edit</button>
+            <button class="btn-print" onclick="window.print()">&#128424; Print / PDF</button>
+        </div>
+    </div>
+    <div id="outputContent"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- REFERENCE PANEL -->
+<!-- ============================================================ -->
+<div class="ref-panel" id="refPanel">
+    <button class="ref-close" onclick="toggleRef()">&times;</button>
+    <h3>M.K. &mdash; Quick Reference</h3>
+    <div class="ref-s"><div class="ref-s-t">Demographics</div><p>32 y/o female, single, restaurant manager. Presenting after crisis center visit 5 days ago.</p></div>
+    <div class="ref-s"><div class="ref-s-t">Chief Concern</div><p>&ldquo;I guess I need to get my shit together. They told me at the crisis center I had to follow up.&rdquo;</p></div>
+    <div class="ref-s"><div class="ref-s-t">HPI Summary</div><p>Crisis center visit after intoxicated &ldquo;breakdown&rdquo; with cutting. 3&ndash;4 month worsening since breakup. Mood &ldquo;all over the place.&rdquo; Fighting with best friend. Chronic emptiness. Alcohol use worsening.</p></div>
+    <div class="ref-s"><div class="ref-s-t">Key Psych ROS</div><p>Mood shifts triggered by interpersonal events. &ldquo;Good&rdquo; periods 1&ndash;3 days tied to positive events. Emptiness, abandonment fears, identity concerns. SA at 15, intrusive memories, avoidance. Cutting 1&ndash;2&times;/wk. Passive death wish. Denies: sustained mood elevation &ge;4 days, grandiosity, hypervigilance, exaggerated startle, flashbacks.</p></div>
+    <div class="ref-s"><div class="ref-s-t">Key MSE</div><p>Affect labile. No pressured speech, no FOI, no racing thoughts. Healing lacerations on thighs. Insight limited. Mood: &ldquo;All over the place.&rdquo;</p></div>
+    <div class="ref-s"><div class="ref-s-t">Screening</div><p>PHQ-9: 16 &bull; GAD-7: 12 &bull; No MDQ &bull; No PCL-5 &bull; Labs normal</p></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+const SK = 'nurs628_dxmatrix_mk_v3';
+const GRIDS = [
+    { id: 'grid-critA', label: 'Criterion A', sub: 'Core DSM-5 symptoms (+/−)' },
+    { id: 'grid-subjective', label: 'Subjective Data', sub: 'HPI, Psych ROS' },
+    { id: 'grid-mse', label: 'MSE Findings', sub: 'Objective observations (+/−)' },
+    { id: 'grid-screening', label: 'Screening Tools', sub: 'PHQ-9, GAD-7, MDQ, etc.' },
+    { id: 'grid-medical', label: 'Medical Exclusion', sub: 'Physical exam, labs' }
+];
+const COLS = ['bpd','bipolar','ptsd'];
+const COL_LABELS = ['BPD','Bipolar II','PTSD'];
+const COL_TH = ['gm-bpd-th','gm-bip-th','gm-ptsd-th'];
+const DISC_PROMPTS = {
+    'grid-critA': 'Which symptoms are UNIQUE to primary dx vs. SHARED with differentials?',
+    'grid-subjective': 'What does patient DENY that rules out differentials?',
+    'grid-mse': 'What is ABSENT on MSE that rules out differentials?',
+    'grid-screening': 'Which screens are NEGATIVE, ruling out differentials?',
+    'grid-medical': 'Any medical findings that change the differential?'
+};
+
+function uc(cb) {
+    // Highlight cell
+    const cell = cb.parentElement;
+    cell.classList.remove('bpd-hl','bipolar-hl','ptsd-hl');
+    if (cb.checked) cell.classList.add(cb.dataset.col + '-hl');
+    // Update tallies
+    COLS.forEach(c => {
+        document.getElementById('tally-' + c).textContent =
+            document.querySelectorAll(`input[data-col="${c}"]:checked`).length;
+    });
+}
+
+// === SAVE / LOAD ===
+function saveWork() {
+    const d = { cb: {}, ta: {}, inp: {}, p2: document.getElementById('phase2-container').classList.contains('visible'), ts: new Date().toISOString() };
+    document.querySelectorAll('.sort-table input[type="checkbox"]').forEach((cb, i) => d.cb[i] = cb.checked);
+    document.querySelectorAll('textarea').forEach(ta => { if (ta.id) d.ta[ta.id] = ta.value; });
+    document.querySelectorAll('input[type="text"]').forEach(inp => { if (inp.id) d.inp[inp.id] = inp.value; });
+    // Also save disc-row textareas from generated matrix
+    document.querySelectorAll('.disc-ta').forEach(ta => { if (ta.id) d.ta[ta.id] = ta.value; });
+    try {
+        localStorage.setItem(SK, JSON.stringify(d));
+        const s = document.getElementById('saveStatus');
+        s.textContent = 'Saved ' + new Date().toLocaleTimeString();
+        setTimeout(() => s.textContent = '', 3000);
+    } catch(e) {}
+}
+
+function loadWork() {
+    try {
+        const raw = localStorage.getItem(SK);
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        if (d.cb) document.querySelectorAll('.sort-table input[type="checkbox"]').forEach((cb, i) => { if (d.cb[i]) { cb.checked = d.cb[i]; uc(cb); } });
+        if (d.ta) Object.keys(d.ta).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.ta[id]; });
+        if (d.inp) Object.keys(d.inp).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.inp[id]; });
+        if (d.p2) genMatrix(true);
+        // Re-tally
+        COLS.forEach(c => { document.getElementById('tally-' + c).textContent = document.querySelectorAll(`input[data-col="${c}"]:checked`).length; });
+    } catch(e) {}
+}
+
+setInterval(saveWork, 60000);
+
+function toggleRef() { document.getElementById('refPanel').classList.toggle('open'); }
+
+// === GENERATE MATRIX ===
+function genMatrix(silent) {
+    const total = document.querySelectorAll('.sort-table input[type="checkbox"]:checked').length;
+    if (!silent && total < 8) { alert('Please sort more findings before generating (' + total + ' checked).'); return; }
+
+    let html = '<table class="gm"><thead><tr>';
+    html += '<th class="gm-src-th">Data Source<br><span style="font-weight:400;font-size:10px;">(Method)</span></th>';
+    COLS.forEach((c,i) => html += `<th class="${COL_TH[i]}">${COL_LABELS[i]}</th>`);
+    html += '<th class="gm-disc-th">Discriminant Analysis<br><span style="font-weight:400;font-size:10px;letter-spacing:0;">(What distinguishes?)</span></th>';
+    html += '</tr></thead><tbody>';
+
+    GRIDS.forEach(g => {
+        const tbl = document.getElementById(g.id);
+        const rows = tbl.querySelectorAll('tbody tr');
+        const found = { bpd: [], bipolar: [], ptsd: [] };
+
+        rows.forEach(row => {
+            const ft = row.querySelector('.finding-text');
+            if (!ft) return;
+            const text = ft.innerHTML;
+            const isNeg = !!ft.querySelector('.pertinent-neg');
+            row.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb.checked) found[cb.dataset.col].push({ text, isNeg });
+            });
+        });
+
+        html += '<tr>';
+        html += `<td class="gm-src">${g.label}<small>${g.sub}</small></td>`;
+        COLS.forEach(c => {
+            if (found[c].length === 0) {
+                html += '<td class="empty-cell">&mdash;</td>';
+            } else {
+                html += '<td><ul>';
+                found[c].forEach(f => html += `<li${f.isNeg ? ' class="neg"' : ''}>${f.text}</li>`);
+                html += '</ul></td>';
+            }
+        });
+        const did = 'disc-' + g.id;
+        html += `<td class="disc-cell"><textarea class="disc-ta" id="${did}" placeholder="${DISC_PROMPTS[g.id]}"></textarea></td>`;
+        html += '</tr>';
+    });
+
+    html += '</tbody></table>';
+    document.getElementById('genMatrixContainer').innerHTML = html;
+
+    // Restore disc textareas from save
+    try {
+        const raw = localStorage.getItem(SK);
+        if (raw) {
+            const d = JSON.parse(raw);
+            if (d.ta) GRIDS.forEach(g => { const el = document.getElementById('disc-' + g.id); if (el && d.ta['disc-' + g.id]) el.value = d.ta['disc-' + g.id]; });
+        }
+    } catch(e) {}
+
+    document.getElementById('phase2-container').classList.add('visible');
+    document.getElementById('ph1').className = 'phase-step complete';
+    document.getElementById('ph2').className = 'phase-step active';
+
+    if (!silent) {
+        saveWork();
+        document.getElementById('phase2-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// === SUBMIT ===
+function submitFinal() {
+    let filled = 0;
+    document.querySelectorAll('#phase2-container textarea, .disc-ta').forEach(ta => { if (ta.value.trim().length > 10) filled++; });
+    if (filled < 3) { alert('Please complete more sections before submitting.'); return; }
+    saveWork();
+
+    // Clone matrix, replace textareas with text
+    const mc = document.getElementById('genMatrixContainer').cloneNode(true);
+    mc.querySelectorAll('textarea').forEach(ta => {
+        const src = document.getElementById(ta.id);
+        const val = src ? src.value.trim() : '';
+        const sp = document.createElement('span');
+        sp.style.fontSize = '12px'; sp.style.lineHeight = '1.5'; sp.style.display = 'block';
+        sp.textContent = val || '(Not completed)';
+        if (!val) { sp.style.color = '#a0aec0'; sp.style.fontStyle = 'italic'; }
+        ta.replaceWith(sp);
+    });
+
+    let out = '<div class="matrix-wrap"><div class="matrix-title-bar">Diagnostic Validity Matrix</div>';
+    out += '<div class="matrix-question">Clinical Question: Does evidence <strong>converge</strong> on the primary diagnosis while <strong>discriminating</strong> against alternatives?</div>';
+    out += mc.innerHTML + '</div>';
+
+    // Validity synthesis
+    const synthIds = [
+        { id: 'synth-subj-conv', label: 'Subjective — Convergent', color: 'var(--navy)' },
+        { id: 'synth-subj-disc', label: 'Subjective — Discriminant', color: 'var(--coral)' },
+        { id: 'synth-obj-conv', label: 'Objective — Convergent', color: 'var(--navy)' },
+        { id: 'synth-obj-disc', label: 'Objective — Discriminant', color: 'var(--coral)' }
+    ];
+
+    out += '<div style="margin-top:4px;">';
+    const dx = document.getElementById('dx-primary').value.trim();
+    if (dx) {
+        out += '<div class="out-block"><div class="out-block-header" style="background:var(--green);font-size:15px;">Primary Diagnosis</div>';
+        out += `<div class="out-block-body" style="font-size:16px;font-weight:600;">${dx}</div></div>`;
+    }
+    synthIds.forEach(s => {
+        const v = (document.getElementById(s.id) || {}).value || '';
+        out += '<div class="out-block"><div class="out-block-header" style="background:' + s.color + ';">' + s.label + '</div>';
+        out += v.trim() ? `<div class="out-block-body">${v.trim()}</div>` : '<div class="out-block-body empty">(Not completed)</div>';
+        out += '</div>';
+    });
+    const rat = (document.getElementById('dx-rationale') || {}).value || '';
+    out += '<div class="out-block"><div class="out-block-header" style="background:var(--green);">Diagnostic Rationale</div>';
+    out += rat.trim() ? `<div class="out-block-body">${rat.trim()}</div>` : '<div class="out-block-body empty">(Not completed)</div>';
+    out += '</div></div>';
+
+    document.getElementById('outputContent').innerHTML = out;
+    document.getElementById('outputDate').textContent = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+    document.body.classList.add('submitted');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function editAll() { document.body.classList.remove('submitted'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+window.addEventListener('DOMContentLoaded', loadWork);
+</script>
+
+</body>
+</html>

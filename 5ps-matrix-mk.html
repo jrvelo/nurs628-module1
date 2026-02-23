@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURS 628: 5 P's Formulation Matrix — M.K.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --blue-mid: #4299e1;
+            --green: #276749;
+            --green-light: #f0fff4;
+            --green-mid: #48bb78;
+            --amber: #d69e2e;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --purple-mid: #9f7aea;
+            --coral: #c53030;
+            --coral-light: #fff5f5;
+            --teal: #2c7a7b;
+            --teal-light: #e6fffa;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --gray-800: #1a202c;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* === HEADER === */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 24px 28px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header .course-tag { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 6px; }
+        .page-header h1 { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+        .page-header .subtitle { font-size: 14px; opacity: 0.85; }
+
+        /* === INSTRUCTION BOX === */
+        .instruction-box {
+            background: var(--white);
+            border-left: 4px solid var(--navy);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .instruction-box h2 { font-size: 16px; color: var(--navy-dark); margin-bottom: 8px; }
+        .instruction-box p { font-size: 14px; margin-bottom: 6px; }
+        .instruction-box p:last-child { margin-bottom: 0; }
+        .key-concept { background: var(--blue-light); border-radius: 4px; padding: 8px 12px; margin-top: 8px; font-size: 13px; color: var(--navy-dark); }
+
+        /* === REFERENCE PANEL === */
+        .ref-toggle { display: inline-flex; align-items: center; gap: 6px; background: var(--navy); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 16px; }
+        .ref-toggle:hover { background: var(--navy-dark); }
+        .ref-toggle .arrow { transition: transform 0.2s; }
+        .ref-toggle.open .arrow { transform: rotate(90deg); }
+        .ref-panel { display: none; background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; max-height: 400px; overflow-y: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-size: 13px; columns: 2; column-gap: 24px; }
+        .ref-panel.open { display: block; }
+        .ref-section { break-inside: avoid; margin-bottom: 12px; }
+        .ref-section h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--navy); border-bottom: 1px solid var(--gray-200); padding-bottom: 3px; margin-bottom: 6px; }
+        .ref-section ul { list-style: none; padding: 0; }
+        .ref-section li { padding: 2px 0; font-size: 13px; line-height: 1.4; }
+
+        /* === SECTION HEADERS === */
+        .section-header { display: flex; align-items: center; gap: 10px; margin-top: 28px; margin-bottom: 12px; }
+        .section-header h3 { font-size: 16px; color: var(--navy-dark); }
+        .section-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; }
+        .tag-sort { background: var(--blue-light); color: var(--navy); }
+        .tag-synth { background: var(--green-light); color: var(--green); }
+        .section-desc { font-size: 13px; color: var(--gray-600); margin-bottom: 12px; font-style: italic; }
+
+        /* === CHECKBOX GRID === */
+        .sort-grid { width: 100%; border-collapse: collapse; margin-bottom: 24px; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); }
+        .sort-grid thead th { padding: 10px 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; border-bottom: 2px solid var(--gray-200); }
+        .sort-grid thead th.col-finding { text-align: left; padding-left: 14px; width: 42%; }
+        .sort-grid thead th.col-presenting { background: var(--blue-light); color: var(--navy); }
+        .sort-grid thead th.col-predisposing { background: var(--purple-light); color: var(--purple); }
+        .sort-grid thead th.col-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .sort-grid thead th.col-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .sort-grid thead th.col-protective { background: var(--green-light); color: var(--green); }
+        .sort-grid tbody td { padding: 8px 6px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
+        .sort-grid tbody tr:last-child td { border-bottom: none; }
+        .sort-grid tbody tr:hover { background: var(--gray-50); }
+        .sort-grid td.finding-text { padding-left: 14px; font-size: 14px; line-height: 1.5; }
+        .sort-grid td.check-cell { text-align: center; vertical-align: middle; }
+        .sort-grid td.check-cell input[type="checkbox"] { width: 17px; height: 17px; cursor: pointer; accent-color: var(--navy); }
+        .pertinent-neg { color: var(--gray-500); font-style: italic; }
+        .sort-grid .row-divider td { background: var(--gray-100); padding: 6px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); }
+
+        /* === TALLY BAR === */
+        .tally-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 24px; }
+        .tally-item { padding: 8px 10px; border-radius: 8px; text-align: center; }
+        .tally-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px; }
+        .tally-count { font-size: 20px; font-weight: 700; }
+        .tally-presenting { background: var(--blue-light); color: var(--navy); }
+        .tally-predisposing { background: var(--purple-light); color: var(--purple); }
+        .tally-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .tally-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .tally-protective { background: var(--green-light); color: var(--green); }
+
+        /* === SYNTHESIS === */
+        .synth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .synth-block { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 1px solid var(--gray-200); }
+        .synth-block-header { padding: 10px 14px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .synth-block-header.presenting { background: var(--navy); color: white; }
+        .synth-block-header.predisposing { background: var(--purple); color: white; }
+        .synth-block-header.precipitating { background: var(--amber); color: white; }
+        .synth-block-header.perpetuating { background: var(--coral); color: white; }
+        .synth-block-header.protective { background: var(--green); color: white; }
+        .synth-block-header.discriminant { background: var(--gray-700); color: white; }
+        .synth-block-header.targets { background: var(--teal); color: white; }
+        .synth-block-body { padding: 14px; background: var(--white); }
+        .synth-block-body label { font-size: 13px; color: var(--gray-600); display: block; margin-bottom: 6px; font-style: italic; }
+        textarea { width: 100%; min-height: 90px; padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; line-height: 1.5; color: var(--gray-700); resize: vertical; transition: border-color 0.2s; }
+        textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.15); }
+        .synth-block-body .prompt { font-size: 12px; color: var(--gray-500); margin-top: 6px; font-style: italic; }
+        .synth-full { grid-column: 1 / -1; }
+        .synth-wide { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .synth-wide .synth-block { grid-column: auto; }
+
+        /* === ACTION BAR === */
+        .action-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 10px 16px; background: var(--white); border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .btn { padding: 8px 18px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-save { background: var(--navy); color: white; }
+        .btn-save:hover { background: var(--navy-dark); }
+        .save-status { font-size: 13px; color: var(--gray-500); font-style: italic; }
+
+        /* === SUBMIT === */
+        .submit-bar { text-align: center; padding: 20px; margin-top: 12px; margin-bottom: 20px; }
+        .btn-submit { padding: 14px 40px; background: var(--green); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .btn-submit:hover { background: #1e5631; }
+        .submit-note { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+
+        /* === OUTPUT === */
+        .output-section { display: none; }
+        body.submitted .form-section { display: none; }
+        body.submitted .output-section { display: block; }
+        .output-header { display: flex; justify-content: space-between; align-items: flex-start; background: var(--white); padding: 20px 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .output-header h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; color: var(--navy-dark); }
+        .output-meta { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+        .btn-edit { padding: 8px 18px; background: var(--navy); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-right: 8px; }
+        .btn-pdf { padding: 8px 18px; background: var(--gray-600); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+        .output-matrix { width: 100%; border-collapse: collapse; margin-bottom: 20px; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); font-size: 13px; }
+        .output-matrix thead th { padding: 10px 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 2px solid var(--gray-200); vertical-align: bottom; }
+        .output-matrix thead th.om-source { width: 12%; background: var(--gray-100); }
+        .output-matrix thead th.om-presenting { background: var(--blue-light); color: var(--navy); }
+        .output-matrix thead th.om-predisposing { background: var(--purple-light); color: var(--purple); }
+        .output-matrix thead th.om-precipitating { background: var(--amber-light); color: var(--amber-dark); }
+        .output-matrix thead th.om-perpetuating { background: var(--coral-light); color: var(--coral); }
+        .output-matrix thead th.om-protective { background: var(--green-light); color: var(--green); }
+        .output-matrix tbody td { padding: 10px 8px; border-bottom: 1px solid var(--gray-200); vertical-align: top; line-height: 1.5; }
+        .output-matrix tbody td.om-source-cell { background: var(--gray-50); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-600); }
+        .output-matrix tbody td ul { margin: 0; padding-left: 14px; }
+        .output-matrix tbody td li { margin-bottom: 4px; font-size: 13px; border-bottom: 1px dotted var(--gray-100); padding-bottom: 4px; }
+        .output-matrix tbody td li:last-child { border-bottom: none; }
+        .output-matrix tbody td.om-empty { color: var(--gray-300); text-align: center; font-style: italic; }
+
+        .output-synth-block { background: var(--white); border-radius: 8px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .output-synth-header { padding: 8px 14px; color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .output-synth-body { padding: 12px 14px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+        .output-synth-body.empty { color: var(--gray-400); font-style: italic; }
+
+        /* === NAV === */
+        .nav-bar { display: flex; justify-content: center; gap: 16px; align-items: center; padding: 16px 0; }
+        .nav-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: linear-gradient(135deg, var(--navy), var(--blue-mid)); color: white; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-link:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3); }
+
+        /* === PRINT === */
+        @media print {
+            body { background: white; padding: 0; font-size: 11px; max-width: 100%; }
+            .action-bar, .ref-toggle, .ref-panel, .nav-bar, .submit-bar, .tally-bar { display: none !important; }
+            body.submitted .form-section { display: none !important; }
+            body.submitted .output-section { display: block !important; }
+            .output-matrix { page-break-inside: avoid; }
+            .output-synth-block { page-break-inside: avoid; }
+        }
+        @media (max-width: 900px) {
+            .tally-bar { grid-template-columns: repeat(3, 1fr); }
+            .synth-grid, .synth-wide { grid-template-columns: 1fr; }
+            .ref-panel { columns: 1; }
+            .sort-grid thead th { font-size: 9px; padding: 8px 3px; }
+            .sort-grid td.finding-text { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-section">
+
+<!-- HEADER -->
+<div class="page-header">
+    <div class="course-tag">NURS 628 &bull; Introduction to Behavioral Health Therapy Across the Lifespan</div>
+    <h1>5 P&rsquo;s Formulation Matrix &mdash; M.K.</h1>
+    <div class="subtitle">From Diagnosis to Treatment Planning &mdash; Presenting, Predisposing, Precipitating, Perpetuating, Protective</div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="instruction-box">
+    <h2>From Diagnosis to Formulation</h2>
+    <p>You have established M.K.&rsquo;s primary diagnosis using the Diagnostic Validity Matrix. Now you shift lenses. The 5 P&rsquo;s reframe the question from <em>&ldquo;What does this patient have?&rdquo;</em> to <em>&ldquo;Why does this patient have it, and what maintains it?&rdquo;</em> &mdash; the bridge from diagnosis to treatment planning.</p>
+    <p><strong>Part 1:</strong> Sort M.K.&rsquo;s clinical findings into the appropriate P category (or categories &mdash; a finding may belong in more than one).</p>
+    <p><strong>Part 2:</strong> Write your convergent and discriminant synthesis, then identify treatment targets.</p>
+    <div class="key-concept">
+        <strong>Same data, different lens.</strong> The diagnostic matrix asked whether the data meets criteria. The 5 P&rsquo;s ask <em>why</em> &mdash; what makes this patient vulnerable, what triggered the current presentation, what maintains it, and what strengths can treatment build on.
+    </div>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+    <div>
+        <button class="btn btn-save" onclick="saveWork()">&#128190; Save Draft</button>
+    </div>
+    <span class="save-status" id="saveStatus"></span>
+</div>
+
+<!-- REFERENCE PANEL -->
+<button class="ref-toggle" id="refToggle" onclick="toggleRef()">
+    <span class="arrow">&#9654;</span> M.K. Case Reference
+</button>
+<div class="ref-panel" id="refPanel">
+    <div class="ref-section">
+        <h4>Demographics</h4>
+        <ul>
+            <li>32 y/o female, single, restaurant manager</li>
+            <li>Presenting after crisis center visit 5 days ago</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Chief Concern</h4>
+        <ul>
+            <li>&ldquo;I guess I need to get my shit together. They told me at the crisis center I had to follow up.&rdquo;</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>HPI Summary</h4>
+        <ul>
+            <li>Crisis center after intoxicated &ldquo;breakdown&rdquo; with cutting</li>
+            <li>3&ndash;4 month worsening since breakup &mdash; &ldquo;He said I was too much&rdquo;</li>
+            <li>Fighting with best friend</li>
+            <li>Mood &ldquo;all over the place&rdquo;</li>
+            <li>Chronic emptiness, abandonment fears</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Past Psych History</h4>
+        <ul>
+            <li>Dx: MDD (PCP), ADHD (?), &ldquo;someone said bipolar&rdquo;</li>
+            <li>Meds: escitalopram (numb), fluoxetine (nothing), venlafaxine (GI), lamotrigine (helped some, stopped)</li>
+            <li>Therapy: never past 1&ndash;2 sessions</li>
+            <li>Self-harm: cutting since early 20s, resumed 4 mo ago</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Developmental / Trauma</h4>
+        <ul>
+            <li>Volatile parents, emotional unavailability</li>
+            <li>Mother: &ldquo;I wish I never had you&rdquo; (age 14)</li>
+            <li>SA at age 15 &mdash; mother: &ldquo;What did you expect?&rdquo;</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Family Psych History</h4>
+        <ul>
+            <li>Mother: mood swings, antidepressant (stopped), trazodone</li>
+            <li>Father: heavy drinking</li>
+            <li>Paternal uncle: bipolar, hospitalized</li>
+            <li>Maternal aunt: SA by pills</li>
+            <li>Maternal grandmother: &ldquo;nervous breakdown&rdquo;</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Social / Substance</h4>
+        <ul>
+            <li>Employed as restaurant manager &times; 3 years</li>
+            <li>Alcohol: 3&ndash;4 drinks/night recently, &ldquo;angry when I drink&rdquo;</li>
+            <li>One close friend (currently in conflict)</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Key MSE</h4>
+        <ul>
+            <li>Affect labile (tearful &rarr; irritable &rarr; bright)</li>
+            <li>No pressured speech, no FOI, no grandiosity</li>
+            <li>Healing lacerations bilateral thighs</li>
+            <li>Insight limited &mdash; externalizes to breakup</li>
+        </ul>
+    </div>
+    <div class="ref-section">
+        <h4>Screening / Labs</h4>
+        <ul>
+            <li>PHQ-9: 16 &bull; GAD-7: 12</li>
+            <li>No MDQ, no PCL-5</li>
+            <li>CBC, CMP, TSH normal</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- PART 1: SORT THE CLINICAL FINDINGS -->
+<!-- ============================================ -->
+<div class="section-header">
+    <h3>Part 1: Sort the Clinical Findings</h3>
+    <span class="section-tag tag-sort">Sorting</span>
+</div>
+<p class="section-desc">Assign each finding to the P category (or categories) it belongs to. Remember: the same finding may serve multiple formulation roles.</p>
+
+<!-- === CRITERION A === -->
+<table class="sort-grid" id="grid-critA">
+    <thead><tr>
+        <th class="col-finding">Criterion A &mdash; Core Diagnostic Findings</th>
+        <th class="col-presenting">Presenting</th>
+        <th class="col-predisposing">Predisposing</th>
+        <th class="col-precipitating">Precipitating</th>
+        <th class="col-perpetuating">Perpetuating</th>
+        <th class="col-protective">Protective</th>
+    </tr></thead>
+    <tbody>
+        <tr><td class="finding-text">&ldquo;I&rsquo;m always waiting for people to leave.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;Someone can go from being the most important person in my life to someone I never want to see again.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;I don&rsquo;t really know who I am.&rdquo; Changes interests, appearance, friend groups with each partner &mdash; &ldquo;I become whatever person I&rsquo;m with needs me to be.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Impulsive spending during &ldquo;good&rdquo; periods and increased alcohol use &mdash; &ldquo;to take the edge off.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Cutting 1&ndash;2&times;/week &mdash; &ldquo;It&rsquo;s the only thing that works fast.&rdquo; Passive death wish &mdash; &ldquo;Sometimes I think everyone would be better off without me.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Mood shifts from &ldquo;totally fine to completely falling apart in an hour&rdquo; &mdash; triggered by arguments or perceived rejection, lasting hours.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;Hollow feeling, like something is missing.&rdquo; Present &ldquo;as long as I can remember.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;Explode over nothing&rdquo; with people close to her. Threw phone during argument.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;Spacey&rdquo; episodes &mdash; &ldquo;watching myself from outside&rdquo; during intense distress. &ldquo;People are looking at me&rdquo; &mdash; &ldquo;I know it&rsquo;s probably not true.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+    </tbody>
+</table>
+
+<!-- === SUBJECTIVE DATA === -->
+<table class="sort-grid" id="grid-subjective">
+    <thead><tr>
+        <th class="col-finding">Subjective Data &mdash; HPI, Psych History, Social Hx, Psych ROS</th>
+        <th class="col-presenting">Presenting</th>
+        <th class="col-predisposing">Predisposing</th>
+        <th class="col-precipitating">Precipitating</th>
+        <th class="col-perpetuating">Perpetuating</th>
+        <th class="col-protective">Protective</th>
+    </tr></thead>
+    <tbody>
+        <tr><td class="finding-text">&ldquo;I guess I need to get my shit together. They told me at the crisis center I had to follow up.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Breakup 3&ndash;4 months ago &mdash; &ldquo;He said I was too much.&rdquo; Relationship lasted 8 months.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Currently in a fight with best friend. &ldquo;She said I need to stop calling her at 2 AM when I&rsquo;m spiraling.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Childhood: volatile parents, emotional unavailability. Mother said &ldquo;I wish I never had you&rdquo; during argument when patient was 14.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Sexual assault at age 15. Mother&rsquo;s response: &ldquo;What did you expect?&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Family psych history: mother with mood swings (antidepressant, stopped); father heavy drinker; paternal uncle bipolar (hospitalized); maternal aunt SA by pills; maternal grandmother &ldquo;nervous breakdown.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;Good&rdquo; periods always tied to positive interpersonal events &mdash; not spontaneous. Always followed by a &ldquo;crash.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Alcohol 3&ndash;4 drinks per night recently &mdash; &ldquo;to take the edge off.&rdquo; Reports she gets angry when she drinks.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Symptoms worst in evenings and unstructured time &mdash; &ldquo;If I&rsquo;m busy I&rsquo;m okay. It&rsquo;s when I stop that everything hits.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Therapy never past 1&ndash;2 sessions. Multiple medication trials: escitalopram (&ldquo;numb&rdquo;), fluoxetine (3 months, &ldquo;nothing&rdquo;), venlafaxine (GI). Left prescriber because &ldquo;I didn&rsquo;t like her.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Lamotrigine: &ldquo;Things were a little more even&rdquo; but mood still &ldquo;frequently up and down.&rdquo; Stopped when she stopped seeing prescriber.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">&ldquo;I just need to find the right person and things will be better.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Employed as restaurant manager &times; 3 years. Has maintained job throughout current crisis.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Presenting for treatment (even if reluctant). Went to crisis center when things escalated.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Acknowledges self-harm is &ldquo;not a good way to cope&rdquo; &mdash; &ldquo;I know it&rsquo;s messed up, I just don&rsquo;t know what else to do.&rdquo;</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+    </tbody>
+</table>
+
+<!-- === MSE === -->
+<table class="sort-grid" id="grid-mse">
+    <thead><tr>
+        <th class="col-finding">MSE Findings &mdash; Objective Observations</th>
+        <th class="col-presenting">Presenting</th>
+        <th class="col-predisposing">Predisposing</th>
+        <th class="col-precipitating">Precipitating</th>
+        <th class="col-perpetuating">Perpetuating</th>
+        <th class="col-protective">Protective</th>
+    </tr></thead>
+    <tbody>
+        <tr><td class="finding-text">Affect labile &mdash; shifted from tearful to irritable to matter-of-fact to briefly bright. Congruent with interpersonal content.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Thought content: preoccupation with perceived abandonment; transient paranoid-like feelings; passive death wish; intrusive memories of assault.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Speech variable &mdash; accelerated with anger/relationship content, slowed with assault/emptiness topics.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Insight limited to fair &mdash; recognizes self-harm is harmful but externalizes distress to breakup.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Skin exam: healing linear lacerations bilateral upper thighs, various stages.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">PHQ-9: 16 (moderately severe). GAD-7: 12 (moderate).</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+        <tr><td class="finding-text">Cooperative with interview; engaged despite initial reluctance.</td><td class="check-cell"><input type="checkbox" data-col="presenting"></td><td class="check-cell"><input type="checkbox" data-col="predisposing"></td><td class="check-cell"><input type="checkbox" data-col="precipitating"></td><td class="check-cell"><input type="checkbox" data-col="perpetuating"></td><td class="check-cell"><input type="checkbox" data-col="protective"></td></tr>
+    </tbody>
+</table>
+
+<!-- TALLY -->
+<div class="tally-bar" id="tallyBar">
+    <div class="tally-item tally-presenting"><span class="tally-label">Presenting</span><span class="tally-count" id="tally-presenting">0</span></div>
+    <div class="tally-item tally-predisposing"><span class="tally-label">Predisposing</span><span class="tally-count" id="tally-predisposing">0</span></div>
+    <div class="tally-item tally-precipitating"><span class="tally-label">Precipitating</span><span class="tally-count" id="tally-precipitating">0</span></div>
+    <div class="tally-item tally-perpetuating"><span class="tally-label">Perpetuating</span><span class="tally-count" id="tally-perpetuating">0</span></div>
+    <div class="tally-item tally-protective"><span class="tally-label">Protective</span><span class="tally-count" id="tally-protective">0</span></div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- PART 2: SYNTHESIS -->
+<!-- ============================================ -->
+<div class="section-header">
+    <h3>Part 2: Convergent &amp; Discriminant Synthesis</h3>
+    <span class="section-tag tag-synth">Synthesis</span>
+</div>
+<p class="section-desc">Now summarize the pattern. For each P, describe what converges &mdash; what findings from different data sources point to the same formulation element? Then identify how the overall pattern discriminates regarding treatment direction.</p>
+
+<div class="synth-grid">
+    <div class="synth-block">
+        <div class="synth-block-header presenting">Presenting &mdash; What Converges?</div>
+        <div class="synth-block-body">
+            <label>What subjective and objective findings converge on the current presenting picture?</label>
+            <textarea id="synth-presenting" placeholder="Summarize the findings that converge to describe M.K.'s current presenting concerns. What do multiple data sources agree on?"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header predisposing">Predisposing &mdash; What Converges?</div>
+        <div class="synth-block-body">
+            <label>What findings converge on vulnerability factors that existed before the current crisis?</label>
+            <textarea id="synth-predisposing" placeholder="What developmental, family, and historical factors create vulnerability? How do different sources tell the same story about M.K.'s predisposition?"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header precipitating">Precipitating &mdash; What Converges?</div>
+        <div class="synth-block-body">
+            <label>What findings converge on triggers or activating events for the current presentation?</label>
+            <textarea id="synth-precipitating" placeholder="What events triggered the current crisis? Why now? What does the timeline tell you about precipitating factors?"></textarea>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header perpetuating">Perpetuating &mdash; What Converges?</div>
+        <div class="synth-block-body">
+            <label>What findings converge on factors maintaining the current symptoms?</label>
+            <textarea id="synth-perpetuating" placeholder="What behavioral patterns, coping strategies, cognitive patterns, or circumstances are keeping M.K. stuck? What cycles do you see?"></textarea>
+        </div>
+    </div>
+    <div class="synth-block synth-full">
+        <div class="synth-block-header protective">Protective &mdash; What Converges?</div>
+        <div class="synth-block-body">
+            <label>What findings converge on strengths, resources, and resilience factors?</label>
+            <textarea id="synth-protective" placeholder="What strengths does M.K. bring? What resources are available? What protective factors should treatment build on?"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- DISCRIMINANT -->
+<div class="synth-grid">
+    <div class="synth-block synth-full">
+        <div class="synth-block-header discriminant">Discriminant Analysis &mdash; What Points Toward Treatment?</div>
+        <div class="synth-block-body">
+            <label>How do the cumulative convergent findings discriminate regarding treatment direction? What patterns in the 5 P&rsquo;s point toward specific therapeutic approaches?</label>
+            <textarea id="synth-discriminant" style="min-height: 100px;" placeholder="Looking across all five P's, what patterns emerge that point treatment in a specific direction? What findings are most pertinent to treatment selection? What would you prioritize and why?"></textarea>
+            <p class="prompt">Consider: What do the predisposing and perpetuating factors tell you about where to intervene? How do the protective factors inform your approach? What does the pattern of treatment non-adherence tell you about the kind of treatment that might work?</p>
+        </div>
+    </div>
+</div>
+
+<!-- TREATMENT TARGETS -->
+<div class="section-header">
+    <h3>Part 3: Treatment Targets</h3>
+    <span class="section-tag tag-synth">Integration</span>
+</div>
+<p class="section-desc">Based on your convergent and discriminant analysis, identify specific treatment targets and begin to justify a treatment direction.</p>
+
+<div class="synth-wide">
+    <div class="synth-block">
+        <div class="synth-block-header targets">Treatment Targets</div>
+        <div class="synth-block-body">
+            <label>Based on the convergent + discriminant evidence, what are the priority treatment targets?</label>
+            <textarea id="synth-targets" style="min-height: 140px;" placeholder="List the specific treatment targets that emerge from your 5 P's formulation. These should follow directly from your perpetuating and predisposing factors — not generic goals, but targets specific to M.K.'s formulation."></textarea>
+            <p class="prompt">Your treatment targets should be grounded in the formulation &mdash; they address the specific perpetuating cycles and predisposing vulnerabilities you identified for M.K.</p>
+        </div>
+    </div>
+    <div class="synth-block">
+        <div class="synth-block-header targets">Treatment Rationale</div>
+        <div class="synth-block-body">
+            <label>How does the convergent and discriminant evidence support your treatment direction?</label>
+            <textarea id="synth-rationale" style="min-height: 140px;" placeholder="Explain how your 5 P's analysis leads to your proposed treatment approach. What makes this formulation point toward your recommended intervention? Connect predisposing → perpetuating → treatment targets → intervention approach."></textarea>
+            <p class="prompt">This is the construct validity argument for your treatment plan: the chain from predisposing &rarr; perpetuating &rarr; treatment targets &rarr; intervention should be logically coherent.</p>
+        </div>
+    </div>
+</div>
+
+</div><!-- end form-section -->
+
+<!-- SUBMIT -->
+<div class="submit-bar form-section" id="submitBar">
+    <button class="btn-submit" onclick="submitMatrix()">&#10003; Submit &amp; Generate Matrix</button>
+    <div class="submit-note">Your selections and synthesis will be assembled into a completed 5 P&rsquo;s matrix you can download as a PDF.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- OUTPUT SECTION -->
+<!-- ============================================ -->
+<div class="output-section" id="outputSection">
+    <div class="output-header">
+        <div>
+            <h2>5 P&rsquo;s Formulation Matrix &mdash; M.K.</h2>
+            <div class="output-meta">NURS 628 &bull; Submitted <span id="outputDate"></span></div>
+        </div>
+        <div>
+            <button class="btn-edit" onclick="editMatrix()">&#9998; Edit</button>
+            <button class="btn-pdf" onclick="window.print()">&#128196; Print / PDF</button>
+        </div>
+    </div>
+    <div id="outputMatrixContainer"></div>
+    <div id="outputSynthContainer"></div>
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+    <a href="dx-matrix-mk.html" class="nav-link">&larr; Diagnostic Matrix</a>
+    <a href="case-study-mk.html" class="nav-link">Case Study</a>
+</div>
+
+<script>
+const SK = 'nurs628_5ps_mk_v1';
+const PCOLS = ['presenting','predisposing','precipitating','perpetuating','protective'];
+const GRIDS = ['grid-critA','grid-subjective','grid-mse'];
+const GRID_LABELS = ['Criterion A','Subjective Data','MSE / Screening / PE'];
+
+function updateTallies() {
+    PCOLS.forEach(col => {
+        document.getElementById('tally-' + col).textContent =
+            document.querySelectorAll(`input[data-col="${col}"]:checked`).length;
+    });
+}
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener('change', updateTallies));
+
+// === SAVE / LOAD ===
+function saveWork() {
+    const d = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => d['cb_' + i] = cb.checked);
+    document.querySelectorAll('textarea').forEach(ta => d['ta_' + ta.id] = ta.value);
+    d.savedAt = new Date().toISOString();
+    try {
+        localStorage.setItem(SK, JSON.stringify(d));
+        const s = document.getElementById('saveStatus');
+        s.textContent = 'Saved ' + new Date().toLocaleTimeString();
+        setTimeout(() => s.textContent = '', 3000);
+    } catch(e) {}
+}
+
+function loadWork() {
+    try {
+        const raw = localStorage.getItem(SK);
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        document.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => { if (d['cb_' + i]) cb.checked = d['cb_' + i]; });
+        document.querySelectorAll('textarea').forEach(ta => { if (d['ta_' + ta.id] !== undefined) ta.value = d['ta_' + ta.id]; });
+        updateTallies();
+    } catch(e) {}
+}
+
+setInterval(saveWork, 60000);
+
+function toggleRef() {
+    document.getElementById('refPanel').classList.toggle('open');
+    document.getElementById('refToggle').classList.toggle('open');
+}
+
+// === SUBMIT ===
+function submitMatrix() {
+    saveWork();
+
+    // Build output matrix
+    const colLabels = ['Presenting','Predisposing','Precipitating','Perpetuating','Protective'];
+    const colThClasses = ['om-presenting','om-predisposing','om-precipitating','om-perpetuating','om-protective'];
+
+    let html = '<table class="output-matrix"><thead><tr><th class="om-source">Data Source</th>';
+    colLabels.forEach((l,i) => html += `<th class="${colThClasses[i]}">${l}</th>`);
+    html += '</tr></thead><tbody>';
+
+    GRIDS.forEach((gid, gi) => {
+        const tbl = document.getElementById(gid);
+        const rows = tbl.querySelectorAll('tbody tr');
+        const found = {};
+        PCOLS.forEach(c => found[c] = []);
+
+        rows.forEach(row => {
+            const ft = row.querySelector('.finding-text');
+            if (!ft) return;
+            const text = ft.textContent.trim();
+            row.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb.checked) found[cb.dataset.col].push(text);
+            });
+        });
+
+        html += `<tr><td class="om-source-cell">${GRID_LABELS[gi]}</td>`;
+        PCOLS.forEach(c => {
+            if (found[c].length === 0) {
+                html += '<td class="om-empty">&mdash;</td>';
+            } else {
+                html += '<td><ul>';
+                found[c].forEach(f => html += `<li>${f}</li>`);
+                html += '</ul></td>';
+            }
+        });
+        html += '</tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById('outputMatrixContainer').innerHTML = html;
+
+    // Build synthesis output
+    const synthIds = [
+        { id: 'synth-presenting', label: 'Presenting — Convergent', color: 'var(--navy)' },
+        { id: 'synth-predisposing', label: 'Predisposing — Convergent', color: 'var(--purple)' },
+        { id: 'synth-precipitating', label: 'Precipitating — Convergent', color: 'var(--amber)' },
+        { id: 'synth-perpetuating', label: 'Perpetuating — Convergent', color: 'var(--coral)' },
+        { id: 'synth-protective', label: 'Protective — Convergent', color: 'var(--green)' },
+        { id: 'synth-discriminant', label: 'Discriminant Analysis — Treatment Direction', color: 'var(--gray-700)' },
+        { id: 'synth-targets', label: 'Treatment Targets', color: 'var(--teal)' },
+        { id: 'synth-rationale', label: 'Treatment Rationale', color: 'var(--teal)' }
+    ];
+
+    let shtml = '';
+    synthIds.forEach(s => {
+        const val = (document.getElementById(s.id) || {}).value || '';
+        shtml += '<div class="output-synth-block">';
+        shtml += `<div class="output-synth-header" style="background:${s.color};">${s.label}</div>`;
+        shtml += val.trim() ? `<div class="output-synth-body">${val.trim()}</div>` : '<div class="output-synth-body empty">(Not completed)</div>';
+        shtml += '</div>';
+    });
+    document.getElementById('outputSynthContainer').innerHTML = shtml;
+
+    document.getElementById('outputDate').textContent = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+    document.body.classList.add('submitted');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function editMatrix() {
+    document.body.classList.remove('submitted');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('DOMContentLoaded', loadWork);
+</script>
+
+</body>
+</html>

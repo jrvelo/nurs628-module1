@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component–Target Matrix: Partial Exemplar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --navy: #2c5282;
+            --navy-dark: #1a365d;
+            --blue-light: #ebf8ff;
+            --teal: #2c7a7b;
+            --teal-light: #e6fffa;
+            --purple: #553c9a;
+            --purple-light: #faf5ff;
+            --amber-dark: #744210;
+            --amber-light: #fffaf0;
+            --gray-50: #f7fafc;
+            --gray-100: #edf2f7;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-700: #2d3748;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+            color: white;
+            padding: 20px 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .header .tag {
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+        .header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .intro {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--navy);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .intro p { margin-bottom: 8px; }
+        .intro p:last-child { margin-bottom: 0; }
+
+        .matrix {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .matrix thead th {
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: center;
+            border-bottom: 2px solid var(--gray-200);
+            vertical-align: bottom;
+        }
+        .matrix thead th.col-target {
+            text-align: left;
+            padding-left: 14px;
+            width: 18%;
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+        .matrix thead th.col-individual {
+            background: var(--teal-light);
+            color: var(--teal);
+            width: 20%;
+        }
+        .matrix thead th.col-skills {
+            background: var(--purple-light);
+            color: var(--purple);
+            width: 22%;
+        }
+        .matrix thead th.col-between {
+            background: var(--amber-light);
+            color: var(--amber-dark);
+            width: 20%;
+        }
+        .matrix thead th.col-why {
+            background: var(--blue-light);
+            color: var(--navy);
+            width: 20%;
+        }
+
+        .matrix tbody td {
+            padding: 14px 12px;
+            vertical-align: top;
+            font-size: 13.5px;
+            line-height: 1.55;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .matrix tbody td.target-cell {
+            background: var(--gray-50);
+            font-weight: 600;
+            padding-left: 14px;
+            color: var(--gray-700);
+        }
+
+        @media print {
+            body { padding: 10px; }
+            .header { break-after: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            .matrix { font-size: 12px; }
+            .matrix thead th { font-size: 9px; padding: 8px 6px; }
+            .matrix tbody td { padding: 10px 8px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="tag">NURS 628 &bull; Part 2: DBT Configuration Selection</div>
+    <h1>Component&ndash;Target Matrix: Partial Exemplar</h1>
+</div>
+
+<div class="intro">
+    <p>This is one example row to show you the level of reasoning I&rsquo;m looking for. You don&rsquo;t need to cover every possible point &mdash; just identify a couple of main ways each component addresses the target.</p>
+    <p>Your rows will use M.K.&rsquo;s perpetuating factors from your 5 P&rsquo;s formulation as the treatment targets.</p>
+</div>
+
+<table class="matrix">
+    <thead>
+        <tr>
+            <th class="col-target">Treatment Target</th>
+            <th class="col-individual">Individual DBT</th>
+            <th class="col-skills">Skills Group</th>
+            <th class="col-between">Between-Session Support</th>
+            <th class="col-why">Why This Component?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="target-cell">Treatment non-adherence &mdash; never past 1&ndash;2 sessions; left prescriber because &ldquo;I didn&rsquo;t like her&rdquo;</td>
+            <td>The provider&ndash;patient dynamic itself helps address this &mdash; both in terms of modeling a consistent, validating relationship and in directly working on building skills to manage the discomfort that drives dropout.</td>
+            <td>If it&rsquo;s a closed group, her non-adherence directly impacts the group dynamic. If open, she could hear others talk about their own push and pull with treatment and learn from their experience. The group may instill hope as she sees peers making progress, and offers universality &mdash; which addresses her black-and-white thinking in a different way than individual therapy can.</td>
+            <td>Offers consistent follow-up and a chance to practice boundaries in a lower-stakes context &mdash; such as taking the call at an agreed-upon time. Missing a check-in with a peer specialist is lower stakes than missing a therapy session, which gives her room to practice showing up.</td>
+            <td>Individual DBT &mdash; addressing therapy-interfering behavior is a core function of individual DBT by design, and the therapeutic relationship is the vehicle. Skills group and between-session support play important supporting roles but can&rsquo;t replace the direct work on what drives her out of treatment.</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
